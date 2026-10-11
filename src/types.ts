@@ -17,6 +17,7 @@ export interface Product {
   features: string[];
   productType: ProductType;
   deliveryType: string;
+  downloadUrl?: string;
   offerType?: string;
   validity?: string;
   specifications?: Record<string, string>;
@@ -66,7 +67,15 @@ export interface OrderItemSnapshot {
   quantity: number;
   productType: ProductType;
   deliveryType?: string;
+  downloadUrl?: string;
   image?: string;
+}
+
+export interface DownloadLinkItem {
+  title: string;
+  url: string;
+  note?: string;
+  type?: 'pdf' | 'drive' | 'portal' | 'credentials';
 }
 
 export interface Order {
@@ -87,6 +96,7 @@ export interface Order {
   paymentStatus: PaymentStatus;
   orderStatus: OrderStatus;
   deliveryStatus: DeliveryStatus;
+  downloadLinks?: DownloadLinkItem[];
   customerNote?: string;
   adminNote?: string;
   deliveryInstructions?: string;

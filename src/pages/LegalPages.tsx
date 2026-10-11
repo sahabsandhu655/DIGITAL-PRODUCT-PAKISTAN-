@@ -9,7 +9,7 @@ interface LegalPagesProps {
 }
 
 export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, settings, onBack }) => {
-  const whatsappNumber = settings.whatsappNumber || '+92 300 1234567';
+  const whatsappNumber = settings.whatsappNumber || '+923107759274';
   const supportEmail = settings.supportEmail || 'support@digitalproductpakistan.com';
 
   const renderContent = () => {

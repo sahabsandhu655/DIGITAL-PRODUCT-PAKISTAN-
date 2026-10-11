@@ -254,6 +254,101 @@ export async function getOrders(): Promise<Order[]> {
   return localOrders;
 }
 
+export async function getOrderById(orderIdOrNumber: string): Promise<Order | null> {
+  const cleanId = orderIdOrNumber.trim();
+  const directDocId = cleanId.startsWith('order-') ? cleanId : `order-${cleanId}`;
+
+  // First try direct document lookup from Firestore (supported by allow get: if isValidId(orderId))
+  try {
+    const snap = await getDoc(doc(db, ORDERS_COLLECTION, directDocId));
+    if (snap.exists()) {
+      return { ...(snap.data() as Order), id: snap.id };
+    }
+    const snapRaw = await getDoc(doc(db, ORDERS_COLLECTION, cleanId));
+    if (snapRaw.exists()) {
+      return { ...(snapRaw.data() as Order), id: snapRaw.id };
+    }
+  } catch (err) {
+    console.warn('Firestore single order lookup error:', err);
+  }
+
+  // Check in-memory local cache
+  const inMem = localOrders.find(
+    o => o.orderNumber.toLowerCase() === cleanId.toLowerCase() || o.id === cleanId || o.id === directDocId
+  );
+  if (inMem) return inMem;
+
+  // Check localStorage
+  try {
+    const saved = localStorage.getItem('dpp_submitted_orders');
+    if (saved) {
+      const list: Order[] = JSON.parse(saved);
+      const found = list.find(
+        o => o.orderNumber.toLowerCase() === cleanId.toLowerCase() || o.id === cleanId || o.id === directDocId
+      );
+      if (found) return found;
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  return null;
+}
+
+export async function getCustomerOrders(phoneOrEmail?: string): Promise<Order[]> {
+  const map = new Map<string, Order>();
+
+  // 1. Load locally stored customer orders on this device
+  try {
+    const saved = localStorage.getItem('dpp_submitted_orders');
+    if (saved) {
+      const list: Order[] = JSON.parse(saved);
+      if (Array.isArray(list)) {
+        list.forEach(o => map.set(o.orderNumber || o.id, o));
+      }
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  // Include in-memory localOrders
+  localOrders.forEach(o => map.set(o.orderNumber || o.id, o));
+
+  const list = Array.from(map.values());
+
+  // 2. Refresh statuses from Firestore for each order
+  const refreshedList: Order[] = [];
+  for (const ord of list) {
+    try {
+      const docId = ord.id || `order-${ord.orderNumber}`;
+      const snap = await getDoc(doc(db, ORDERS_COLLECTION, docId));
+      if (snap.exists()) {
+        refreshedList.push({ ...(snap.data() as Order), id: snap.id });
+      } else {
+        refreshedList.push(ord);
+      }
+    } catch {
+      refreshedList.push(ord);
+    }
+  }
+
+  // If phone or email filter is provided
+  if (phoneOrEmail && phoneOrEmail.trim()) {
+    const cleanQuery = phoneOrEmail.trim().toLowerCase();
+    const digitsOnly = cleanQuery.replace(/[^0-9]/g, '');
+    return refreshedList.filter(o => {
+      const ordPhone = (o.phone || '').replace(/[^0-9]/g, '');
+      const ordEmail = (o.email || '').toLowerCase();
+      const ordNum = (o.orderNumber || '').toLowerCase();
+      return (digitsOnly && ordPhone.includes(digitsOnly)) ||
+             ordEmail.includes(cleanQuery) ||
+             ordNum.includes(cleanQuery);
+    });
+  }
+
+  return refreshedList;
+}
+
 export async function updateOrder(orderId: string, updates: Partial<Order>): Promise<void> {
   const payload = {
     ...updates,

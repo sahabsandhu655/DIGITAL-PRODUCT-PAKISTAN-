@@ -56,7 +56,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
   // Copy Easypaisa Number
   const handleCopyNumber = () => {
-    const num = settings.easypaisaNumber || '[SET IN ADMIN DASHBOARD]';
+    const num = settings.easypaisaNumber || '03010333544';
     navigator.clipboard.writeText(num);
     setCopiedNumber(true);
     setTimeout(() => setCopiedNumber(false), 2500);
@@ -319,7 +319,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                     Account Holder Name
                   </span>
                   <span className="text-sm font-bold text-white mt-0.5 block">
-                    {settings.easypaisaAccountName || '[SET IN ADMIN DASHBOARD]'}
+                    {settings.easypaisaAccountName || 'MUHAMMAD KUMAIL ALI'}
                   </span>
                 </div>
 
@@ -329,7 +329,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                   </span>
                   <div className="flex items-center gap-2 mt-0.5">
                     <span className="text-base font-extrabold text-[#B7F34A]">
-                      {settings.easypaisaNumber || '[SET IN ADMIN DASHBOARD]'}
+                      {settings.easypaisaNumber || '03010333544'}
                     </span>
                     <button
                       type="button"
@@ -385,7 +385,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                 <div className="mt-3 bg-[#111C18] border border-[#233730] p-4 rounded-xl text-xs text-slate-300 space-y-2">
                   <span className="font-bold text-white block">International Payment Guidance:</span>
                   <p className="leading-relaxed text-slate-400">
-                    {settings.internationalPaymentInstructions || 'Please message our customer support on WhatsApp (+92 300 1234567) before submitting an order. We support international wire transfers and alternative payment channels upon manual verification.'}
+                    {settings.internationalPaymentInstructions || 'Please message our customer support on WhatsApp (+923107759274) before submitting an order. We support international wire transfers and alternative payment channels upon manual verification.'}
                   </p>
                 </div>
               )}

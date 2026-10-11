@@ -9,7 +9,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ 
   onNavigate, 
-  whatsappNumber = '+92 300 1234567',
+  whatsappNumber = '+923107759274',
   supportEmail = 'support@digitalproductpakistan.com'
 }) => {
   return (
@@ -69,6 +69,14 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#B7F34A] transition-colors cursor-pointer"
                 >
                   Product & Skill Blog
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => onNavigate('orders')} 
+                  className="hover:text-[#B7F34A] transition-colors font-medium text-white flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B7F34A]"></span> My Orders & Downloads
                 </button>
               </li>
             </ul>

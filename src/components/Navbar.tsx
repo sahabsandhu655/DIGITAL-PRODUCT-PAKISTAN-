@@ -10,7 +10,8 @@ import {
   GraduationCap, 
   Newspaper, 
   MessageCircle, 
-  UserCheck
+  UserCheck,
+  PackageCheck
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -32,6 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
     { label: 'Software & Tools', route: 'software', icon: Cpu },
     { label: 'Courses', route: 'courses', icon: GraduationCap },
     { label: 'Blog', route: 'blog', icon: Newspaper },
+    { label: 'My Orders', route: 'orders', icon: PackageCheck },
     { label: 'Contact', route: 'contact', icon: MessageCircle },
   ];
 
@@ -99,6 +101,20 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
               className="p-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-[#1A2924] transition-colors cursor-pointer"
             >
               <Search className="w-5 h-5" />
+            </button>
+
+            {/* My Orders button */}
+            <button
+              onClick={() => handleLinkClick('orders')}
+              className={`p-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+                currentRoute === 'orders'
+                  ? 'bg-[#B7F34A] text-[#111C18]'
+                  : 'text-slate-300 hover:text-white hover:bg-[#1A2924]'
+              }`}
+              title="Track Purchases & Downloads"
+            >
+              <PackageCheck className="w-4 h-4 text-[#B7F34A]" />
+              <span className="hidden xl:inline">My Orders</span>
             </button>
 
             {/* Admin shortcut badge */}

@@ -249,13 +249,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               <span>{copiedLink ? 'Link Copied!' : 'Share Product'}</span>
             </button>
             <a
-              href={`https://wa.me/923001234567?text=${encodeURIComponent(`Hi, I am interested in ${product.title} (PKR ${product.pricePKR}). Can you share more details?`)}`}
+              href={`https://wa.me/923107759274?text=${encodeURIComponent(`Hi, I am interested in ${product.title} (PKR ${product.pricePKR}). Can you share more details?`)}`}
               target="_blank"
               rel="noreferrer"
               className="text-xs font-semibold text-[#B7F34A] hover:underline flex items-center gap-1.5"
             >
               <MessageCircle className="w-3.5 h-3.5" />
-              <span>Inquire on WhatsApp</span>
+              <span>Inquire on WhatsApp (+92 310 7759274)</span>
             </a>
           </div>
         </div>

@@ -16,12 +16,14 @@ interface OrderConfirmationPageProps {
   order: Order;
   settings: StoreSettings;
   onContinueShopping: () => void;
+  onViewOrderHistory?: () => void;
 }
 
 export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
   order,
   settings,
   onContinueShopping,
+  onViewOrderHistory,
 }) => {
   const [copiedOrderNumber, setCopiedOrderNumber] = useState(false);
 
@@ -31,7 +33,7 @@ export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
     setTimeout(() => setCopiedOrderNumber(false), 2000);
   };
 
-  const whatsappCleanNumber = (settings.whatsappNumber || '+92 300 1234567').replace(/[^0-9]/g, '');
+  const whatsappCleanNumber = (settings.whatsappNumber || '+923107759274').replace(/[^0-9]/g, '');
 
   const whatsappMessage = encodeURIComponent(
     `Hello Digital Product Pakistan! I have submitted my order.\n\n` +
@@ -165,10 +167,19 @@ export const OrderConfirmationPage: React.FC<OrderConfirmationPageProps> = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-center gap-4">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {onViewOrderHistory && (
+          <button
+            onClick={onViewOrderHistory}
+            className="w-full sm:w-auto bg-[#B7F34A] hover:bg-[#A3E037] text-[#111C18] font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all shadow-md shadow-[#B7F34A]/20"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>Track Order & View Downloads</span>
+          </button>
+        )}
         <button
           onClick={onContinueShopping}
-          className="bg-[#1A2924] hover:bg-[#233730] text-white border border-[#233730] font-bold text-xs sm:text-sm px-6 py-3 rounded-xl flex items-center gap-2 cursor-pointer transition-colors"
+          className="w-full sm:w-auto bg-[#1A2924] hover:bg-[#233730] text-white border border-[#233730] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-colors"
         >
           <Home className="w-4 h-4 text-[#B7F34A]" />
           <span>Return to Homepage</span>

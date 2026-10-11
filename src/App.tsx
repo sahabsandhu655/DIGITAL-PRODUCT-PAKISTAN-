@@ -16,6 +16,7 @@ import { BlogIndexPage } from './pages/BlogIndexPage';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { LegalPages } from './pages/LegalPages';
+import { OrderHistoryPage } from './pages/OrderHistoryPage';
 import { 
   getProducts, 
   getBlogPosts, 
@@ -97,6 +98,8 @@ function MainApp() {
         setCurrentRoute('courses');
       } else if (path === '/blog') {
         setCurrentRoute('blog');
+      } else if (path === '/orders' || path === '/my-orders') {
+        setCurrentRoute('orders');
       } else if (path === '/checkout') {
         setCurrentRoute('checkout');
       } else if (path === '/admin') {
@@ -129,6 +132,7 @@ function MainApp() {
     else if (route === 'software') targetPath = '/software';
     else if (route === 'courses') targetPath = '/courses';
     else if (route === 'blog') targetPath = '/blog';
+    else if (route === 'orders') targetPath = '/orders';
     else if (route === 'checkout') targetPath = '/checkout';
     else if (route === 'admin') targetPath = '/admin';
     else if (route === 'about') targetPath = '/about';
@@ -235,6 +239,15 @@ function MainApp() {
             order={confirmedOrder}
             settings={settings}
             onContinueShopping={() => navigateTo('home')}
+            onViewOrderHistory={() => navigateTo('orders')}
+          />
+        )}
+
+        {currentRoute === 'orders' && (
+          <OrderHistoryPage
+            settings={settings}
+            onBack={() => navigateTo('home')}
+            onExploreProducts={() => navigateTo('ebooks')}
           />
         )}
 

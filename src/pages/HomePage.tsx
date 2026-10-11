@@ -428,13 +428,13 @@ export const HomePage: React.FC<HomePageProps> = ({
             </p>
           </div>
           <a
-            href="https://wa.me/923001234567"
+            href="https://wa.me/923107759274"
             target="_blank"
             rel="noreferrer"
             className="bg-[#B7F34A] hover:bg-[#A3E037] text-[#111C18] font-bold text-sm px-6 py-3.5 rounded-xl flex items-center gap-2 shrink-0 transition-all shadow-lg shadow-[#B7F34A]/20"
           >
             <MessageCircle className="w-4 h-4" />
-            <span>Chat on WhatsApp</span>
+            <span>Chat on WhatsApp (+92 310 7759274)</span>
           </a>
         </div>
       </section>

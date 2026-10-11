@@ -4,15 +4,15 @@ export const INITIAL_STORE_SETTINGS: StoreSettings = {
   businessName: 'Digital Product Pakistan',
   logo: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=120&auto=format&fit=crop&q=80',
   supportEmail: 'support@digitalproductpakistan.com',
-  whatsappNumber: '+92 300 1234567',
-  easypaisaAccountName: '[SET IN ADMIN DASHBOARD]',
-  easypaisaNumber: '[SET IN ADMIN DASHBOARD]',
+  whatsappNumber: '+923107759274',
+  easypaisaAccountName: 'MUHAMMAD KUMAIL ALI',
+  easypaisaNumber: '03010333544',
   paymentInstructions: `1. Open your Easypaisa Mobile App or dial *786#.
 2. Send the exact total order amount in PKR to the Easypaisa Account details shown above.
 3. Take a clear screenshot of the completed transaction showing the Transaction ID (TRX ID), date, and amount.
 4. Upload the screenshot proof in the file upload area below.
 5. Click "Submit Order for Verification". Our team manually verifies the transaction and delivers your digital credentials/access links via WhatsApp and Email.`,
-  internationalPaymentInstructions: `For international customers outside Pakistan who cannot use Easypaisa, please contact our support team on WhatsApp at +92 300 1234567 or email support@digitalproductpakistan.com before placing your order. We support secure international bank wire and alternative digital payment options upon manual request.`,
+  internationalPaymentInstructions: `For international customers outside Pakistan who cannot use Easypaisa, please contact our support team on WhatsApp at +923107759274 or email support@digitalproductpakistan.com before placing your order. We support secure international bank wire and alternative digital payment options upon manual request.`,
   currency: 'PKR',
   announcement: '🇵🇰 Welcome to Digital Product Pakistan — Official Digital Products with Manual Easypaisa Verification & Direct WhatsApp Delivery!',
   policies: {

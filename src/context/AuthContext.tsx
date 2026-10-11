@@ -4,7 +4,9 @@ import {
   signInWithEmailAndPassword, 
   signOut as firebaseSignOut, 
   onAuthStateChanged,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup
 } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
@@ -14,6 +16,7 @@ interface AuthContextType {
   isAdmin: boolean;
   loading: boolean;
   login: (email: string, pass: string) => Promise<void>;
+  loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
   bootstrapAdmin: (email: string, pass: string) => Promise<void>;
   authError: string | null;
@@ -56,11 +59,49 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => unsubscribe();
   }, []);
 
+  const loginWithGoogle = async () => {
+    setAuthError(null);
+    try {
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: 'select_account' });
+      const cred = await signInWithPopup(auth, provider);
+      if (cred.user.email === MASTER_ADMIN_EMAIL) {
+        setIsAdmin(true);
+        try {
+          await setDoc(doc(db, 'admins', cred.user.uid), {
+            email: cred.user.email,
+            role: 'superadmin',
+            createdAt: new Date().toISOString(),
+          }, { merge: true });
+        } catch {
+          // ignore
+        }
+      } else {
+        try {
+          const adminDoc = await getDoc(doc(db, 'admins', cred.user.uid));
+          setIsAdmin(adminDoc.exists());
+        } catch {
+          setIsAdmin(false);
+        }
+      }
+    } catch (err: any) {
+      console.error('Google Sign-In Error:', err);
+      const msg = err.message || 'Google Sign-In failed.';
+      setAuthError(msg);
+      throw err;
+    }
+  };
+
   const login = async (email: string, pass: string) => {
     setAuthError(null);
     try {
       await signInWithEmailAndPassword(auth, email, pass);
     } catch (err: any) {
+      if (err.code === 'auth/operation-not-allowed') {
+        const msg = "Email/Password sign-in is not enabled in Firebase. Please click 'Sign in with Google' below (enabled by default for " + MASTER_ADMIN_EMAIL + ") or enable Email/Password provider in the Firebase Console.";
+        setAuthError(msg);
+        throw new Error(msg);
+      }
       const msg = err.message || 'Login failed. Please verify credentials.';
       setAuthError(msg);
       throw err;
@@ -88,6 +129,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       setIsAdmin(true);
     } catch (err: any) {
+      if (err.code === 'auth/operation-not-allowed') {
+        const msg = "Email/Password registration is not enabled in Firebase Console. Please use 'Sign in with Google' (ready and active for " + MASTER_ADMIN_EMAIL + ") or enable Email/Password provider in your Firebase project under Authentication > Sign-in method.";
+        setAuthError(msg);
+        throw new Error(msg);
+      }
       if (err.code === 'auth/email-already-in-use') {
         // Fallback to normal sign in if already exists
         await signInWithEmailAndPassword(auth, email, pass);
@@ -107,6 +153,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isAdmin,
         loading,
         login,
+        loginWithGoogle,
         logout,
         bootstrapAdmin,
         authError,

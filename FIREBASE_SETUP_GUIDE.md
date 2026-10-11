@@ -125,7 +125,27 @@ service firebase.storage {
 ---
 
 ## 5. Setting up Admin User Credentials
-1. Navigate to `/admin` in your browser.
-2. Enter your admin email (`sahabsandhu455@gmail.com`) and choose a strong password (minimum 6 characters).
-3. Click **"First time? Setup / Initialize Admin"** to register and initialize the admin record.
-4. Once signed in, visit the **"Store Settings"** tab to enter your actual Easypaisa account holder name and mobile account number.
+
+### Option A: Instant Access via Google Sign-In (Recommended & Enabled by Default)
+By default, the Firebase project is pre-configured with Google Authentication:
+1. Navigate to `/admin`.
+2. Click **"Sign in with Google (Instant Admin Login)"**.
+3. Select your admin Google Account (`sahabsandhu455@gmail.com`).
+4. You will be authenticated immediately as the Super Administrator without password setup or permission errors.
+
+### Option B: Enabling Email/Password Authentication (Resolves `auth/operation-not-allowed`)
+If you prefer traditional email and password login instead of Google Sign-In:
+1. Open your [Firebase Console](https://console.firebase.google.com/project/gen-lang-client-0702146343/authentication/providers).
+2. Go to **Authentication** > **Sign-in method**.
+3. Click **Add new provider** (or select **Email/Password**).
+4. Toggle **Enable** next to Email/Password (leave Email link/passwordless off).
+5. Click **Save**.
+6. Return to `/admin`, enter your email and password, and click **"First time? Setup / Initialize Admin"**.
+
+---
+
+## 6. Pre-Configured Store & Easypaisa Details
+- **Account Title**: `MUHAMMAD KUMAIL ALI`
+- **Account Number**: `03010333544`
+- **WhatsApp Support**: `+923107759274`
+- **Currency**: `PKR`
