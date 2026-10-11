@@ -1,0 +1,145 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A digital product available in the store (e-book, software, or course).",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "slug": { "type": "string", "maxLength": 200 },
+        "category": { "type": "string", "maxLength": 100 },
+        "subcategory": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 10000 },
+        "shortDescription": { "type": "string", "maxLength": 500 },
+        "images": { "type": "array" },
+        "pricePKR": { "type": "number" },
+        "compareAtPricePKR": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "tags": { "type": "array" },
+        "features": { "type": "array" },
+        "productType": { "type": "string", "enum": ["ebook", "software", "course"] },
+        "deliveryType": { "type": "string", "maxLength": 100 },
+        "offerType": { "type": "string", "maxLength": 100 },
+        "validity": { "type": "string", "maxLength": 100 },
+        "specifications": { "type": "object" },
+        "licensingNotes": { "type": "string", "maxLength": 1000 },
+        "featured": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["published", "draft", "archived"] },
+        "seoTitle": { "type": "string", "maxLength": 200 },
+        "metaDescription": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["title", "slug", "category", "pricePKR", "status", "productType"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order submitted with Easypaisa payment verification proof.",
+      "type": "object",
+      "properties": {
+        "orderNumber": { "type": "string", "maxLength": 50 },
+        "customerName": { "type": "string", "maxLength": 150 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "email": { "type": "string", "maxLength": 150 },
+        "country": { "type": "string", "maxLength": 100 },
+        "items": { "type": "array" },
+        "subtotalPKR": { "type": "number" },
+        "discountPKR": { "type": "number" },
+        "totalPKR": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "paymentMethod": { "type": "string", "maxLength": 50 },
+        "paymentProofPath": { "type": "string", "maxLength": 500 },
+        "paymentProofUrl": { "type": "string", "maxLength": 5000 },
+        "paymentStatus": { "type": "string", "enum": ["Awaiting Payment", "Payment Proof Submitted", "Under Review", "Payment Confirmed", "Payment Proof Rejected", "Refunded", "Cancelled"] },
+        "orderStatus": { "type": "string", "enum": ["Pending Verification", "Processing", "Completed", "Cancelled"] },
+        "deliveryStatus": { "type": "string", "enum": ["Awaiting Payment", "Ready for Delivery", "Delivered"] },
+        "customerNote": { "type": "string", "maxLength": 1000 },
+        "adminNote": { "type": "string", "maxLength": 2000 },
+        "deliveryInstructions": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "paymentConfirmedAt": { "type": "string" },
+        "deliveredAt": { "type": "string" }
+      },
+      "required": ["orderNumber", "customerName", "phone", "items", "totalPKR", "paymentStatus"]
+    },
+    "BlogPost": {
+      "title": "BlogPost",
+      "description": "Content marketing article and guide for SEO and customer education.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 250 },
+        "slug": { "type": "string", "maxLength": 250 },
+        "excerpt": { "type": "string", "maxLength": 600 },
+        "content": { "type": "string", "maxLength": 50000 },
+        "coverImage": { "type": "string", "maxLength": 500 },
+        "imageAlt": { "type": "string", "maxLength": 250 },
+        "author": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "maxLength": 100 },
+        "tags": { "type": "array" },
+        "relatedProductIds": { "type": "array" },
+        "status": { "type": "string", "enum": ["published", "draft", "archived"] },
+        "publishedAt": { "type": "string" },
+        "seoTitle": { "type": "string", "maxLength": 250 },
+        "metaDescription": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["title", "slug", "content", "category", "status"]
+    },
+    "StoreSettings": {
+      "title": "StoreSettings",
+      "description": "Global store configuration including Easypaisa account details, contact info, and policies.",
+      "type": "object",
+      "properties": {
+        "businessName": { "type": "string", "maxLength": 150 },
+        "logo": { "type": "string", "maxLength": 500 },
+        "supportEmail": { "type": "string", "maxLength": 150 },
+        "whatsappNumber": { "type": "string", "maxLength": 50 },
+        "easypaisaAccountName": { "type": "string", "maxLength": 150 },
+        "easypaisaNumber": { "type": "string", "maxLength": 50 },
+        "paymentInstructions": { "type": "string", "maxLength": 5000 },
+        "internationalPaymentInstructions": { "type": "string", "maxLength": 5000 },
+        "currency": { "type": "string", "maxLength": 10 },
+        "announcement": { "type": "string", "maxLength": 500 },
+        "socialLinks": { "type": "object" },
+        "policies": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["businessName", "whatsappNumber", "easypaisaAccountName", "easypaisaNumber"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Privileged admin user record.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 150 },
+        "role": { "type": "string", "enum": ["admin", "superadmin"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Public catalog of digital products."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Orders submitted by customers, verifiable by admins."
+    },
+    "/blogPosts/{postId}": {
+      "schema": "BlogPost",
+      "description": "Blog articles and buying guides."
+    },
+    "/storeSettings/{settingId}": {
+      "schema": "StoreSettings",
+      "description": "Store configuration and Easypaisa details."
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Admin registry for RBAC authorization."
+    }
+  }
+}

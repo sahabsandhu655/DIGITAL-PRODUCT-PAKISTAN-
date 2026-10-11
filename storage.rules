@@ -1,0 +1,29 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'sahabsandhu455@gmail.com'
+      );
+    }
+
+    // Payment proof screenshots:
+    // Allow upload of valid images <= 5MB during checkout
+    // Allow read ONLY by verified administrators
+    match /payment-proofs/{orderId}/{fileName} {
+      allow read: if isAdmin();
+      allow write: if request.resource.size <= 5 * 1024 * 1024
+                   && request.resource.contentType.matches('image/.*');
+    }
+
+    // Public store assets (product images, blog covers)
+    match /public/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

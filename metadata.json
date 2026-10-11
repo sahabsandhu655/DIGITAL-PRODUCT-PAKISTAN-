@@ -1,0 +1,6 @@
+{
+  "name": "Digital Product Pakistan",
+  "description": "Pakistan's premium digital marketplace for e-books, verified software tools, and online courses with manual Easypaisa payment verification.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

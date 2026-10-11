@@ -1,0 +1,101 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Deny Catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isSignedIn() { return request.auth != null; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+
+    // Admin authorization: checks verified admin email or admin document
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'sahabsandhu455@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // Product validation
+    function isValidProduct(data) {
+      return data.title is string && data.title.size() <= 200 &&
+             data.slug is string && data.slug.size() <= 200 &&
+             data.category is string && data.category.size() <= 100 &&
+             data.pricePKR is number && data.pricePKR >= 0 &&
+             data.status in ['published', 'draft', 'archived'] &&
+             data.productType in ['ebook', 'software', 'course'];
+    }
+
+    // Order validation for guest checkout creation
+    function isValidInitialOrder(data) {
+      return data.orderNumber is string && data.orderNumber.size() <= 50 &&
+             data.customerName is string && data.customerName.size() <= 150 &&
+             data.phone is string && data.phone.size() <= 50 &&
+             data.items is list && data.items.size() > 0 && data.items.size() <= 50 &&
+             data.totalPKR is number && data.totalPKR >= 0 &&
+             (data.paymentStatus == 'Payment Proof Submitted' || data.paymentStatus == 'Awaiting Payment' || data.paymentStatus == 'Under Review') &&
+             data.orderStatus == 'Pending Verification' &&
+             data.deliveryStatus == 'Awaiting Payment';
+    }
+
+    // Blog validation
+    function isValidBlogPost(data) {
+      return data.title is string && data.title.size() <= 250 &&
+             data.slug is string && data.slug.size() <= 250 &&
+             data.category is string && data.category.size() <= 100 &&
+             data.content is string && data.content.size() <= 50000 &&
+             data.status in ['published', 'draft', 'archived'];
+    }
+
+    // Settings validation
+    function isValidSettings(data) {
+      return data.businessName is string && data.businessName.size() <= 150 &&
+             data.whatsappNumber is string && data.whatsappNumber.size() <= 50 &&
+             data.easypaisaAccountName is string && data.easypaisaAccountName.size() <= 150 &&
+             data.easypaisaNumber is string && data.easypaisaNumber.size() <= 50;
+    }
+
+    // Products collection: public can read published; admin has full CRUD
+    match /products/{productId} {
+      allow get: if isValidId(productId) && (resource.data.status == 'published' || isAdmin());
+      allow list: if resource.data.status == 'published' || isAdmin();
+      allow create: if isValidId(productId) && isAdmin() && isValidProduct(incoming());
+      allow update: if isValidId(productId) && isAdmin() && isValidProduct(incoming());
+      allow delete: if isValidId(productId) && isAdmin();
+    }
+
+    // Orders collection: customers can create unconfirmed orders; admin manages reviews & updates
+    match /orders/{orderId} {
+      allow get: if isValidId(orderId);
+      allow list: if isAdmin();
+      allow create: if isValidId(orderId) && isValidInitialOrder(incoming());
+      allow update: if isValidId(orderId) && isAdmin();
+      allow delete: if isValidId(orderId) && isAdmin();
+    }
+
+    // Blog posts: public can read published articles; admin has full CRUD
+    match /blogPosts/{postId} {
+      allow get: if isValidId(postId) && (resource.data.status == 'published' || isAdmin());
+      allow list: if resource.data.status == 'published' || isAdmin();
+      allow create: if isValidId(postId) && isAdmin() && isValidBlogPost(incoming());
+      allow update: if isValidId(postId) && isAdmin() && isValidBlogPost(incoming());
+      allow delete: if isValidId(postId) && isAdmin();
+    }
+
+    // Store settings: public can read global store config (e.g. Easypaisa details, contacts); admin updates
+    match /storeSettings/{settingId} {
+      allow get: if isValidId(settingId);
+      allow list: if true;
+      allow create, update: if isValidId(settingId) && isAdmin() && isValidSettings(incoming());
+      allow delete: if isValidId(settingId) && isAdmin();
+    }
+
+    // Admins collection: RBAC role storage
+    match /admins/{adminId} {
+      allow get, list, write: if isValidId(adminId) && isAdmin();
+    }
+  }
+}
