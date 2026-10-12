@@ -46,7 +46,25 @@ function saveToStorage(key: string, data: any) {
 }
 
 // Cache in-memory with resilient localStorage backing
-let localProducts: Product[] = loadFromStorage('dpp_custom_products', [...INITIAL_PRODUCTS]);
+function getInitialProductsWithDraftMigration(): Product[] {
+  const loaded = loadFromStorage('dpp_custom_products', [...INITIAL_PRODUCTS]);
+  // Ensure that all seeded software items or user items that should be online are published
+  let modified = false;
+  const migrated = loaded.map(p => {
+    // If it was one of the initial software products or currently marked as draft, bring it online
+    if (p.id.startsWith('prod-soft-') && p.status === 'draft') {
+      modified = true;
+      return { ...p, status: 'published' as const };
+    }
+    return p;
+  });
+  if (modified) {
+    saveToStorage('dpp_custom_products', migrated);
+  }
+  return migrated;
+}
+
+let localProducts: Product[] = getInitialProductsWithDraftMigration();
 let localBlogs: BlogPost[] = loadFromStorage('dpp_custom_blogs', [...INITIAL_BLOG_POSTS]);
 let localSettings: StoreSettings = loadFromStorage('dpp_custom_settings', { ...INITIAL_STORE_SETTINGS });
 let localOrders: Order[] = loadFromStorage('dpp_submitted_orders', []);
@@ -70,6 +88,59 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
     console.warn('Firestore products fetch warning, using resilient storage:', err);
   }
   return includeDrafts ? localProducts : localProducts.filter(p => p.status === 'published');
+}
+
+// Publish single product online immediately
+export async function publishProduct(productId: string): Promise<Product | null> {
+  const target = localProducts.find(p => p.id === productId);
+  if (!target) return null;
+  const updated: Product = {
+    ...target,
+    status: 'published',
+    updatedAt: new Date().toISOString(),
+  };
+  await saveProduct(updated);
+  return updated;
+}
+
+// Publish all draft products online in one click
+export async function publishAllDraftProducts(): Promise<Product[]> {
+  const updatedList = localProducts.map(p => {
+    if (p.status === 'draft') {
+      return {
+        ...p,
+        status: 'published' as const,
+        updatedAt: new Date().toISOString(),
+      };
+    }
+    return p;
+  });
+  localProducts = updatedList;
+  saveToStorage('dpp_custom_products', localProducts);
+
+  // Sync to Firestore in background
+  try {
+    const updates = localProducts.map(p => setDoc(doc(db, PRODUCTS_COLLECTION, p.id), p));
+    await Promise.allSettled(updates);
+  } catch (err) {
+    console.warn('Firestore bulk publish sync warning:', err);
+  }
+
+  return localProducts;
+}
+
+// Toggle product status between published and draft
+export async function toggleProductStatus(productId: string): Promise<Product | null> {
+  const target = localProducts.find(p => p.id === productId);
+  if (!target) return null;
+  const nextStatus = target.status === 'published' ? 'draft' : 'published';
+  const updated: Product = {
+    ...target,
+    status: nextStatus,
+    updatedAt: new Date().toISOString(),
+  };
+  await saveProduct(updated);
+  return updated;
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {

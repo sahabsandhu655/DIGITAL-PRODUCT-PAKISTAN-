@@ -32,6 +32,9 @@ import { Product, Order, BlogPost, StoreSettings, PaymentStatus, OrderStatus, De
 import { 
   saveProduct, 
   deleteProduct, 
+  publishProduct,
+  publishAllDraftProducts,
+  toggleProductStatus,
   saveBlogPost, 
   deleteBlogPost, 
   saveStoreSettings, 
@@ -95,6 +98,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // Product Modal State
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [productFilter, setProductFilter] = useState<'all' | 'published' | 'draft'>('all');
+  const [productSearch, setProductSearch] = useState('');
+  const [isPublishingAll, setIsPublishingAll] = useState(false);
 
   // Blog Modal State
   const [editingBlog, setEditingBlog] = useState<BlogPost | null>(null);
@@ -233,6 +239,36 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       showToast('Product deleted successfully', 'success');
     } catch (err: any) {
       showToast(`Error deleting product: ${err.message}`, 'error');
+    }
+  };
+
+  const handlePublishAllDrafts = async () => {
+    setIsPublishingAll(true);
+    try {
+      await publishAllDraftProducts();
+      onRefreshData();
+      showToast(`Success! All ${draftProductsCount} draft products are now LIVE and purchasable online!`, 'success');
+    } catch (err: any) {
+      showToast(`Failed to publish draft products: ${err.message}`, 'error');
+    } finally {
+      setIsPublishingAll(false);
+    }
+  };
+
+  const handleToggleProductStatus = async (productId: string) => {
+    try {
+      const updated = await toggleProductStatus(productId);
+      if (updated) {
+        onRefreshData();
+        showToast(
+          updated.status === 'published' 
+            ? `"${updated.title}" is now LIVE online and purchasable!` 
+            : `"${updated.title}" moved to draft.`,
+          'success'
+        );
+      }
+    } catch (err: any) {
+      showToast(`Error updating product status: ${err.message}`, 'error');
     }
   };
 
@@ -554,9 +590,27 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               <span className="text-xs text-slate-400">Published Products</span>
               <span className="text-2xl font-black text-white block">{publishedProductsCount}</span>
             </div>
-            <div className="bg-[#15231F] border border-[#233730] p-5 rounded-2xl space-y-1">
-              <span className="text-xs text-slate-400">Draft Products</span>
-              <span className="text-2xl font-black text-slate-400 block">{draftProductsCount}</span>
+            <div className="bg-[#15231F] border border-[#233730] p-5 rounded-2xl space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-slate-400">Draft Products</span>
+                {draftProductsCount > 0 && (
+                  <span className="text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full">
+                    Action Needed
+                  </span>
+                )}
+              </div>
+              <div className="flex items-baseline justify-between">
+                <span className="text-2xl font-black text-white block">{draftProductsCount}</span>
+                {draftProductsCount > 0 && (
+                  <button
+                    onClick={handlePublishAllDrafts}
+                    disabled={isPublishingAll}
+                    className="text-xs font-bold text-[#B7F34A] hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    <Globe className="w-3.5 h-3.5" /> Put All Online
+                  </button>
+                )}
+              </div>
             </div>
             <div className="bg-[#15231F] border border-[#233730] p-5 rounded-2xl space-y-1">
               <span className="text-xs text-slate-400">Published Articles</span>
@@ -572,6 +626,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           <div className="bg-[#15231F] border border-[#233730] rounded-2xl p-6 space-y-4">
             <h3 className="font-bold text-white text-base">Quick Administrator Actions</h3>
             <div className="flex flex-wrap gap-3">
+              {draftProductsCount > 0 && (
+                <button
+                  onClick={handlePublishAllDrafts}
+                  disabled={isPublishingAll}
+                  className="bg-emerald-500 hover:bg-emerald-400 text-[#111C18] font-black text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md shadow-emerald-500/20"
+                >
+                  <Globe className="w-4 h-4" />
+                  <span>{isPublishingAll ? 'Publishing...' : `Publish All ${draftProductsCount} Drafts Online`}</span>
+                </button>
+              )}
               <button
                 onClick={() => {
                   setEditingProduct({
@@ -589,7 +653,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     productType: 'ebook',
                     deliveryType: 'Direct WhatsApp link',
                     featured: false,
-                    status: 'draft',
+                    status: 'published',
                     createdAt: new Date().toISOString(),
                     updatedAt: new Date().toISOString(),
                   });
@@ -895,35 +959,100 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       {/* TAB 3: PRODUCT MANAGEMENT */}
       {activeTab === 'products' && (
         <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold text-white">Product Catalog ({products.length})</h2>
-            <button
-              onClick={() => {
-                setEditingProduct({
-                  id: `prod-${Date.now()}`,
-                  title: '',
-                  slug: '',
-                  category: 'Business Books',
-                  description: '',
-                  shortDescription: '',
-                  images: ['https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'],
-                  pricePKR: 1500,
-                  currency: 'PKR',
-                  tags: ['Featured'],
-                  features: ['Instant Download'],
-                  productType: 'ebook',
-                  deliveryType: 'Direct Download Link',
-                  featured: false,
-                  status: 'draft',
-                  createdAt: new Date().toISOString(),
-                  updatedAt: new Date().toISOString(),
-                });
-                setIsProductModalOpen(true);
-              }}
-              className="bg-[#B7F34A] text-[#111C18] font-bold text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#B7F34A]/20"
-            >
-              <Plus className="w-4 h-4" /> Add Product
-            </button>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-lg font-bold text-white">Product Catalog ({products.length})</h2>
+              <p className="text-xs text-slate-400">
+                {publishedProductsCount} live online &bull; {draftProductsCount} drafts
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-2.5">
+              {draftProductsCount > 0 && (
+                <button
+                  onClick={handlePublishAllDrafts}
+                  disabled={isPublishingAll}
+                  className="bg-emerald-500 hover:bg-emerald-400 text-[#111C18] font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md shadow-emerald-500/20 active:scale-95 transition-all"
+                >
+                  <Globe className="w-4 h-4" />
+                  <span>{isPublishingAll ? 'Publishing...' : `Publish All Drafts Online (${draftProductsCount})`}</span>
+                </button>
+              )}
+              <button
+                onClick={() => {
+                  setEditingProduct({
+                    id: `prod-${Date.now()}`,
+                    title: '',
+                    slug: '',
+                    category: 'Business Books',
+                    description: '',
+                    shortDescription: '',
+                    images: ['https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'],
+                    pricePKR: 1500,
+                    currency: 'PKR',
+                    tags: ['Featured'],
+                    features: ['Instant Download'],
+                    productType: 'ebook',
+                    deliveryType: 'Direct Download Link',
+                    featured: false,
+                    status: 'published',
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                  });
+                  setIsProductModalOpen(true);
+                }}
+                className="bg-[#B7F34A] text-[#111C18] font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#B7F34A]/20"
+              >
+                <Plus className="w-4 h-4" /> Add Product
+              </button>
+            </div>
+          </div>
+
+          {/* Product Filter & Search Bar */}
+          <div className="bg-[#15231F] border border-[#233730] p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="relative flex-1 w-full">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                value={productSearch}
+                onChange={(e) => setProductSearch(e.target.value)}
+                placeholder="Search products by title or category..."
+                className="w-full bg-[#1A2924] border border-[#233730] rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#B7F34A]"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1">
+              <button
+                onClick={() => setProductFilter('all')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer ${
+                  productFilter === 'all'
+                    ? 'bg-[#B7F34A] text-[#111C18]'
+                    : 'bg-[#1A2924] text-slate-300 hover:text-white'
+                }`}
+              >
+                All ({products.length})
+              </button>
+              <button
+                onClick={() => setProductFilter('published')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer ${
+                  productFilter === 'published'
+                    ? 'bg-[#B7F34A] text-[#111C18]'
+                    : 'bg-[#1A2924] text-slate-300 hover:text-white'
+                }`}
+              >
+                Online ({publishedProductsCount})
+              </button>
+              <button
+                onClick={() => setProductFilter('draft')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer ${
+                  productFilter === 'draft'
+                    ? 'bg-amber-400 text-[#111C18]'
+                    : 'bg-[#1A2924] text-slate-300 hover:text-white'
+                }`}
+              >
+                Drafts ({draftProductsCount})
+              </button>
+            </div>
           </div>
 
           <div className="bg-[#15231F] border border-[#233730] rounded-2xl overflow-hidden shadow-xl">
@@ -935,12 +1064,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     <th className="py-3.5 px-4 font-semibold">Type</th>
                     <th className="py-3.5 px-4 font-semibold">Category</th>
                     <th className="py-3.5 px-4 font-semibold">Price (PKR)</th>
-                    <th className="py-3.5 px-4 font-semibold">Status</th>
+                    <th className="py-3.5 px-4 font-semibold">Status / Toggle</th>
                     <th className="py-3.5 px-4 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#233730]">
-                  {products.map(prod => (
+                  {products
+                    .filter(p => {
+                      const matchSearch = productSearch.trim() === '' ||
+                        p.title.toLowerCase().includes(productSearch.toLowerCase()) ||
+                        p.category.toLowerCase().includes(productSearch.toLowerCase());
+                      const matchFilter = productFilter === 'all' || p.status === productFilter;
+                      return matchSearch && matchFilter;
+                    })
+                    .map(prod => (
                     <tr key={prod.id} className="hover:bg-[#1A2924]/60 transition-colors">
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-3">
@@ -949,22 +1086,46 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                             alt={prod.title}
                             className="w-10 h-10 rounded-lg object-cover bg-black shrink-0"
                           />
-                          <span className="font-bold text-white truncate max-w-xs">{prod.title}</span>
+                          <div>
+                            <span className="font-bold text-white block truncate max-w-xs">{prod.title}</span>
+                            <span className="text-[10px] text-slate-400">{prod.deliveryType || 'Instant Delivery'}</span>
+                          </div>
                         </div>
                       </td>
                       <td className="py-3 px-4 text-slate-300 capitalize">{prod.productType}</td>
                       <td className="py-3 px-4 text-slate-300">{prod.category}</td>
                       <td className="py-3 px-4 font-bold text-white">Rs. {Math.round(prod.pricePKR).toLocaleString()}</td>
                       <td className="py-3 px-4">
-                        <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
-                          prod.status === 'published'
-                            ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                            : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                        }`}>
-                          {prod.status}
-                        </span>
+                        {prod.status === 'published' ? (
+                          <button
+                            onClick={() => handleToggleProductStatus(prod.id)}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30 transition-all cursor-pointer"
+                            title="Product is live online (click to switch to Draft)"
+                          >
+                            <CheckCircle className="w-3 h-3 text-emerald-400" />
+                            <span>Live Online</span>
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => handleToggleProductStatus(prod.id)}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-black bg-[#B7F34A] text-[#111C18] hover:bg-[#A3E037] shadow-sm transition-all cursor-pointer animate-pulse"
+                            title="Click to put this draft product ONLINE immediately!"
+                          >
+                            <Globe className="w-3 h-3" />
+                            <span>Put Online 🚀</span>
+                          </button>
+                        )}
                       </td>
-                      <td className="py-3 px-4 text-right space-x-2">
+                      <td className="py-3 px-4 text-right space-x-1.5">
+                        {prod.status === 'draft' && (
+                          <button
+                            onClick={() => handleToggleProductStatus(prod.id)}
+                            className="p-1.5 text-[#B7F34A] hover:bg-[#1A2924] rounded-lg cursor-pointer"
+                            title="Put Online Now"
+                          >
+                            <Globe className="w-4 h-4" />
+                          </button>
+                        )}
                         <button
                           onClick={() => {
                             setEditingProduct({ ...prod });
