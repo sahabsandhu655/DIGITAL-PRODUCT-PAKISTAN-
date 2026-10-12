@@ -39,6 +39,7 @@ import {
   updateOrder 
 } from '../services/storeService';
 import { VercelDomainManager } from '../components/VercelDomainManager';
+import { AdminImageStudio } from '../components/AdminImageStudio';
 
 interface AdminDashboardProps {
   products: Product[];
@@ -1511,56 +1512,66 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         />
       )}
 
-      {/* TAB 6: AI CONTENT ASSISTANT (Optional Gemini Integration) */}
+      {/* TAB 6: AI STUDIO & IMAGE CREATOR/EDITOR (GEMINI POWERED) */}
       {activeTab === 'ai' && (
-        <div className="bg-[#15231F] border border-[#233730] rounded-3xl p-6 sm:p-8 space-y-6">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-[#B7F34A]" />
-            <h2 className="text-xl font-extrabold text-white">AI Content Assistant (Server-Side Gemini)</h2>
-          </div>
-          <p className="text-xs text-slate-400">
-            Draft marketing descriptions, blog outlines, and FAQs without exposing API credentials to the browser.
-          </p>
+        <div className="space-y-8">
+          {/* Admin Image Studio for Product Mockups & Editing */}
+          <AdminImageStudio
+            products={products}
+            onProductUpdated={() => onRefreshData()}
+            showToast={showToast}
+          />
 
-          <div className="space-y-4">
-            <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
-                Prompt / Content Brief
-              </label>
-              <textarea
-                rows={3}
-                value={aiPrompt}
-                onChange={(e) => setAiPrompt(e.target.value)}
-                placeholder="e.g. Write an enticing 3-sentence description and 4 bullet points for a CapCut Pro video editing course in Urdu."
-                className="w-full bg-[#1A2924] border border-[#233730] focus:border-[#B7F34A] rounded-xl p-3 text-xs text-white focus:outline-none"
-              />
+          {/* Gemini AI Copywriter & Marketing Assistant */}
+          <div className="bg-[#15231F] border border-[#233730] rounded-3xl p-6 sm:p-8 space-y-6">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-[#B7F34A]" />
+              <h2 className="text-xl font-extrabold text-white">AI Content & Copywriting Assistant (Gemini 3.8 Flash)</h2>
             </div>
+            <p className="text-xs text-slate-400">
+              Draft marketing descriptions, blog outlines, course curriculums, and Pakistani WhatsApp promo messages.
+            </p>
 
-            <button
-              onClick={handleGenerateAi}
-              disabled={isAiLoading || !aiPrompt.trim()}
-              className="bg-[#B7F34A] text-[#111C18] font-bold text-xs px-5 py-2.5 rounded-xl flex items-center gap-2 cursor-pointer disabled:opacity-50"
-            >
-              {isAiLoading ? 'Drafting with Gemini...' : 'Generate Content'}
-            </button>
-
-            {aiResult && (
-              <div className="bg-[#111C18] border border-[#233730] rounded-2xl p-4 space-y-2">
-                <span className="text-xs font-bold text-[#B7F34A]">Generated Output:</span>
-                <p className="text-xs text-slate-300 whitespace-pre-line leading-relaxed font-mono">
-                  {aiResult}
-                </p>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(aiResult);
-                    showToast('Copied to clipboard!', 'success');
-                  }}
-                  className="bg-[#1A2924] text-slate-300 text-xs px-3 py-1.5 rounded-lg hover:text-white cursor-pointer mt-2"
-                >
-                  Copy Generated Draft
-                </button>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Prompt / Content Brief
+                </label>
+                <textarea
+                  rows={3}
+                  value={aiPrompt}
+                  onChange={(e) => setAiPrompt(e.target.value)}
+                  placeholder="e.g. Write an enticing 3-sentence description and 4 bullet points for a CapCut Pro video editing course in Urdu."
+                  className="w-full bg-[#1A2924] border border-[#233730] focus:border-[#B7F34A] rounded-xl p-3 text-xs text-white focus:outline-none"
+                />
               </div>
-            )}
+
+              <button
+                onClick={handleGenerateAi}
+                disabled={isAiLoading || !aiPrompt.trim()}
+                className="bg-[#B7F34A] text-[#111C18] font-bold text-xs px-5 py-2.5 rounded-xl flex items-center gap-2 cursor-pointer disabled:opacity-50"
+              >
+                {isAiLoading ? 'Drafting with Gemini...' : 'Generate Content'}
+              </button>
+
+              {aiResult && (
+                <div className="bg-[#111C18] border border-[#233730] rounded-2xl p-4 space-y-2">
+                  <span className="text-xs font-bold text-[#B7F34A]">Generated Output:</span>
+                  <p className="text-xs text-slate-300 whitespace-pre-line leading-relaxed font-mono">
+                    {aiResult}
+                  </p>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(aiResult);
+                      showToast('Copied to clipboard!', 'success');
+                    }}
+                    className="bg-[#1A2924] text-slate-300 text-xs px-3 py-1.5 rounded-lg hover:text-white cursor-pointer mt-2"
+                  >
+                    Copy Generated Draft
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

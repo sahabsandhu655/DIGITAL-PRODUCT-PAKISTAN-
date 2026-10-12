@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { SearchModal } from './components/SearchModal';
+import { CustomerChatbot } from './components/CustomerChatbot';
 import { HomePage } from './pages/HomePage';
 import { EbooksPage } from './pages/EbooksPage';
 import { SoftwarePage } from './pages/SoftwarePage';
@@ -299,6 +300,14 @@ function MainApp() {
         onClose={() => setSearchModalOpen(false)}
         products={products.filter(p => p.status === 'published')}
         onSelectProduct={handleSelectProduct}
+      />
+
+      {/* Customer Gemini AI Chatbot & Admin Image Studio */}
+      <CustomerChatbot
+        products={products}
+        settings={settings}
+        onSelectProduct={handleSelectProduct}
+        onProductUpdated={() => loadData()}
       />
 
       {/* Global Footer */}
