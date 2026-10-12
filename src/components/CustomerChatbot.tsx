@@ -134,9 +134,9 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
             })),
             settings: {
               storeName: settings.businessName || 'Digital Product Pakistan',
-              whatsappNumber: settings.whatsappNumber || '+92 345 5282215',
-              easypaisaNumber: settings.easypaisaNumber || '03455282215',
-              supportEmail: settings.supportEmail || 'sahabsandhu455@gmail.com',
+              whatsappNumber: settings.whatsappNumber || '+923107759274',
+              easypaisaNumber: settings.easypaisaNumber || '03010333544',
+              supportEmail: settings.supportEmail || 'support@digitalproductpakistan.com',
             },
           },
           isAdmin,
@@ -168,12 +168,12 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
       if (lower.includes('available') || lower.includes('product') || lower.includes('course') || lower.includes('kya')) {
         const available = products.filter(p => p.status === 'published');
         fallbackText = `Here are the top digital products currently available in our catalog:\n\n` +
-          available.map(p => `• **${p.title}** — PKR ${p.pricePKR.toLocaleString()} (${p.category.toUpperCase()})`).join('\n') +
+          available.map(p => `• **${p.title}** — PKR ${Number(p.pricePKR).toLocaleString()} (${p.category.toUpperCase()})`).join('\n') +
           `\n\nAll items include **instant Google Drive access** upon Easypaisa payment verification.`;
       } else if (lower.includes('easypaisa') || lower.includes('pay') || lower.includes('payment')) {
-        fallbackText = `### Easypaisa Payment Guide:\n1. Open your Easypaisa app and send the exact total to:\n   - **Account Number:** \`03455282215\`\n   - **Account Title:** Muhammad Kumail Ali\n2. At checkout, upload your Transaction Screenshot and TRX ID.\n3. Verified within minutes!`;
+        fallbackText = `### Easypaisa Payment Guide:\n1. Open your Easypaisa app and send the exact total to:\n   - **Account Number:** \`${settings.easypaisaNumber || '03010333544'}\`\n   - **Account Title:** Muhammad Kumail Ali\n2. At checkout, upload your Transaction Screenshot and TRX ID.\n3. Verified within minutes!`;
       } else {
-        fallbackText = `I am here to help you with all questions regarding Digital Product Pakistan products, Easypaisa payments, and instant delivery! For direct questions, you can also reach founder **Muhammad Kumail Ali** on WhatsApp at **+92 345 5282215**.`;
+        fallbackText = `I am here to help you with all questions regarding Digital Product Pakistan products, Easypaisa payments, and instant delivery! For direct questions, you can also reach founder **Muhammad Kumail Ali** on WhatsApp at **${settings.whatsappNumber || '+923107759274'}**.`;
       }
 
       setMessages(prev => [

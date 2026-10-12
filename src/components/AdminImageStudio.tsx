@@ -244,7 +244,7 @@ export const AdminImageStudio: React.FC<AdminImageStudioProps> = ({
     // 9. Pakistani Flag Accent / Trust Stamp
     ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
     ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-    ctx.fillText('🇵🇰 Pakistan Trusted • 24/7 WhatsApp Support: 0345-5282215', cardMarginX + 215, cardMarginY + cardH - 68);
+    ctx.fillText('🇵🇰 Pakistan Trusted • 24/7 WhatsApp Support: 0310-7759274', cardMarginX + 215, cardMarginY + cardH - 68);
 
     // Save Data URL
     setCreatedImageUrl(canvas.toDataURL('image/png'));
@@ -329,7 +329,7 @@ export const AdminImageStudio: React.FC<AdminImageStudioProps> = ({
 
       ctx.fillStyle = '#FFFFFF';
       ctx.font = '13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      ctx.fillText('• 100% Genuine • Instant Delivery • WhatsApp: 0345-5282215', 270, 772);
+      ctx.fillText('• 100% Genuine • Instant Delivery • WhatsApp: 0310-7759274', 270, 772);
 
       setEditedImageUrl(canvas.toDataURL('image/png'));
     };

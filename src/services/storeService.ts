@@ -9,6 +9,7 @@ import {
   query,
   where,
   orderBy,
+  onSnapshot,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Product, BlogPost, StoreSettings, Order } from '../types';
@@ -71,6 +72,7 @@ let localOrders: Order[] = loadFromStorage('dpp_submitted_orders', []);
 
 // PRODUCTS
 export async function getProducts(includeDrafts = false): Promise<Product[]> {
+  // 1. Try Firestore primary source of truth
   try {
     const colRef = collection(db, PRODUCTS_COLLECTION);
     const snap = await getDocs(colRef);
@@ -82,12 +84,61 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
       });
       localProducts = items;
       saveToStorage('dpp_custom_products', items);
+
+      // Async sync server backend store in background
+      fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ products: items }),
+      }).catch(() => {});
+
       return includeDrafts ? items : items.filter(p => p.status === 'published');
     }
   } catch (err) {
-    console.warn('Firestore products fetch warning, using resilient storage:', err);
+    console.warn('Firestore products fetch warning, trying server backend:', err);
   }
+
+  // 2. Try Server backend API
+  try {
+    const res = await fetch('/api/products');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data.products) && data.products.length > 0) {
+        localProducts = data.products;
+        saveToStorage('dpp_custom_products', data.products);
+        return includeDrafts ? data.products : data.products.filter((p: any) => p.status === 'published');
+      }
+    }
+  } catch (err) {
+    console.warn('Backend API fetch error, using resilient local storage:', err);
+  }
+
+  // 3. Resilient local fallback
   return includeDrafts ? localProducts : localProducts.filter(p => p.status === 'published');
+}
+
+// Real-time listener for live sync across customer and admin screens
+export function subscribeToProducts(callback: (products: Product[]) => void): () => void {
+  try {
+    const colRef = collection(db, PRODUCTS_COLLECTION);
+    const unsubscribe = onSnapshot(colRef, (snap) => {
+      if (!snap.empty) {
+        const items: Product[] = [];
+        snap.forEach(d => {
+          items.push({ ...(d.data() as Product), id: d.id });
+        });
+        localProducts = items;
+        saveToStorage('dpp_custom_products', items);
+        callback(items);
+      }
+    }, (err) => {
+      console.warn('Firestore onSnapshot subscription warning:', err);
+    });
+    return unsubscribe;
+  } catch (e) {
+    console.warn('Could not register onSnapshot:', e);
+    return () => {};
+  }
 }
 
 // Publish single product online immediately
@@ -118,12 +169,28 @@ export async function publishAllDraftProducts(): Promise<Product[]> {
   localProducts = updatedList;
   saveToStorage('dpp_custom_products', localProducts);
 
+  // Sync to Backend server
+  try {
+    await fetch('/api/products', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ products: localProducts }),
+    });
+  } catch (err) {
+    console.warn('Server bulk publish sync warning:', err);
+  }
+
   // Sync to Firestore in background
   try {
     const updates = localProducts.map(p => setDoc(doc(db, PRODUCTS_COLLECTION, p.id), p));
     await Promise.allSettled(updates);
   } catch (err) {
     console.warn('Firestore bulk publish sync warning:', err);
+  }
+
+  // Dispatch event for UI re-render
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('dpp_products_updated', { detail: localProducts }));
   }
 
   return localProducts;
@@ -176,11 +243,27 @@ export async function saveProduct(product: Product): Promise<void> {
   }
   saveToStorage('dpp_custom_products', localProducts);
 
-  // 2. Sync to Firestore in background
+  // 2. Sync to Backend server API so all customers & Chatbot know the new price immediately
+  try {
+    await fetch('/api/products', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.warn('Backend server product sync warning:', err);
+  }
+
+  // 3. Sync to Firestore database in background
   try {
     await setDoc(doc(db, PRODUCTS_COLLECTION, docId), payload);
   } catch (err) {
-    console.warn('Firestore write warning (product saved to local database):', err);
+    console.warn('Firestore write warning:', err);
+  }
+
+  // 4. Notify app components
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('dpp_products_updated', { detail: payload }));
   }
 }
 
@@ -189,11 +272,26 @@ export async function deleteProduct(productId: string): Promise<void> {
   localProducts = localProducts.filter(p => p.id !== productId);
   saveToStorage('dpp_custom_products', localProducts);
 
-  // 2. Sync deletion to Firestore
+  // 2. Sync to server backend
+  try {
+    await fetch('/api/products', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: productId }),
+    });
+  } catch (err) {
+    console.warn('Backend server product delete warning:', err);
+  }
+
+  // 3. Sync deletion to Firestore
   try {
     await deleteDoc(doc(db, PRODUCTS_COLLECTION, productId));
   } catch (err) {
     console.warn('Firestore delete warning (product removed locally):', err);
+  }
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('dpp_products_updated', { detail: { id: productId, deleted: true } }));
   }
 }
 

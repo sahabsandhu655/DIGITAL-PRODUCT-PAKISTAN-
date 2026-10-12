@@ -23,7 +23,8 @@ import {
   getBlogPosts, 
   getStoreSettings, 
   getProductBySlug, 
-  getBlogPostBySlug 
+  getBlogPostBySlug,
+  subscribeToProducts
 } from './services/storeService';
 import { Product, BlogPost, StoreSettings, Order } from './types';
 import { INITIAL_STORE_SETTINGS } from './data/seedData';
@@ -64,6 +65,29 @@ function MainApp() {
 
   useEffect(() => {
     loadData();
+
+    // 1. Real-time live Firestore listener across all customers & tabs
+    const unsubscribeFirestore = subscribeToProducts((liveProds) => {
+      if (liveProds && liveProds.length > 0) {
+        setProducts(liveProds);
+      }
+    });
+
+    // 2. Custom event listener for immediate same-page updates
+    const handleProductsUpdated = () => {
+      getProducts(true).then((prods) => {
+        if (prods && prods.length > 0) {
+          setProducts(prods);
+        }
+      }).catch(() => {});
+    };
+
+    window.addEventListener('dpp_products_updated', handleProductsUpdated);
+
+    return () => {
+      unsubscribeFirestore();
+      window.removeEventListener('dpp_products_updated', handleProductsUpdated);
+    };
   }, []);
 
   // Sync URL Pathname for seamless SPA Routing & page refresh

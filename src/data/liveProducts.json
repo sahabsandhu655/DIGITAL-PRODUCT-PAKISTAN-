@@ -1,0 +1,592 @@
+[
+  {
+    "description": "Access a curated collection of English-language digital courses covering Full-Stack Web Development, Data Science, Digital Marketing, SEO, Copywriting, UI/UX Design, and Freelance Consulting. Organised in structured modules with project source files.",
+    "title": "500+ English Courses Mega Master Bundle",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "currency": "PKR",
+    "collectionSizeClaim": "500+ Courses",
+    "compareAtPricePKR": 8000,
+    "slug": "500-english-courses-bundle",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "deliveryType": "Cloud Drive Invite & Private Portal Access",
+    "productType": "course",
+    "features": [
+      "Lifetime Drive / Cloud access links",
+      "500+ Organized course folders",
+      "Project source files and code repositories included",
+      "Delivery via private email invite"
+    ],
+    "id": "prod-course-01",
+    "validity": "Lifetime Access to Shared Archive",
+    "pricePKR": 3500,
+    "tags": [
+      "Courses",
+      "English Bundle",
+      "Programming",
+      "Marketing"
+    ],
+    "featured": true,
+    "status": "published",
+    "category": "500+ English Courses",
+    "language": "English",
+    "images": [
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80"
+    ],
+    "shortDescription": "Curated 500+ English courses spanning programming, design, and marketing."
+  },
+  {
+    "title": "2,000+ Hindi & Urdu Courses Mega Vault",
+    "featured": true,
+    "category": "2,000+ Hindi and Urdu Courses",
+    "language": "Urdu & Hindi",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "status": "published",
+    "validity": "Lifetime Access",
+    "images": [
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=80"
+    ],
+    "slug": "2000-hindi-urdu-courses-vault",
+    "pricePKR": 4500,
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "tags": [
+      "Courses",
+      "Urdu",
+      "Hindi",
+      "Regional Vault"
+    ],
+    "compareAtPricePKR": 12000,
+    "id": "prod-course-02",
+    "shortDescription": "The ultimate 2,000+ courses vault taught in clear Urdu and Hindi.",
+    "description": "The largest regional digital learning vault in Urdu and Hindi. Packed with step-by-step masterclasses in Graphic Design, Video Editing (Premiere Pro & CapCut), WordPress, Shopify, Amazon FBA, Crypto Trading Fundamentals, and Mobile App Development.",
+    "features": [
+      "Organized by beginner to advanced levels",
+      "Over 2,000 individual masterclasses",
+      "Direct cloud link delivery upon payment confirmation",
+      "No recurring subscriptions"
+    ],
+    "productType": "course",
+    "collectionSizeClaim": "2,000+ Courses",
+    "currency": "PKR",
+    "deliveryType": "Private Cloud Repository Access Link"
+  },
+  {
+    "currency": "PKR",
+    "images": [
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80"
+    ],
+    "slug": "ai-automation-freelancer-bootcamp",
+    "id": "prod-course-03",
+    "status": "published",
+    "shortDescription": "Supercharge your client productivity using AI automation workflows.",
+    "features": [
+      "12 Practical video modules",
+      "Ready-to-use n8n blueprints",
+      "Private support community link"
+    ],
+    "deliveryType": "Private Video Stream & Download",
+    "productType": "course",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "pricePKR": 2200,
+    "tags": [
+      "AI",
+      "Automation",
+      "Workflows"
+    ],
+    "language": "English",
+    "category": "500+ English Courses",
+    "featured": false,
+    "compareAtPricePKR": 4500,
+    "title": "AI & Automation Workflow Bootcamp for Freelancers",
+    "description": "Learn how to integrate modern AI tools, automate repetitive tasks, generate high-converting copy, and deliver client work in half the time using n8n, Make, and advanced prompt engineering.",
+    "updatedAt": "2026-10-12T06:58:01.943Z"
+  },
+  {
+    "compareAtPricePKR": 2500,
+    "productType": "ebook",
+    "id": "prod-ebook-01",
+    "features": [
+      "180+ Pages PDF & EPUB formats",
+      "Actionable contract templates included",
+      "Client email pitch swipe files",
+      "Direct download after payment confirmation"
+    ],
+    "tags": [
+      "Freelancing",
+      "Upwork",
+      "Remote Work",
+      "E-book"
+    ],
+    "currency": "PKR",
+    "licensingNotes": "Personal use digital license. Redistribution prohibited.",
+    "deliveryType": "Instant PDF/EPUB Download Link",
+    "description": "A comprehensive, practical playbook designed for Pakistani remote workers, students, and aspiring entrepreneurs. Learn how to identify high-ticket global clients on Upwork, LinkedIn, and direct outreach, invoice properly, and build a sustainable 6-figure remote career from Pakistan.",
+    "language": "English with Urdu commentary",
+    "category": "Entrepreneurship Books",
+    "images": [
+      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80"
+    ],
+    "shortDescription": "The definitive blueprint for building a high-income freelance career in Pakistan.",
+    "featured": true,
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "status": "published",
+    "slug": "pakistani-freelancer-mastery-guide",
+    "title": "The Pakistani Freelancer Mastery Guide",
+    "pricePKR": 1250,
+    "updatedAt": "2026-10-12T06:58:01.943Z"
+  },
+  {
+    "compareAtPricePKR": 3000,
+    "productType": "ebook",
+    "id": "prod-ebook-02",
+    "features": [
+      "210 Pages comprehensive handbook",
+      "Courier account negotiation checklist",
+      "Top local wholesale supplier directory",
+      "Digital copy delivered to WhatsApp & Email"
+    ],
+    "tags": [
+      "E-Commerce",
+      "Shopify",
+      "Business",
+      "Dropshipping"
+    ],
+    "currency": "PKR",
+    "licensingNotes": "Original author publication. Commercial resale forbidden.",
+    "deliveryType": "Digital PDF Download",
+    "description": "Step-by-step guidance on setting up local and white-label e-commerce in Pakistan. Covers local sourcing (Karachi, Lahore, Faisalabad), courier logistics (TCS, Call Courier, PostEx), cash-on-delivery management, and digital advertising strategies.",
+    "language": "English",
+    "category": "Business Books",
+    "images": [
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop&q=80"
+    ],
+    "shortDescription": "Local e-commerce execution manual covering Pakistani sourcing, couriers, and marketing.",
+    "featured": true,
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "status": "published",
+    "slug": "zero-to-ecommerce-pakistan",
+    "title": "Zero to E-Commerce in Pakistan",
+    "pricePKR": 1500,
+    "updatedAt": "2026-10-12T06:58:01.943Z"
+  },
+  {
+    "pricePKR": 950,
+    "compareAtPricePKR": 1800,
+    "deliveryType": "PDF Download",
+    "id": "prod-ebook-03",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "slug": "dating-dynamics-social-confidence",
+    "shortDescription": "Practical guide to communication, personal confidence, and modern dating etiquette.",
+    "title": "Modern Dating Dynamics & Social Confidence",
+    "featured": false,
+    "language": "English",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "category": "Dating Books",
+    "licensingNotes": "Personal reading license only.",
+    "description": "A grounded, psychological perspective on emotional intelligence, communication skills, building confidence, and navigating contemporary interpersonal relationships with respect and clarity.",
+    "currency": "PKR",
+    "tags": [
+      "Self Improvement",
+      "Dating",
+      "Psychology"
+    ],
+    "features": [
+      "140 Pages DRM-free PDF",
+      "Social conversation exercises",
+      "Digital delivery post verification"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&auto=format&fit=crop&q=80"
+    ],
+    "productType": "ebook",
+    "status": "published"
+  },
+  {
+    "features": [
+      "Complete unabridged edition",
+      "Compatible with Kindle and mobile readers",
+      "Instant delivery after payment proof"
+    ],
+    "description": "A bestselling emotional novel exploring love, separation, cultural traditions, and reconciliation in modern Lahore and Islamabad.",
+    "images": [
+      "https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=600&auto=format&fit=crop&q=80"
+    ],
+    "id": "prod-ebook-04",
+    "status": "published",
+    "tags": [
+      "Novels",
+      "Fiction",
+      "Romance"
+    ],
+    "deliveryType": "PDF & EPUB Download",
+    "shortDescription": "Heartwarming contemporary romantic fiction set across Pakistan.",
+    "currency": "PKR",
+    "productType": "ebook",
+    "language": "Urdu & English Bilingual",
+    "category": "Romantic Books",
+    "licensingNotes": "Authorized digital distribution.",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "featured": false,
+    "slug": "echoes-of-the-heart-novel",
+    "title": "Echoes of the Heart (Urdu & English Novel)",
+    "pricePKR": 750,
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "compareAtPricePKR": 1200
+  },
+  {
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "licensingNotes": "Personal use only.",
+    "features": [
+      "160 Pages story",
+      "Includes founder discussion guides"
+    ],
+    "description": "Narrative business novel following two university graduates in Karachi as they build, fail, and scale a tech venture through sheer grit and community building.",
+    "compareAtPricePKR": 1500,
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "productType": "ebook",
+    "tags": [
+      "Novels",
+      "Entrepreneurship",
+      "Fiction"
+    ],
+    "status": "published",
+    "currency": "PKR",
+    "images": [
+      "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=600&auto=format&fit=crop&q=80"
+    ],
+    "featured": false,
+    "category": "Novels",
+    "language": "English",
+    "title": "The Modern Startup Playbook",
+    "slug": "modern-startup-playbook",
+    "deliveryType": "PDF Download",
+    "pricePKR": 900,
+    "shortDescription": "Engaging story of technology, ambition, and entrepreneurship in emerging markets.",
+    "id": "prod-ebook-05"
+  },
+  {
+    "updatedAt": "2026-10-12T07:04:44.095Z",
+    "licensingNotes": "Official access credentials delivered securely via WhatsApp & Email.",
+    "description": "Unlock CapCut Pro features including auto-captions in regional accents, smart video stabilizer, 4K 60FPS export, AI background removal, and premium cloud effects. Plan details and access method to be configured by administrator.",
+    "features": [
+      "Pro AI Captions",
+      "Smooth Slow Motion",
+      "Multi-layer 4K Export"
+    ],
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "productType": "software",
+    "status": "published",
+    "tags": [
+      "Video Editing",
+      "CapCut",
+      "Software"
+    ],
+    "currency": "PKR",
+    "images": [
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&auto=format&fit=crop&q=80"
+    ],
+    "featured": true,
+    "category": "Video Editing",
+    "title": "CapCut Pro — Video Editing",
+    "slug": "capcut-pro-video-editing",
+    "deliveryType": "Account Login / Activation Key sent via WhatsApp",
+    "validity": "1 Month - 12 Months Options Available",
+    "pricePKR": 1800,
+    "shortDescription": "Professional video editing with AI captions and premium effects.",
+    "id": "prod-soft-01"
+  },
+  {
+    "status": "published",
+    "description": "Industry-standard ultra-realistic AI voice cloning and speech synthesis. Ideal for YouTube automation, podcasting, and audiobooks. Instant activation delivered via WhatsApp.",
+    "category": "AI Audio & Voice",
+    "featured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=600&auto=format&fit=crop&q=80"
+    ],
+    "title": "ElevenLabs — AI Voice Generation",
+    "deliveryType": "Voucher / Account credentials",
+    "productType": "software",
+    "pricePKR": 2500,
+    "licensingNotes": "Direct private account or voucher activation.",
+    "tags": [
+      "AI Voice",
+      "ElevenLabs",
+      "Audio"
+    ],
+    "features": [
+      "Realistic voice cloning",
+      "Multiple language synthesis",
+      "Commercial rights included"
+    ],
+    "slug": "elevenlabs-ai-voice",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "shortDescription": "Ultra-realistic AI voice cloning and speech synthesis.",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "currency": "PKR",
+    "id": "prod-soft-02"
+  },
+  {
+    "features": [
+      "Magic Background Remover",
+      "100M+ stock photos & vectors",
+      "Custom brand kit support"
+    ],
+    "shortDescription": "All-in-one graphic design suite with millions of premium assets.",
+    "deliveryType": "Email Invitation to Team / Pro Account",
+    "images": [
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop&q=80"
+    ],
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "status": "published",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "licensingNotes": "Fast email invitation to Pro team workspace.",
+    "id": "prod-soft-03",
+    "currency": "PKR",
+    "title": "Canva Pro — Graphic Design",
+    "tags": [
+      "Canva",
+      "Design",
+      "Social Media"
+    ],
+    "description": "Access millions of premium templates, background remover, brand kits, magic resize, and unlimited cloud graphics storage. Fast email invitation to Pro team workspace.",
+    "slug": "canva-pro-graphic-design",
+    "category": "Graphic Design",
+    "featured": true,
+    "pricePKR": 1200,
+    "productType": "software"
+  },
+  {
+    "id": "prod-soft-04",
+    "currency": "PKR",
+    "shortDescription": "Enterprise team management panel for agencies and institutions.",
+    "status": "published",
+    "slug": "canva-team-panel-500-users",
+    "description": "Canva team panel management seat capability up to 500 users, ideal for agencies, academies, and business teams.",
+    "images": [
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=80"
+    ],
+    "productType": "software",
+    "features": [
+      "Member invitation panel",
+      "Centralized template sharing",
+      "Multi-user access management"
+    ],
+    "deliveryType": "Admin Panel Access / Direct Activation",
+    "title": "Canva Team / Panel — Up to 500 Users",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "pricePKR": 8500,
+    "category": "Graphic Design",
+    "tags": [
+      "Canva",
+      "Team Panel",
+      "Agency"
+    ],
+    "featured": false,
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "licensingNotes": "Admin panel invitation with management rights."
+  },
+  {
+    "title": "Muse AI — Image, Video Generation & Automation",
+    "tags": [
+      "Muse AI",
+      "Generative Video",
+      "Automation"
+    ],
+    "currency": "PKR",
+    "features": [
+      "High-resolution neural rendering",
+      "Batch automation pipelines"
+    ],
+    "status": "published",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "pricePKR": 2900,
+    "deliveryType": "Subscription invite link",
+    "description": "Next-generation AI generation platform for visual creators, marketers, and video editors.",
+    "images": [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80"
+    ],
+    "shortDescription": "High-speed generative video and visual automation toolkit.",
+    "licensingNotes": "Direct private invitation link.",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "category": "AI Tools",
+    "productType": "software",
+    "id": "prod-soft-05",
+    "featured": false,
+    "slug": "muse-ai-image-video-automation"
+  },
+  {
+    "pricePKR": 3500,
+    "images": [
+      "https://images.unsplash.com/photo-1676299081847-824916de030a?w=600&auto=format&fit=crop&q=80"
+    ],
+    "shortDescription": "Advanced multimodal reasoning and long-context analysis.",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "status": "published",
+    "deliveryType": "Account Activation",
+    "licensingNotes": "Private account activation credentials.",
+    "category": "AI Tools",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "featured": false,
+    "title": "Gemini Pro — 18-Month Plan",
+    "tags": [
+      "Gemini Pro",
+      "Google",
+      "AI Assistant"
+    ],
+    "slug": "gemini-pro-18-month-plan",
+    "productType": "software",
+    "currency": "PKR",
+    "features": [
+      "Long-context analysis",
+      "Multimodal image and document comprehension"
+    ],
+    "id": "prod-soft-06",
+    "description": "Extended access package for Gemini Pro with 2M token context window, deep reasoning, and multimodal document analysis."
+  },
+  {
+    "id": "prod-soft-07",
+    "shortDescription": "Flagship reasoning and generative productivity from OpenAI.",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "pricePKR": 4500,
+    "deliveryType": "Account Invite / Private Login",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "category": "AI Tools",
+    "slug": "chatgpt-pro",
+    "featured": false,
+    "title": "ChatGPT Pro",
+    "status": "published",
+    "productType": "software",
+    "tags": [
+      "ChatGPT",
+      "AI Assistant",
+      "OpenAI"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80"
+    ],
+    "licensingNotes": "Direct private account login credentials.",
+    "currency": "PKR",
+    "features": [
+      "Reasoning models access",
+      "Advanced Data Analysis & Python code interpreter",
+      "Custom GPT creation"
+    ],
+    "description": "High-capacity AI workspace with o-series reasoning models, deep research tools, and unlimited high-speed analysis."
+  },
+  {
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "featured": false,
+    "category": "Cloud Storage",
+    "title": "Google Drive — Storage Plan",
+    "slug": "google-drive-storage-plan",
+    "deliveryType": "Email Invitation to Shared Workspace",
+    "productType": "software",
+    "description": "Cloud storage workspace for backing up large project archives and media files with seamless sharing.",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "status": "published",
+    "pricePKR": 2800,
+    "images": [
+      "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?w=600&auto=format&fit=crop&q=80"
+    ],
+    "shortDescription": "High-capacity cloud backup and workspace folder sharing.",
+    "id": "prod-soft-08",
+    "features": [
+      "Encrypted storage archive",
+      "Shareable team links"
+    ],
+    "licensingNotes": "Workspace invite sent directly to customer Gmail.",
+    "tags": [
+      "Google Drive",
+      "Storage",
+      "Cloud"
+    ],
+    "currency": "PKR"
+  },
+  {
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "description": "Fast, AI-powered social media graphics, video reels, and quick flyer creator with Adobe Firefly integration.",
+    "pricePKR": 1950,
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "featured": false,
+    "tags": [
+      "Adobe",
+      "Design",
+      "Express"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80"
+    ],
+    "category": "Graphic Design",
+    "productType": "software",
+    "title": "Adobe Express — Creative Suite",
+    "status": "published",
+    "id": "prod-soft-09",
+    "currency": "PKR",
+    "slug": "adobe-express-creative-suite",
+    "shortDescription": "Quick creative graphics and video editing powered by Adobe Firefly.",
+    "licensingNotes": "Email activation on your Adobe ID.",
+    "features": [
+      "Firefly text-to-image generator",
+      "Thousands of professional brand templates"
+    ],
+    "deliveryType": "Email activation"
+  },
+  {
+    "licensingNotes": "Apple ID family or subscription invitation link.",
+    "category": "Streaming & Audio",
+    "featured": false,
+    "tags": [
+      "Apple Music",
+      "Audio",
+      "Streaming"
+    ],
+    "pricePKR": 1600,
+    "features": [
+      "Lossless audio",
+      "Dolby Atmos Spatial Audio",
+      "Offline downloads"
+    ],
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "id": "prod-soft-10",
+    "productType": "software",
+    "images": [
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80"
+    ],
+    "slug": "apple-music-5m-plan",
+    "status": "published",
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "shortDescription": "Spatial Audio and lossless streaming library.",
+    "currency": "PKR",
+    "title": "Apple Music — 5M Plan",
+    "deliveryType": "Invitation link",
+    "description": "High-fidelity lossless and Spatial Audio streaming subscription with millions of songs and curated Pakistani playlists."
+  },
+  {
+    "createdAt": "2026-10-12T06:58:01.943Z",
+    "currency": "PKR",
+    "tags": [
+      "Lovable",
+      "AI Code",
+      "Voucher"
+    ],
+    "title": "Lovable — 1-Month Coupon",
+    "updatedAt": "2026-10-12T06:58:01.943Z",
+    "licensingNotes": "Redeemable coupon voucher code.",
+    "features": [
+      "Promotional coupon code for account upgrade",
+      "Instant code delivery via WhatsApp"
+    ],
+    "productType": "software",
+    "id": "prod-soft-11",
+    "pricePKR": 2100,
+    "slug": "lovable-1-month-coupon",
+    "images": [
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80"
+    ],
+    "featured": false,
+    "category": "AI Development",
+    "shortDescription": "AI full-stack development coupon code.",
+    "deliveryType": "Digital Voucher Code",
+    "status": "published",
+    "description": "Promotional credit coupon for building full-stack web applications with Lovable. Instant code delivery via WhatsApp."
+  }
+]

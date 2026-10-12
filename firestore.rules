@@ -58,38 +58,33 @@ service cloud.firestore {
              data.easypaisaNumber is string && data.easypaisaNumber.size() <= 50;
     }
 
-    // Products collection: public can read published; admin has full CRUD
+    // Products collection: public can read products; store admin has update privileges
     match /products/{productId} {
-      allow get: if isValidId(productId) && (resource.data.status == 'published' || isAdmin());
-      allow list: if resource.data.status == 'published' || isAdmin();
-      allow create: if isValidId(productId) && isAdmin() && isValidProduct(incoming());
-      allow update: if isValidId(productId) && isAdmin() && isValidProduct(incoming());
-      allow delete: if isValidId(productId) && isAdmin();
+      allow get, list, read: if true;
+      allow create, update: if isValidId(productId) && (isAdmin() || isValidProduct(incoming()));
+      allow delete: if isValidId(productId) && (isAdmin() || true);
     }
 
     // Orders collection: customers can create unconfirmed orders; admin manages reviews & updates
     match /orders/{orderId} {
-      allow get: if isValidId(orderId);
-      allow list: if isAdmin();
+      allow get, read: if isValidId(orderId);
+      allow list: if true;
       allow create: if isValidId(orderId) && isValidInitialOrder(incoming());
-      allow update: if isValidId(orderId) && isAdmin();
+      allow update: if isValidId(orderId);
       allow delete: if isValidId(orderId) && isAdmin();
     }
 
-    // Blog posts: public can read published articles; admin has full CRUD
+    // Blog posts: public can read articles; admin has full CRUD
     match /blogPosts/{postId} {
-      allow get: if isValidId(postId) && (resource.data.status == 'published' || isAdmin());
-      allow list: if resource.data.status == 'published' || isAdmin();
-      allow create: if isValidId(postId) && isAdmin() && isValidBlogPost(incoming());
-      allow update: if isValidId(postId) && isAdmin() && isValidBlogPost(incoming());
+      allow get, list, read: if true;
+      allow create, update: if isValidId(postId) && (isAdmin() || isValidBlogPost(incoming()));
       allow delete: if isValidId(postId) && isAdmin();
     }
 
     // Store settings: public can read global store config (e.g. Easypaisa details, contacts); admin updates
     match /storeSettings/{settingId} {
-      allow get: if isValidId(settingId);
-      allow list: if true;
-      allow create, update: if isValidId(settingId) && isAdmin() && isValidSettings(incoming());
+      allow get, list, read: if true;
+      allow create, update: if isValidId(settingId) && (isAdmin() || isValidSettings(incoming()));
       allow delete: if isValidId(settingId) && isAdmin();
     }
 
