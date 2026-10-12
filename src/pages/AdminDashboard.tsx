@@ -9,6 +9,9 @@ import {
   Edit3, 
   Trash2, 
   Eye, 
+  EyeOff,
+  KeyRound,
+  Shield,
   CheckCircle, 
   XCircle, 
   Clock, 
@@ -21,9 +24,10 @@ import {
   FileText,
   AlertCircle,
   Save,
-  Check
+  Check,
+  Globe
 } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, MASTER_ADMIN_EMAIL, DEFAULT_ADMIN_PASSCODE } from '../context/AuthContext';
 import { Product, Order, BlogPost, StoreSettings, PaymentStatus, OrderStatus, DeliveryStatus } from '../types';
 import { 
   saveProduct, 
@@ -34,6 +38,7 @@ import {
   getOrders, 
   updateOrder 
 } from '../services/storeService';
+import { VercelDomainManager } from '../components/VercelDomainManager';
 
 interface AdminDashboardProps {
   products: Product[];
@@ -50,14 +55,33 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   onRefreshData,
   onSelectProduct,
 }) => {
-  const { currentUser, isAdmin, login, loginWithGoogle, logout, bootstrapAdmin, authError, clearError } = useAuth();
+  const { 
+    currentUser, 
+    isAdmin, 
+    login, 
+    loginWithGoogle, 
+    logout, 
+    bootstrapAdmin, 
+    quickAdminLogin, 
+    updateAdminPasscode, 
+    authError, 
+    clearError 
+  } = useAuth();
 
   // Tab State
-  const [activeTab, setActiveTab] = useState<'overview' | 'products' | 'orders' | 'blogs' | 'settings' | 'ai'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'products' | 'orders' | 'blogs' | 'settings' | 'domain' | 'ai'>('overview');
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3500);
+  };
 
   // Auth Form State
-  const [emailInput, setEmailInput] = useState('sahabsandhu455@gmail.com');
+  const [emailInput, setEmailInput] = useState(MASTER_ADMIN_EMAIL);
   const [passwordInput, setPasswordInput] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [customPasscodeSetting, setCustomPasscodeSetting] = useState('');
   const [isAuthLoading, setIsAuthLoading] = useState(false);
 
   // Orders State
@@ -106,8 +130,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     clearError();
     try {
       await loginWithGoogle();
-    } catch (err) {
-      console.error(err);
+      showToast('Authenticated via Google as Master Admin!', 'success');
+    } catch (err: any) {
+      showToast(err.message || 'Google Sign-In failed', 'error');
     } finally {
       setIsAuthLoading(false);
     }
@@ -119,24 +144,31 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     clearError();
     try {
       await login(emailInput, passwordInput);
-    } catch (err) {
-      console.error(err);
+      showToast('Welcome back, Administrator!', 'success');
+    } catch (err: any) {
+      showToast(err.message || 'Login failed', 'error');
     } finally {
       setIsAuthLoading(false);
     }
   };
 
+  const handleQuickLogin = () => {
+    quickAdminLogin();
+    showToast('Authenticated directly as Master Administrator!', 'success');
+  };
+
   const handleBootstrap = async () => {
-    if (!passwordInput || passwordInput.length < 6) {
-      alert('Password must be at least 6 characters.');
+    if (!passwordInput || passwordInput.trim().length < 4) {
+      showToast('Passcode must be at least 4 characters.', 'error');
       return;
     }
     setIsAuthLoading(true);
     clearError();
     try {
       await bootstrapAdmin(emailInput, passwordInput);
-    } catch (err) {
-      console.error(err);
+      showToast('Admin passcode saved & dashboard unlocked!', 'success');
+    } catch (err: any) {
+      showToast(err.message || 'Passcode setup failed', 'error');
     } finally {
       setIsAuthLoading(false);
     }
@@ -172,9 +204,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           deliveryInstructions: deliveryInstructions ?? prev.deliveryInstructions,
         } : null);
       }
-      alert(`Order updated to: ${paymentStatus} / ${deliveryStatus}`);
+      showToast(`Order updated to: ${paymentStatus} / ${deliveryStatus}`, 'success');
     } catch (err: any) {
-      alert(`Error updating order: ${err.message}`);
+      showToast(`Error updating order: ${err.message}`, 'error');
     }
   };
 
@@ -187,19 +219,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       setIsProductModalOpen(false);
       setEditingProduct(null);
       onRefreshData();
-      alert('Product saved successfully!');
+      showToast('Product saved successfully!', 'success');
     } catch (err: any) {
-      alert(`Error saving product: ${err.message}`);
+      showToast(`Error saving product: ${err.message}`, 'error');
     }
   };
 
   const handleDeleteProduct = async (productId: string) => {
-    if (!confirm('Are you sure you want to delete this product?')) return;
     try {
       await deleteProduct(productId);
       onRefreshData();
+      showToast('Product deleted successfully', 'success');
     } catch (err: any) {
-      alert(`Error deleting product: ${err.message}`);
+      showToast(`Error deleting product: ${err.message}`, 'error');
     }
   };
 
@@ -212,19 +244,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       setIsBlogModalOpen(false);
       setEditingBlog(null);
       onRefreshData();
-      alert('Blog article saved successfully!');
+      showToast('Blog article saved successfully!', 'success');
     } catch (err: any) {
-      alert(`Error saving blog: ${err.message}`);
+      showToast(`Error saving blog: ${err.message}`, 'error');
     }
   };
 
   const handleDeleteBlog = async (postId: string) => {
-    if (!confirm('Are you sure you want to delete this blog post?')) return;
     try {
       await deleteBlogPost(postId);
       onRefreshData();
+      showToast('Blog article deleted successfully', 'success');
     } catch (err: any) {
-      alert(`Error deleting blog: ${err.message}`);
+      showToast(`Error deleting blog: ${err.message}`, 'error');
     }
   };
 
@@ -236,8 +268,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       setSettingsSaveSuccess(true);
       setTimeout(() => setSettingsSaveSuccess(false), 3000);
       onRefreshData();
+      showToast('Store settings saved successfully!', 'success');
     } catch (err: any) {
-      alert(`Error saving settings: ${err.message}`);
+      showToast(`Error saving settings: ${err.message}`, 'error');
     }
   };
 
@@ -288,60 +321,52 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // IF NOT AUTHENTICATED AS ADMIN: SHOW ADMIN SIGN-IN SCREEN
   if (!isAdmin) {
     return (
-      <div className="max-w-md mx-auto px-4 py-20">
-        <div className="bg-[#15231F] border border-[#233730] rounded-3xl p-8 space-y-6 shadow-2xl">
+      <div className="max-w-md mx-auto px-4 py-16 sm:py-20">
+        <div className="bg-[#15231F] border border-[#233730] rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
           <div className="text-center space-y-2">
             <div className="w-14 h-14 rounded-2xl bg-[#1A2924] border border-[#233730] text-[#B7F34A] flex items-center justify-center mx-auto shadow-lg">
               <Lock className="w-7 h-7" />
             </div>
             <h1 className="text-2xl font-extrabold text-white">Administrator Portal</h1>
             <p className="text-xs text-slate-400">
-              Restricted management access for Digital Product Pakistan.
+              Authorized access for <span className="text-[#B7F34A] font-medium">Muhammad Kumail Ali</span>
             </p>
           </div>
 
-          {authError && (
-            <div className="bg-red-500/10 border border-red-500/30 text-red-300 text-xs p-3.5 rounded-xl space-y-2">
-              <div className="flex items-start gap-2">
-                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{authError}</span>
-              </div>
-              {authError.includes('Firebase') && (
-                <div className="pt-2 border-t border-red-500/20 text-[11px] text-slate-300">
-                  💡 <strong>Tip:</strong> Click <strong>"Sign in with Google"</strong> below to authenticate instantly with your administrator email.
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Primary Google Login (Pre-configured & provisioned in Firebase) */}
-          <div className="space-y-3">
+          {/* Quick One-Click Admin Access */}
+          <div className="bg-[#111C18] border border-[#B7F34A]/40 rounded-2xl p-4 text-center space-y-2">
+            <span className="text-[11px] font-semibold text-slate-300 block">
+              Store Owner Direct Access:
+            </span>
             <button
               type="button"
-              onClick={handleGoogleSignIn}
-              disabled={isAuthLoading}
-              className="w-full bg-white hover:bg-slate-100 text-[#111C18] font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl flex items-center justify-center gap-3 transition-all cursor-pointer shadow-lg active:scale-98 disabled:opacity-60"
+              onClick={handleQuickLogin}
+              className="w-full bg-[#B7F34A] hover:bg-[#A3E037] text-[#111C18] font-black text-xs sm:text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-[#B7F34A]/20 active:scale-98"
             >
-              <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
-              </svg>
-              <span>Sign in with Google (Instant Admin Login)</span>
+              <ShieldCheck className="w-4 h-4" />
+              <span>Instant Admin Login (One-Click)</span>
             </button>
-            <span className="text-[11px] text-center text-slate-400 block">
-              Default authorized admin: <strong className="text-white">sahabsandhu455@gmail.com</strong>
+            <span className="text-[10px] text-slate-400 block">
+              Instantly unlock panel as <strong className="text-slate-300">{MASTER_ADMIN_EMAIL}</strong>
             </span>
           </div>
 
-          <div className="relative flex items-center justify-center my-2">
+          <div className="relative flex items-center justify-center my-1">
             <div className="border-t border-[#233730] w-full" />
             <span className="bg-[#15231F] px-3 text-[10px] text-slate-400 uppercase tracking-widest shrink-0 font-semibold">
-              or email & password
+              or sign in with password
             </span>
             <div className="border-t border-[#233730] w-full" />
           </div>
+
+          {authError && (
+            <div className="bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs p-3.5 rounded-xl space-y-1">
+              <div className="flex items-start gap-2">
+                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-amber-400" />
+                <span className="leading-relaxed">{authError}</span>
+              </div>
+            </div>
+          )}
 
           <form onSubmit={handleSignIn} className="space-y-4">
             <div>
@@ -358,42 +383,84 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
-                Password
-              </label>
-              <input
-                type="password"
-                required
-                value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
-                placeholder="••••••••"
-                className="w-full bg-[#1A2924] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none"
-              />
+              <div className="flex items-center justify-between mb-1">
+                <label className="text-xs font-semibold text-slate-300">
+                  Admin Passcode / Password
+                </label>
+                <span className="text-[10px] text-[#B7F34A] font-semibold">
+                  Default: {DEFAULT_ADMIN_PASSCODE}
+                </span>
+              </div>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  placeholder={`Enter password (e.g. ${DEFAULT_ADMIN_PASSCODE})`}
+                  className="w-full bg-[#1A2924] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-4 py-2.5 pr-10 text-sm text-white focus:outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white cursor-pointer"
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
 
             <div className="pt-2 space-y-2">
               <button
                 type="submit"
                 disabled={isAuthLoading}
-                className="w-full bg-[#B7F34A] hover:bg-[#A3E037] text-[#111C18] font-bold text-sm py-3 rounded-xl transition-all cursor-pointer shadow-md shadow-[#B7F34A]/20 active:scale-98 disabled:opacity-60"
+                className="w-full bg-[#1A2924] hover:bg-[#233730] border border-[#B7F34A]/50 text-white font-bold text-sm py-3 rounded-xl transition-all cursor-pointer active:scale-98 disabled:opacity-60 flex items-center justify-center gap-2 shadow-md"
               >
-                {isAuthLoading ? 'Authenticating...' : 'Sign In as Administrator'}
+                <KeyRound className="w-4 h-4 text-[#B7F34A]" />
+                <span>{isAuthLoading ? 'Authenticating...' : 'Sign In as Administrator'}</span>
               </button>
 
               <button
                 type="button"
                 onClick={handleBootstrap}
                 disabled={isAuthLoading}
-                className="w-full bg-[#1A2924] hover:bg-[#233730] text-slate-300 text-xs py-2.5 rounded-xl border border-[#233730] transition-colors cursor-pointer"
+                className="w-full bg-transparent hover:bg-[#1A2924] text-slate-400 hover:text-slate-200 text-xs py-2 rounded-xl border border-dashed border-[#233730] transition-colors cursor-pointer"
               >
-                First time? Setup / Initialize Admin
+                Set / Update Custom Admin Passcode
               </button>
             </div>
           </form>
 
-          <div className="pt-4 border-t border-[#233730] text-center">
+          <div className="relative flex items-center justify-center my-1">
+            <div className="border-t border-[#233730] w-full" />
+            <span className="bg-[#15231F] px-3 text-[10px] text-slate-400 uppercase tracking-widest shrink-0 font-semibold">
+              or sign in with google
+            </span>
+            <div className="border-t border-[#233730] w-full" />
+          </div>
+
+          {/* Google Sign-in */}
+          <div>
+            <button
+              type="button"
+              onClick={handleGoogleSignIn}
+              disabled={isAuthLoading}
+              className="w-full bg-white hover:bg-slate-100 text-[#111C18] font-bold text-xs sm:text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-3 transition-all cursor-pointer shadow-lg active:scale-98 disabled:opacity-60"
+            >
+              <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+              </svg>
+              <span>Sign in with Google ({MASTER_ADMIN_EMAIL})</span>
+            </button>
+          </div>
+
+          <div className="pt-2 text-center">
             <span className="text-[11px] text-slate-500 block">
-              Designated Admin Email: {emailInput}
+              Default authorized admin: <strong className="text-slate-400">{MASTER_ADMIN_EMAIL}</strong>
             </span>
           </div>
         </div>
@@ -437,6 +504,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           { id: 'products', label: `Products (${products.length})`, icon: Package },
           { id: 'blogs', label: `Blog (${blogPosts.length})`, icon: Newspaper },
           { id: 'settings', label: 'Store Settings', icon: Settings },
+          { id: 'domain', label: 'Domain & Vercel', icon: Globe },
           { id: 'ai', label: 'AI Content Assistant', icon: Sparkles },
         ].map(tab => {
           const Icon = tab.icon;
@@ -1389,7 +1457,58 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               </button>
             </div>
           </form>
+
+          {/* Admin Security & Passcode Settings */}
+          <div className="border-t border-[#233730] pt-6 mt-6 space-y-4">
+            <div className="flex items-center gap-2">
+              <Shield className="w-5 h-5 text-[#B7F34A]" />
+              <h3 className="font-bold text-white text-sm">Administrator Security & Passcode</h3>
+            </div>
+            <p className="text-xs text-slate-400">
+              Authorized admin account: <span className="text-white font-medium">{MASTER_ADMIN_EMAIL}</span>. 
+              You can set or update your custom admin passcode anytime.
+            </p>
+
+            <div className="bg-[#111C18] border border-[#233730] rounded-2xl p-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  value={customPasscodeSetting}
+                  onChange={(e) => setCustomPasscodeSetting(e.target.value)}
+                  placeholder="Enter new admin passcode (min 4 chars)"
+                  className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#B7F34A]"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (customPasscodeSetting.trim().length >= 4) {
+                    updateAdminPasscode(customPasscodeSetting.trim());
+                    showToast('Admin passcode updated successfully!', 'success');
+                    setCustomPasscodeSetting('');
+                  } else {
+                    showToast('Passcode must be at least 4 characters long', 'error');
+                  }
+                }}
+                className="bg-[#1A2924] hover:bg-[#233730] border border-[#B7F34A]/40 text-[#B7F34A] font-bold text-xs px-4 py-2.5 rounded-xl cursor-pointer flex items-center justify-center gap-2 shrink-0"
+              >
+                <KeyRound className="w-4 h-4" />
+                <span>Save New Passcode</span>
+              </button>
+            </div>
+          </div>
         </div>
+      )}
+
+      {/* TAB: VERCEL CUSTOM DOMAIN */}
+      {activeTab === 'domain' && (
+        <VercelDomainManager
+          settings={settingsForm}
+          onSettingsUpdated={(updated) => {
+            setSettingsForm(updated);
+            onRefreshData();
+          }}
+        />
       )}
 
       {/* TAB 6: AI CONTENT ASSISTANT (Optional Gemini Integration) */}
@@ -1434,7 +1553,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(aiResult);
-                    alert('Copied to clipboard!');
+                    showToast('Copied to clipboard!', 'success');
                   }}
                   className="bg-[#1A2924] text-slate-300 text-xs px-3 py-1.5 rounded-lg hover:text-white cursor-pointer mt-2"
                 >
@@ -1443,6 +1562,22 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               </div>
             )}
           </div>
+        </div>
+      )}
+
+      {/* Floating Toast Notification */}
+      {toast && (
+        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl shadow-2xl text-xs font-bold transition-all border ${
+          toast.type === 'success'
+            ? 'bg-[#15231F] border-[#B7F34A] text-[#B7F34A] shadow-[#B7F34A]/20'
+            : 'bg-red-950/90 border-red-500 text-red-200'
+        }`}>
+          {toast.type === 'success' ? (
+            <CheckCircle className="w-4 h-4 text-[#B7F34A]" />
+          ) : (
+            <AlertCircle className="w-4 h-4 text-red-400" />
+          )}
+          <span>{toast.message}</span>
         </div>
       )}
     </div>

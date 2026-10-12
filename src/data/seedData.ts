@@ -26,6 +26,11 @@ export const INITIAL_STORE_SETTINGS: StoreSettings = {
     instagram: 'https://instagram.com',
     youtube: 'https://youtube.com',
   },
+  customDomain: 'digitalproductpakistan.net',
+  vercelProjectName: 'digital-product-pakistan',
+  netlifySiteName: 'digital-product-pakistan',
+  deploymentPlatform: 'vercel',
+  dnsMethod: 'external',
 };
 
 export const INITIAL_PRODUCTS: Product[] = [

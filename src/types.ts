@@ -152,6 +152,11 @@ export interface StoreSettings {
     privacy?: string;
     terms?: string;
   };
+  customDomain?: string;
+  netlifySiteName?: string;
+  vercelProjectName?: string;
+  deploymentPlatform?: 'vercel' | 'netlify';
+  dnsMethod?: 'external' | 'vercel-dns' | 'netlify-dns';
   updatedAt?: string;
 }
 

@@ -10,7 +10,7 @@ import {
   where,
   orderBy,
 } from 'firebase/firestore';
-import { db, handleFirestoreError, OperationType } from '../firebase';
+import { db } from '../firebase';
 import { Product, BlogPost, StoreSettings, Order } from '../types';
 import { INITIAL_PRODUCTS, INITIAL_BLOG_POSTS, INITIAL_STORE_SETTINGS } from '../data/seedData';
 
@@ -20,11 +20,36 @@ const SETTINGS_COLLECTION = 'storeSettings';
 const ORDERS_COLLECTION = 'orders';
 const GLOBAL_SETTINGS_ID = 'global_settings';
 
-// Cache in-memory to guarantee zero-latency fallback and offline resilience
-let localProducts = [...INITIAL_PRODUCTS];
-let localBlogs = [...INITIAL_BLOG_POSTS];
-let localSettings = { ...INITIAL_STORE_SETTINGS };
-let localOrders: Order[] = [];
+// Safe localStorage helper
+function loadFromStorage<T>(key: string, fallback: T): T {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const item = localStorage.getItem(key);
+      if (item) {
+        return JSON.parse(item);
+      }
+    }
+  } catch (e) {
+    console.warn(`Error reading ${key} from storage:`, e);
+  }
+  return fallback;
+}
+
+function saveToStorage(key: string, data: any) {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem(key, JSON.stringify(data));
+    }
+  } catch (e) {
+    console.warn(`Error saving ${key} to storage:`, e);
+  }
+}
+
+// Cache in-memory with resilient localStorage backing
+let localProducts: Product[] = loadFromStorage('dpp_custom_products', [...INITIAL_PRODUCTS]);
+let localBlogs: BlogPost[] = loadFromStorage('dpp_custom_blogs', [...INITIAL_BLOG_POSTS]);
+let localSettings: StoreSettings = loadFromStorage('dpp_custom_settings', { ...INITIAL_STORE_SETTINGS });
+let localOrders: Order[] = loadFromStorage('dpp_submitted_orders', []);
 
 // PRODUCTS
 export async function getProducts(includeDrafts = false): Promise<Product[]> {
@@ -38,10 +63,11 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
         items.push({ ...data, id: d.id });
       });
       localProducts = items;
+      saveToStorage('dpp_custom_products', items);
       return includeDrafts ? items : items.filter(p => p.status === 'published');
     }
   } catch (err) {
-    console.warn('Firestore products fetch error, using resilient local catalog:', err);
+    console.warn('Firestore products fetch warning, using resilient storage:', err);
   }
   return includeDrafts ? localProducts : localProducts.filter(p => p.status === 'published');
 }
@@ -63,34 +89,41 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
 export async function saveProduct(product: Product): Promise<void> {
   const docId = product.id || `prod-${Date.now()}`;
-  const payload = {
+  const payload: Product = {
     ...product,
     id: docId,
     updatedAt: new Date().toISOString(),
     createdAt: product.createdAt || new Date().toISOString(),
   };
 
-  try {
-    await setDoc(doc(db, PRODUCTS_COLLECTION, docId), payload);
-  } catch (err) {
-    handleFirestoreError(err, OperationType.WRITE, `${PRODUCTS_COLLECTION}/${docId}`);
-  }
-
+  // 1. Immediately persist locally
   const idx = localProducts.findIndex(p => p.id === docId);
   if (idx >= 0) {
     localProducts[idx] = payload;
   } else {
     localProducts.unshift(payload);
   }
+  saveToStorage('dpp_custom_products', localProducts);
+
+  // 2. Sync to Firestore in background
+  try {
+    await setDoc(doc(db, PRODUCTS_COLLECTION, docId), payload);
+  } catch (err) {
+    console.warn('Firestore write warning (product saved to local database):', err);
+  }
 }
 
 export async function deleteProduct(productId: string): Promise<void> {
+  // 1. Remove from local store immediately
+  localProducts = localProducts.filter(p => p.id !== productId);
+  saveToStorage('dpp_custom_products', localProducts);
+
+  // 2. Sync deletion to Firestore
   try {
     await deleteDoc(doc(db, PRODUCTS_COLLECTION, productId));
   } catch (err) {
-    handleFirestoreError(err, OperationType.DELETE, `${PRODUCTS_COLLECTION}/${productId}`);
+    console.warn('Firestore delete warning (product removed locally):', err);
   }
-  localProducts = localProducts.filter(p => p.id !== productId);
 }
 
 // BLOG POSTS
@@ -105,6 +138,7 @@ export async function getBlogPosts(includeDrafts = false): Promise<BlogPost[]> {
         items.push({ ...data, id: d.id });
       });
       localBlogs = items;
+      saveToStorage('dpp_custom_blogs', items);
       return includeDrafts ? items : items.filter(b => b.status === 'published');
     }
   } catch (err) {
@@ -130,34 +164,41 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 
 export async function saveBlogPost(post: BlogPost): Promise<void> {
   const docId = post.id || `blog-${Date.now()}`;
-  const payload = {
+  const payload: BlogPost = {
     ...post,
     id: docId,
     updatedAt: new Date().toISOString(),
     createdAt: post.createdAt || new Date().toISOString(),
   };
 
-  try {
-    await setDoc(doc(db, BLOGS_COLLECTION, docId), payload);
-  } catch (err) {
-    handleFirestoreError(err, OperationType.WRITE, `${BLOGS_COLLECTION}/${docId}`);
-  }
-
+  // 1. Immediately persist locally
   const idx = localBlogs.findIndex(b => b.id === docId);
   if (idx >= 0) {
     localBlogs[idx] = payload;
   } else {
     localBlogs.unshift(payload);
   }
+  saveToStorage('dpp_custom_blogs', localBlogs);
+
+  // 2. Sync to Firestore
+  try {
+    await setDoc(doc(db, BLOGS_COLLECTION, docId), payload);
+  } catch (err) {
+    console.warn('Firestore blog write warning (article saved locally):', err);
+  }
 }
 
 export async function deleteBlogPost(postId: string): Promise<void> {
+  // 1. Remove locally
+  localBlogs = localBlogs.filter(b => b.id !== postId);
+  saveToStorage('dpp_custom_blogs', localBlogs);
+
+  // 2. Sync to Firestore
   try {
     await deleteDoc(doc(db, BLOGS_COLLECTION, postId));
   } catch (err) {
-    handleFirestoreError(err, OperationType.DELETE, `${BLOGS_COLLECTION}/${postId}`);
+    console.warn('Firestore delete blog warning:', err);
   }
-  localBlogs = localBlogs.filter(b => b.id !== postId);
 }
 
 // STORE SETTINGS
@@ -167,25 +208,30 @@ export async function getStoreSettings(): Promise<StoreSettings> {
     const snap = await getDoc(docRef);
     if (snap.exists()) {
       localSettings = { ...localSettings, ...(snap.data() as StoreSettings) };
+      saveToStorage('dpp_custom_settings', localSettings);
       return localSettings;
     }
   } catch (err) {
-    console.warn('Firestore store settings fetch error, using defaults:', err);
+    console.warn('Firestore store settings fetch error, using resilient defaults:', err);
   }
   return localSettings;
 }
 
 export async function saveStoreSettings(settings: StoreSettings): Promise<void> {
-  const payload = {
+  const payload: StoreSettings = {
     ...settings,
     updatedAt: new Date().toISOString(),
   };
 
+  // 1. Immediately persist locally
+  localSettings = payload;
+  saveToStorage('dpp_custom_settings', payload);
+
+  // 2. Sync to Firestore
   try {
     await setDoc(doc(db, SETTINGS_COLLECTION, GLOBAL_SETTINGS_ID), payload, { merge: true });
-    localSettings = payload;
   } catch (err) {
-    handleFirestoreError(err, OperationType.WRITE, `${SETTINGS_COLLECTION}/${GLOBAL_SETTINGS_ID}`);
+    console.warn('Firestore store settings write warning (saved locally):', err);
   }
 }
 
@@ -202,20 +248,15 @@ export async function submitOrder(orderData: Omit<Order, 'id'>): Promise<Order> 
     deliveryStatus: 'Awaiting Payment',
   };
 
+  // 1. Persist locally
+  localOrders.unshift(order);
+  saveToStorage('dpp_submitted_orders', localOrders.slice(0, 50));
+
+  // 2. Sync to Firestore
   try {
     await setDoc(doc(db, ORDERS_COLLECTION, docId), order);
   } catch (err) {
-    console.warn('Direct Firestore order submission error, falling back to local registry:', err);
-  }
-
-  localOrders.unshift(order);
-  try {
-    const saved = localStorage.getItem('dpp_submitted_orders');
-    const list = saved ? JSON.parse(saved) : [];
-    list.unshift(order);
-    localStorage.setItem('dpp_submitted_orders', JSON.stringify(list.slice(0, 50)));
-  } catch (e) {
-    // ignore local storage error
+    console.warn('Direct Firestore order submission warning, saved in local registry:', err);
   }
 
   return order;
@@ -232,6 +273,7 @@ export async function getOrders(): Promise<Order[]> {
         items.push({ ...(d.data() as Order), id: d.id });
       });
       localOrders = items;
+      saveToStorage('dpp_submitted_orders', items.slice(0, 50));
       return items;
     }
   } catch (err) {
@@ -239,16 +281,9 @@ export async function getOrders(): Promise<Order[]> {
   }
 
   // Load from persisted local storage if available
-  try {
-    const saved = localStorage.getItem('dpp_submitted_orders');
-    if (saved) {
-      const list = JSON.parse(saved);
-      if (Array.isArray(list) && list.length > 0) {
-        return list;
-      }
-    }
-  } catch (e) {
-    // ignore
+  const saved = loadFromStorage<Order[]>('dpp_submitted_orders', []);
+  if (Array.isArray(saved) && saved.length > 0) {
+    return saved;
   }
 
   return localOrders;
@@ -258,7 +293,7 @@ export async function getOrderById(orderIdOrNumber: string): Promise<Order | nul
   const cleanId = orderIdOrNumber.trim();
   const directDocId = cleanId.startsWith('order-') ? cleanId : `order-${cleanId}`;
 
-  // First try direct document lookup from Firestore (supported by allow get: if isValidId(orderId))
+  // First try direct document lookup from Firestore
   try {
     const snap = await getDoc(doc(db, ORDERS_COLLECTION, directDocId));
     if (snap.exists()) {
@@ -279,17 +314,12 @@ export async function getOrderById(orderIdOrNumber: string): Promise<Order | nul
   if (inMem) return inMem;
 
   // Check localStorage
-  try {
-    const saved = localStorage.getItem('dpp_submitted_orders');
-    if (saved) {
-      const list: Order[] = JSON.parse(saved);
-      const found = list.find(
-        o => o.orderNumber.toLowerCase() === cleanId.toLowerCase() || o.id === cleanId || o.id === directDocId
-      );
-      if (found) return found;
-    }
-  } catch (e) {
-    // ignore
+  const saved = loadFromStorage<Order[]>('dpp_submitted_orders', []);
+  if (Array.isArray(saved)) {
+    const found = saved.find(
+      o => o.orderNumber.toLowerCase() === cleanId.toLowerCase() || o.id === cleanId || o.id === directDocId
+    );
+    if (found) return found;
   }
 
   return null;
@@ -299,16 +329,9 @@ export async function getCustomerOrders(phoneOrEmail?: string): Promise<Order[]>
   const map = new Map<string, Order>();
 
   // 1. Load locally stored customer orders on this device
-  try {
-    const saved = localStorage.getItem('dpp_submitted_orders');
-    if (saved) {
-      const list: Order[] = JSON.parse(saved);
-      if (Array.isArray(list)) {
-        list.forEach(o => map.set(o.orderNumber || o.id, o));
-      }
-    }
-  } catch (e) {
-    // ignore
+  const saved = loadFromStorage<Order[]>('dpp_submitted_orders', []);
+  if (Array.isArray(saved)) {
+    saved.forEach(o => map.set(o.orderNumber || o.id, o));
   }
 
   // Include in-memory localOrders
@@ -355,25 +378,17 @@ export async function updateOrder(orderId: string, updates: Partial<Order>): Pro
     updatedAt: new Date().toISOString(),
   };
 
-  try {
-    await updateDoc(doc(db, ORDERS_COLLECTION, orderId), payload);
-  } catch (err) {
-    handleFirestoreError(err, OperationType.UPDATE, `${ORDERS_COLLECTION}/${orderId}`);
-  }
-
+  // 1. Update in local cache and storage immediately
   const idx = localOrders.findIndex(o => o.id === orderId);
   if (idx >= 0) {
     localOrders[idx] = { ...localOrders[idx], ...payload };
   }
+  saveToStorage('dpp_submitted_orders', localOrders);
 
+  // 2. Sync to Firestore
   try {
-    const saved = localStorage.getItem('dpp_submitted_orders');
-    if (saved) {
-      const list: Order[] = JSON.parse(saved);
-      const updatedList = list.map(o => (o.id === orderId ? { ...o, ...payload } : o));
-      localStorage.setItem('dpp_submitted_orders', JSON.stringify(updatedList));
-    }
-  } catch (e) {
-    // ignore
+    await updateDoc(doc(db, ORDERS_COLLECTION, orderId), payload);
+  } catch (err) {
+    console.warn('Firestore order update warning (updated locally):', err);
   }
 }

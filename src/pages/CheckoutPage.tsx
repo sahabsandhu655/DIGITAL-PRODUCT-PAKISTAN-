@@ -114,17 +114,17 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
     setUploadError(null);
 
     if (items.length === 0) {
-      alert('Your cart is empty. Please add items to proceed.');
+      setUploadError('Your cart is empty. Please add items to proceed.');
       return;
     }
 
     if (!customerName.trim()) {
-      alert('Please enter your full name.');
+      setUploadError('Please enter your full name.');
       return;
     }
 
     if (!phone.trim() || phone.trim() === '+92') {
-      alert('Please enter your WhatsApp/phone number so we can deliver your product.');
+      setUploadError('Please enter your WhatsApp/phone number so we can deliver your product credentials.');
       return;
     }
 
