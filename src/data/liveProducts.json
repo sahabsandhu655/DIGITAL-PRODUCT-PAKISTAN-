@@ -1,592 +1,371 @@
 [
   {
-    "description": "Access a curated collection of English-language digital courses covering Full-Stack Web Development, Data Science, Digital Marketing, SEO, Copywriting, UI/UX Design, and Freelance Consulting. Organised in structured modules with project source files.",
-    "title": "500+ English Courses Mega Master Bundle",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "currency": "PKR",
-    "collectionSizeClaim": "500+ Courses",
-    "compareAtPricePKR": 8000,
-    "slug": "500-english-courses-bundle",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "deliveryType": "Cloud Drive Invite & Private Portal Access",
-    "productType": "course",
-    "features": [
-      "Lifetime Drive / Cloud access links",
-      "500+ Organized course folders",
-      "Project source files and code repositories included",
-      "Delivery via private email invite"
-    ],
-    "id": "prod-course-01",
-    "validity": "Lifetime Access to Shared Archive",
-    "pricePKR": 3500,
-    "tags": [
-      "Courses",
-      "English Bundle",
-      "Programming",
-      "Marketing"
-    ],
-    "featured": true,
-    "status": "published",
-    "category": "500+ English Courses",
-    "language": "English",
-    "images": [
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80"
-    ],
-    "shortDescription": "Curated 500+ English courses spanning programming, design, and marketing."
-  },
-  {
-    "title": "2,000+ Hindi & Urdu Courses Mega Vault",
-    "featured": true,
-    "category": "2,000+ Hindi and Urdu Courses",
-    "language": "Urdu & Hindi",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "status": "published",
-    "validity": "Lifetime Access",
-    "images": [
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=80"
-    ],
-    "slug": "2000-hindi-urdu-courses-vault",
-    "pricePKR": 4500,
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "tags": [
-      "Courses",
-      "Urdu",
-      "Hindi",
-      "Regional Vault"
-    ],
-    "compareAtPricePKR": 12000,
-    "id": "prod-course-02",
-    "shortDescription": "The ultimate 2,000+ courses vault taught in clear Urdu and Hindi.",
-    "description": "The largest regional digital learning vault in Urdu and Hindi. Packed with step-by-step masterclasses in Graphic Design, Video Editing (Premiere Pro & CapCut), WordPress, Shopify, Amazon FBA, Crypto Trading Fundamentals, and Mobile App Development.",
-    "features": [
-      "Organized by beginner to advanced levels",
-      "Over 2,000 individual masterclasses",
-      "Direct cloud link delivery upon payment confirmation",
-      "No recurring subscriptions"
-    ],
-    "productType": "course",
-    "collectionSizeClaim": "2,000+ Courses",
-    "currency": "PKR",
-    "deliveryType": "Private Cloud Repository Access Link"
-  },
-  {
-    "currency": "PKR",
-    "images": [
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80"
-    ],
-    "slug": "ai-automation-freelancer-bootcamp",
-    "id": "prod-course-03",
-    "status": "published",
-    "shortDescription": "Supercharge your client productivity using AI automation workflows.",
-    "features": [
-      "12 Practical video modules",
-      "Ready-to-use n8n blueprints",
-      "Private support community link"
-    ],
-    "deliveryType": "Private Video Stream & Download",
-    "productType": "course",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "pricePKR": 2200,
-    "tags": [
-      "AI",
-      "Automation",
-      "Workflows"
-    ],
-    "language": "English",
-    "category": "500+ English Courses",
-    "featured": false,
-    "compareAtPricePKR": 4500,
-    "title": "AI & Automation Workflow Bootcamp for Freelancers",
-    "description": "Learn how to integrate modern AI tools, automate repetitive tasks, generate high-converting copy, and deliver client work in half the time using n8n, Make, and advanced prompt engineering.",
-    "updatedAt": "2026-10-12T06:58:01.943Z"
-  },
-  {
-    "compareAtPricePKR": 2500,
-    "productType": "ebook",
-    "id": "prod-ebook-01",
-    "features": [
-      "180+ Pages PDF & EPUB formats",
-      "Actionable contract templates included",
-      "Client email pitch swipe files",
-      "Direct download after payment confirmation"
-    ],
-    "tags": [
-      "Freelancing",
-      "Upwork",
-      "Remote Work",
-      "E-book"
-    ],
-    "currency": "PKR",
-    "licensingNotes": "Personal use digital license. Redistribution prohibited.",
-    "deliveryType": "Instant PDF/EPUB Download Link",
-    "description": "A comprehensive, practical playbook designed for Pakistani remote workers, students, and aspiring entrepreneurs. Learn how to identify high-ticket global clients on Upwork, LinkedIn, and direct outreach, invoice properly, and build a sustainable 6-figure remote career from Pakistan.",
-    "language": "English with Urdu commentary",
-    "category": "Entrepreneurship Books",
-    "images": [
-      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80"
-    ],
-    "shortDescription": "The definitive blueprint for building a high-income freelance career in Pakistan.",
-    "featured": true,
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "status": "published",
-    "slug": "pakistani-freelancer-mastery-guide",
-    "title": "The Pakistani Freelancer Mastery Guide",
-    "pricePKR": 1250,
-    "updatedAt": "2026-10-12T06:58:01.943Z"
-  },
-  {
-    "compareAtPricePKR": 3000,
-    "productType": "ebook",
-    "id": "prod-ebook-02",
-    "features": [
-      "210 Pages comprehensive handbook",
-      "Courier account negotiation checklist",
-      "Top local wholesale supplier directory",
-      "Digital copy delivered to WhatsApp & Email"
-    ],
-    "tags": [
-      "E-Commerce",
-      "Shopify",
-      "Business",
-      "Dropshipping"
-    ],
-    "currency": "PKR",
-    "licensingNotes": "Original author publication. Commercial resale forbidden.",
-    "deliveryType": "Digital PDF Download",
-    "description": "Step-by-step guidance on setting up local and white-label e-commerce in Pakistan. Covers local sourcing (Karachi, Lahore, Faisalabad), courier logistics (TCS, Call Courier, PostEx), cash-on-delivery management, and digital advertising strategies.",
-    "language": "English",
-    "category": "Business Books",
-    "images": [
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop&q=80"
-    ],
-    "shortDescription": "Local e-commerce execution manual covering Pakistani sourcing, couriers, and marketing.",
-    "featured": true,
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "status": "published",
-    "slug": "zero-to-ecommerce-pakistan",
-    "title": "Zero to E-Commerce in Pakistan",
-    "pricePKR": 1500,
-    "updatedAt": "2026-10-12T06:58:01.943Z"
-  },
-  {
-    "pricePKR": 950,
-    "compareAtPricePKR": 1800,
-    "deliveryType": "PDF Download",
-    "id": "prod-ebook-03",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "slug": "dating-dynamics-social-confidence",
-    "shortDescription": "Practical guide to communication, personal confidence, and modern dating etiquette.",
-    "title": "Modern Dating Dynamics & Social Confidence",
-    "featured": false,
-    "language": "English",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "category": "Dating Books",
-    "licensingNotes": "Personal reading license only.",
-    "description": "A grounded, psychological perspective on emotional intelligence, communication skills, building confidence, and navigating contemporary interpersonal relationships with respect and clarity.",
-    "currency": "PKR",
-    "tags": [
-      "Self Improvement",
-      "Dating",
-      "Psychology"
-    ],
-    "features": [
-      "140 Pages DRM-free PDF",
-      "Social conversation exercises",
-      "Digital delivery post verification"
-    ],
-    "images": [
-      "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&auto=format&fit=crop&q=80"
-    ],
-    "productType": "ebook",
-    "status": "published"
-  },
-  {
-    "features": [
-      "Complete unabridged edition",
-      "Compatible with Kindle and mobile readers",
-      "Instant delivery after payment proof"
-    ],
-    "description": "A bestselling emotional novel exploring love, separation, cultural traditions, and reconciliation in modern Lahore and Islamabad.",
-    "images": [
-      "https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=600&auto=format&fit=crop&q=80"
-    ],
-    "id": "prod-ebook-04",
-    "status": "published",
-    "tags": [
-      "Novels",
-      "Fiction",
-      "Romance"
-    ],
-    "deliveryType": "PDF & EPUB Download",
-    "shortDescription": "Heartwarming contemporary romantic fiction set across Pakistan.",
-    "currency": "PKR",
-    "productType": "ebook",
-    "language": "Urdu & English Bilingual",
-    "category": "Romantic Books",
-    "licensingNotes": "Authorized digital distribution.",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "featured": false,
-    "slug": "echoes-of-the-heart-novel",
-    "title": "Echoes of the Heart (Urdu & English Novel)",
-    "pricePKR": 750,
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "compareAtPricePKR": 1200
-  },
-  {
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "licensingNotes": "Personal use only.",
-    "features": [
-      "160 Pages story",
-      "Includes founder discussion guides"
-    ],
-    "description": "Narrative business novel following two university graduates in Karachi as they build, fail, and scale a tech venture through sheer grit and community building.",
-    "compareAtPricePKR": 1500,
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "productType": "ebook",
-    "tags": [
-      "Novels",
-      "Entrepreneurship",
-      "Fiction"
-    ],
-    "status": "published",
-    "currency": "PKR",
-    "images": [
-      "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=600&auto=format&fit=crop&q=80"
-    ],
-    "featured": false,
-    "category": "Novels",
-    "language": "English",
-    "title": "The Modern Startup Playbook",
-    "slug": "modern-startup-playbook",
-    "deliveryType": "PDF Download",
-    "pricePKR": 900,
-    "shortDescription": "Engaging story of technology, ambition, and entrepreneurship in emerging markets.",
-    "id": "prod-ebook-05"
-  },
-  {
-    "updatedAt": "2026-10-12T07:04:44.095Z",
-    "licensingNotes": "Official access credentials delivered securely via WhatsApp & Email.",
-    "description": "Unlock CapCut Pro features including auto-captions in regional accents, smart video stabilizer, 4K 60FPS export, AI background removal, and premium cloud effects. Plan details and access method to be configured by administrator.",
-    "features": [
-      "Pro AI Captions",
-      "Smooth Slow Motion",
-      "Multi-layer 4K Export"
-    ],
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "productType": "software",
-    "status": "published",
-    "tags": [
-      "Video Editing",
-      "CapCut",
-      "Software"
-    ],
-    "currency": "PKR",
-    "images": [
-      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&auto=format&fit=crop&q=80"
-    ],
-    "featured": true,
-    "category": "Video Editing",
-    "title": "CapCut Pro — Video Editing",
-    "slug": "capcut-pro-video-editing",
-    "deliveryType": "Account Login / Activation Key sent via WhatsApp",
-    "validity": "1 Month - 12 Months Options Available",
-    "pricePKR": 1800,
-    "shortDescription": "Professional video editing with AI captions and premium effects.",
-    "id": "prod-soft-01"
-  },
-  {
-    "status": "published",
-    "description": "Industry-standard ultra-realistic AI voice cloning and speech synthesis. Ideal for YouTube automation, podcasting, and audiobooks. Instant activation delivered via WhatsApp.",
-    "category": "AI Audio & Voice",
-    "featured": false,
-    "images": [
-      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=600&auto=format&fit=crop&q=80"
-    ],
-    "title": "ElevenLabs — AI Voice Generation",
-    "deliveryType": "Voucher / Account credentials",
-    "productType": "software",
-    "pricePKR": 2500,
-    "licensingNotes": "Direct private account or voucher activation.",
-    "tags": [
-      "AI Voice",
-      "ElevenLabs",
-      "Audio"
-    ],
-    "features": [
-      "Realistic voice cloning",
-      "Multiple language synthesis",
-      "Commercial rights included"
-    ],
-    "slug": "elevenlabs-ai-voice",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "shortDescription": "Ultra-realistic AI voice cloning and speech synthesis.",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "currency": "PKR",
-    "id": "prod-soft-02"
-  },
-  {
-    "features": [
-      "Magic Background Remover",
-      "100M+ stock photos & vectors",
-      "Custom brand kit support"
-    ],
-    "shortDescription": "All-in-one graphic design suite with millions of premium assets.",
-    "deliveryType": "Email Invitation to Team / Pro Account",
-    "images": [
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop&q=80"
-    ],
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "status": "published",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "licensingNotes": "Fast email invitation to Pro team workspace.",
-    "id": "prod-soft-03",
-    "currency": "PKR",
-    "title": "Canva Pro — Graphic Design",
-    "tags": [
-      "Canva",
-      "Design",
-      "Social Media"
-    ],
-    "description": "Access millions of premium templates, background remover, brand kits, magic resize, and unlimited cloud graphics storage. Fast email invitation to Pro team workspace.",
-    "slug": "canva-pro-graphic-design",
-    "category": "Graphic Design",
-    "featured": true,
-    "pricePKR": 1200,
-    "productType": "software"
-  },
-  {
-    "id": "prod-soft-04",
-    "currency": "PKR",
-    "shortDescription": "Enterprise team management panel for agencies and institutions.",
-    "status": "published",
-    "slug": "canva-team-panel-500-users",
-    "description": "Canva team panel management seat capability up to 500 users, ideal for agencies, academies, and business teams.",
-    "images": [
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=80"
-    ],
-    "productType": "software",
-    "features": [
-      "Member invitation panel",
-      "Centralized template sharing",
-      "Multi-user access management"
-    ],
-    "deliveryType": "Admin Panel Access / Direct Activation",
-    "title": "Canva Team / Panel — Up to 500 Users",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "pricePKR": 8500,
-    "category": "Graphic Design",
-    "tags": [
-      "Canva",
-      "Team Panel",
-      "Agency"
-    ],
-    "featured": false,
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "licensingNotes": "Admin panel invitation with management rights."
-  },
-  {
-    "title": "Muse AI — Image, Video Generation & Automation",
-    "tags": [
-      "Muse AI",
-      "Generative Video",
-      "Automation"
-    ],
-    "currency": "PKR",
-    "features": [
-      "High-resolution neural rendering",
-      "Batch automation pipelines"
-    ],
-    "status": "published",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "pricePKR": 2900,
-    "deliveryType": "Subscription invite link",
-    "description": "Next-generation AI generation platform for visual creators, marketers, and video editors.",
-    "images": [
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80"
-    ],
-    "shortDescription": "High-speed generative video and visual automation toolkit.",
-    "licensingNotes": "Direct private invitation link.",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "category": "AI Tools",
-    "productType": "software",
-    "id": "prod-soft-05",
-    "featured": false,
-    "slug": "muse-ai-image-video-automation"
-  },
-  {
-    "pricePKR": 3500,
-    "images": [
-      "https://images.unsplash.com/photo-1676299081847-824916de030a?w=600&auto=format&fit=crop&q=80"
-    ],
-    "shortDescription": "Advanced multimodal reasoning and long-context analysis.",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "status": "published",
-    "deliveryType": "Account Activation",
-    "licensingNotes": "Private account activation credentials.",
-    "category": "AI Tools",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "featured": false,
-    "title": "Gemini Pro — 18-Month Plan",
-    "tags": [
-      "Gemini Pro",
-      "Google",
-      "AI Assistant"
-    ],
-    "slug": "gemini-pro-18-month-plan",
-    "productType": "software",
-    "currency": "PKR",
-    "features": [
-      "Long-context analysis",
-      "Multimodal image and document comprehension"
-    ],
-    "id": "prod-soft-06",
-    "description": "Extended access package for Gemini Pro with 2M token context window, deep reasoning, and multimodal document analysis."
-  },
-  {
-    "id": "prod-soft-07",
-    "shortDescription": "Flagship reasoning and generative productivity from OpenAI.",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "pricePKR": 4500,
-    "deliveryType": "Account Invite / Private Login",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "category": "AI Tools",
-    "slug": "chatgpt-pro",
-    "featured": false,
+    "id": "prod-chatgpt-pro",
     "title": "ChatGPT Pro",
-    "status": "published",
-    "productType": "software",
-    "tags": [
-      "ChatGPT",
-      "AI Assistant",
-      "OpenAI"
-    ],
+    "slug": "chatgpt-pro",
+    "category": "AI Software",
+    "description": "Get official ChatGPT Pro subscription access in Pakistan. Unlock OpenAI's flagship GPT-4o architecture, high-speed priority server allocation during peak hours, unlimited DALL-E 3 image generation, advanced code canvas, and deep analytical capabilities.\n\n• Dedicated priority access with zero rate bottlenecks.\n• Instant setup guidance and direct WhatsApp support in Pakistan.\n• Pay conveniently via Easypaisa or order directly on WhatsApp Business.",
+    "shortDescription": "Official ChatGPT Pro access featuring GPT-4o, advanced reasoning models, priority speeds, and unlimited generation.",
     "images": [
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80"
     ],
-    "licensingNotes": "Direct private account login credentials.",
+    "pricePKR": 4000,
+    "compareAtPricePKR": 6000,
     "currency": "PKR",
+    "tags": ["AI", "ChatGPT", "GPT-4o", "OpenAI", "Software"],
     "features": [
-      "Reasoning models access",
-      "Advanced Data Analysis & Python code interpreter",
-      "Custom GPT creation"
+      "Full Access to GPT-4o & Advanced Reasoning Models",
+      "Peak-Time Priority Bandwidth & Lightning-Fast Output",
+      "Unlimited DALL-E 3 Image Generation & Editing",
+      "Advanced Data Analysis, Python Sandbox & Code Canvas",
+      "Direct WhatsApp Credentials Delivery within Minutes"
     ],
-    "description": "High-capacity AI workspace with o-series reasoning models, deep research tools, and unlimited high-speed analysis."
+    "productType": "software",
+    "deliveryType": "Direct WhatsApp & Email Credentials Delivery",
+    "validity": "1 Month Official Renewal Access",
+    "licensingNotes": "Official private login access. Full warranty for billing cycle.",
+    "featured": true,
+    "status": "published",
+    "language": "English, Urdu & Multilingual",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "updatedAt": "2026-11-01T10:00:00.000Z"
   },
   {
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "featured": false,
-    "category": "Cloud Storage",
-    "title": "Google Drive — Storage Plan",
-    "slug": "google-drive-storage-plan",
-    "deliveryType": "Email Invitation to Shared Workspace",
-    "productType": "software",
-    "description": "Cloud storage workspace for backing up large project archives and media files with seamless sharing.",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "status": "published",
-    "pricePKR": 2800,
+    "id": "prod-gemini-pro",
+    "title": "Gemini Pro",
+    "slug": "gemini-pro",
+    "category": "AI Software",
+    "description": "Supercharge your productivity with Google Gemini Pro. Harness Google's state-of-the-art multimodal AI model equipped with an enormous 1 Million+ token context window, deep document understanding, creative synthesis, and direct Google Workspace integration at an affordable PKR price.\n\n• Seamless document, PDF, and spreadsheet analysis.\n• Ultra-fast multimodal reasoning and code generation.\n• Order directly via WhatsApp (+923107759274) or pay via Easypaisa.",
+    "shortDescription": "Google Gemini Pro subscription with 1M+ token context window, multimodal reasoning, and workspace integration.",
     "images": [
-      "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80"
     ],
-    "shortDescription": "High-capacity cloud backup and workspace folder sharing.",
-    "id": "prod-soft-08",
+    "pricePKR": 999,
+    "compareAtPricePKR": 2000,
+    "currency": "PKR",
+    "tags": ["Gemini", "Google AI", "AI Assistant", "Productivity", "Software"],
     "features": [
-      "Encrypted storage archive",
-      "Shareable team links"
+      "Massive 1M+ Token Context Window for Large Books & Docs",
+      "Next-Gen Multimodal Vision, Audio & Code Understanding",
+      "Google Workspace, Docs & Drive Synergy",
+      "High-Speed Creative Writing & Coding Assistance",
+      "Immediate Delivery on WhatsApp (+92 310 7759274)"
     ],
-    "licensingNotes": "Workspace invite sent directly to customer Gmail.",
-    "tags": [
-      "Google Drive",
-      "Storage",
-      "Cloud"
-    ],
-    "currency": "PKR"
+    "productType": "software",
+    "deliveryType": "Direct WhatsApp & Email Activation",
+    "validity": "1 Month Subscription",
+    "licensingNotes": "Genuine subscriber access with replacement warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English, Urdu & 40+ Languages",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "updatedAt": "2026-11-01T10:00:00.000Z"
   },
   {
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "description": "Fast, AI-powered social media graphics, video reels, and quick flyer creator with Adobe Firefly integration.",
-    "pricePKR": 1950,
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "featured": false,
-    "tags": [
-      "Adobe",
-      "Design",
-      "Express"
-    ],
+    "id": "prod-whatsapp-bulk-sender",
+    "title": "WhatsApp Bulk SMS Sender Software",
+    "slug": "whatsapp-bulk-sms-sender-software",
+    "category": "Marketing Tools",
+    "description": "Pakistan's top-rated WhatsApp Marketing Software for Windows PC. Connect directly with thousands of potential customers on WhatsApp with zero per-message cost.\n\nBuilt for online stores, digital agencies, freelancers, educational institutes, and real estate consultants across Pakistan. Features an anti-ban intelligent delay algorithm, Excel/CSV contact list importer, group participant extractor, dynamic personalized tags, automated keyword auto-replies, and rich media message dispatch.\n\nExplore our complete 18-feature illustrated walkthrough below to see how each tool function works. One-time purchase with instant activation.",
+    "shortDescription": "Complete Windows bulk WhatsApp marketing software with contact list import, anti-ban delay, group extractor, auto-reply bot, and 18-slide feature gallery.",
     "images": [
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80"
     ],
-    "category": "Graphic Design",
-    "productType": "software",
-    "title": "Adobe Express — Creative Suite",
-    "status": "published",
-    "id": "prod-soft-09",
+    "pricePKR": 2499,
+    "compareAtPricePKR": 5000,
     "currency": "PKR",
-    "slug": "adobe-express-creative-suite",
-    "shortDescription": "Quick creative graphics and video editing powered by Adobe Firefly.",
-    "licensingNotes": "Email activation on your Adobe ID.",
+    "tags": ["WhatsApp", "Marketing", "Bulk SMS", "Automation", "Tools"],
     "features": [
-      "Firefly text-to-image generator",
-      "Thousands of professional brand templates"
+      "18 Professional Marketing Features (See Visual Tour Below)",
+      "Unlimited Contact List Import via Excel (.xlsx) and CSV Files",
+      "Anti-Ban Speed Delays & Safe Random Interval Controls",
+      "Instant WhatsApp Group Member Grabber & Exporter",
+      "Attach Images, Videos, PDF Catalogs, Audio & Documents",
+      "Keyword-Based 24/7 Automated Customer Reply Bot",
+      "Lifetime Windows PC License with Video Installation Guide"
     ],
-    "deliveryType": "Email activation"
+    "productType": "tool",
+    "deliveryType": "Instant Software Download Link + License Key via WhatsApp",
+    "validity": "Lifetime Windows License & Updates",
+    "licensingNotes": "Single PC activation license with full video walkthrough and WhatsApp setup support.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Urdu Interface Support",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "updatedAt": "2026-11-01T10:00:00.000Z",
+    "featureSlides": [
+      {
+        "id": "slide-01",
+        "title": "Feature 01: Automated Excel & CSV Contact Import",
+        "description": "Upload thousands of Pakistani customer mobile numbers in seconds directly from Excel sheets or CSV spreadsheets with column auto-mapping.",
+        "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-02",
+        "title": "Feature 02: Dynamic Personalized Tags ({Name}, {City})",
+        "description": "Personalize every outgoing message by recipient name, custom balance, city, or order number to achieve 5x higher customer response rates.",
+        "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-03",
+        "title": "Feature 03: Anti-Ban Intelligent Delay Configuration",
+        "description": "Customizable random interval timers (e.g. 5–15 seconds delay between chats) with simulated human pauses to safeguard your WhatsApp accounts.",
+        "imageUrl": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-04",
+        "title": "Feature 04: Multi-Account Rotation & Account Switcher",
+        "description": "Pair multiple WhatsApp Web sessions simultaneously to distribute heavy broadcast campaigns across different numbers automatically.",
+        "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-05",
+        "title": "Feature 05: Active WhatsApp Number Filter & Validator",
+        "description": "Filter clean active WhatsApp phone numbers from raw lists before launching broadcasts to avoid wasted bandwidth and failed deliveries.",
+        "imageUrl": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-06",
+        "title": "Feature 06: Direct WhatsApp Group Member Grabber",
+        "description": "Extract and export phone numbers of all active group participants from any joined community or group with a single click.",
+        "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-07",
+        "title": "Feature 07: Rich Media, Video & PDF Brochure Attachments",
+        "description": "Attach high-resolution product photos, sales video reels, PDF brochures, rate lists, and voice notes with custom captions.",
+        "imageUrl": "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-08",
+        "title": "Feature 08: 24/7 Intelligent Keyword Auto-Reply Bot",
+        "description": "Automate immediate answers to inquiries matching keywords like \"price\", \"catalog\", \"order\", or \"discount\" even while you sleep.",
+        "imageUrl": "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-09",
+        "title": "Feature 09: Scheduled Campaign Time Dispatcher",
+        "description": "Schedule bulk marketing broadcasts to execute at optimal evening or weekend engagement hours with hands-free automation.",
+        "imageUrl": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-10",
+        "title": "Feature 10: Segmented Contact List Management",
+        "description": "Tag and segment your contact lists into categories (e.g. VIP Buyers, Inactive Leads, Wholesale Clients, Lahore Inquiries).",
+        "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-11",
+        "title": "Feature 11: Real-Time Live Broadcast Delivery Tracker",
+        "description": "Visual progress bar displaying live message delivery counts, successes, skips, and connection status in real-time.",
+        "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-12",
+        "title": "Feature 12: Detailed Excel Analytics & Delivery Logs",
+        "description": "Export complete delivery audit reports to Excel with exact dispatch timestamps, message status, and failure error logs.",
+        "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-13",
+        "title": "Feature 13: Native Urdu & Unicode Font Support",
+        "description": "Full compatibility with Urdu Nastaliq text, Urdu keyboard, Arabic, regional fonts, and emojis without any broken characters.",
+        "imageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-14",
+        "title": "Feature 14: One-Click Unsubscribe Opt-Out Compliance",
+        "description": "Easily include opt-out tags to respect recipient preferences and maintain high WhatsApp sender trust scores.",
+        "imageUrl": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-15",
+        "title": "Feature 15: Spam Guard & Account Warm-Up Dialogue",
+        "description": "Built-in warm-up mode simulating back-and-forth conversational dialogues between linked numbers to prime fresh accounts.",
+        "imageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-16",
+        "title": "Feature 16: Built-in Message Template Library",
+        "description": "Store, categorize, and recall your best-performing sales pitches, Eid Mubarak greetings, and payment reminder templates.",
+        "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-17",
+        "title": "Feature 17: Native Windows 10 & 11 Desktop Compatibility",
+        "description": "Lightweight desktop software with zero heavy cloud dependencies. Runs smoothly on any standard Windows PC or laptop.",
+        "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&auto=format&fit=crop&q=80"
+      },
+      {
+        "id": "slide-18",
+        "title": "Feature 18: Lifetime License & Direct WhatsApp Support",
+        "description": "One-time investment with no recurring monthly subscriptions. Comes with setup video and direct WhatsApp assistance from our team.",
+        "imageUrl": "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=900&auto=format&fit=crop&q=80"
+      }
+    ]
   },
   {
-    "licensingNotes": "Apple ID family or subscription invitation link.",
-    "category": "Streaming & Audio",
-    "featured": false,
-    "tags": [
-      "Apple Music",
-      "Audio",
-      "Streaming"
-    ],
-    "pricePKR": 1600,
-    "features": [
-      "Lossless audio",
-      "Dolby Atmos Spatial Audio",
-      "Offline downloads"
-    ],
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "id": "prod-soft-10",
-    "productType": "software",
+    "id": "prod-capcut-pro",
+    "title": "CapCut Pro",
+    "slug": "capcut-pro",
+    "category": "Video Editing Software",
+    "description": "Upgrade your video editing with official CapCut Pro individual account access in Pakistan. Unlock all VIP transitions, auto-velocity effects, AI auto-captions, vocal isolators, body effects, chroma key, and 4K 60FPS high-bitrate export without watermarks.\n\n• Works seamlessly across Windows PC, iPhone, iPad, and Android.\n• Instant setup credentials and direct WhatsApp delivery.\n• Pay easily via Easypaisa or order directly on WhatsApp.",
+    "shortDescription": "CapCut Pro individual account access with all VIP transitions, AI auto-captions, 4K 60fps export, and cloud storage.",
     "images": [
-      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&auto=format&fit=crop&q=80"
     ],
-    "slug": "apple-music-5m-plan",
-    "status": "published",
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "shortDescription": "Spatial Audio and lossless streaming library.",
+    "pricePKR": 750,
+    "compareAtPricePKR": 1500,
     "currency": "PKR",
-    "title": "Apple Music — 5M Plan",
-    "deliveryType": "Invitation link",
-    "description": "High-fidelity lossless and Spatial Audio streaming subscription with millions of songs and curated Pakistani playlists."
+    "tags": ["CapCut", "Video Editing", "Reels", "TikTok", "Software"],
+    "features": [
+      "Unlock All Pro VIP Filters, Transitions & AI Body Effects",
+      "AI Auto-Captions with Multi-Language Speech Recognition",
+      "4K Ultra HD 60FPS Video Export Without Watermarks",
+      "Smart Background Removal, Motion Blur & Audio Noise Reducer",
+      "Immediate Delivery on WhatsApp (+92 310 7759274)"
+    ],
+    "productType": "software",
+    "deliveryType": "Direct WhatsApp Login Credentials & Setup Guide",
+    "validity": "1 Month Pro Access",
+    "licensingNotes": "Genuine subscriber credentials with instant WhatsApp replacement warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Urdu Interface",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "updatedAt": "2026-11-01T10:00:00.000Z"
   },
   {
-    "createdAt": "2026-10-12T06:58:01.943Z",
-    "currency": "PKR",
-    "tags": [
-      "Lovable",
-      "AI Code",
-      "Voucher"
+    "id": "prod-capcut-pro-team",
+    "title": "CapCut Pro Team Access by 6 Members",
+    "slug": "capcut-pro-team-access-6-members",
+    "category": "Team License Software",
+    "description": "The most cost-effective solution for media agencies, editing studios, and content teams in Pakistan. Gives you 6 full CapCut Pro team seats with shared project spaces, centralized cloud storage, and premium VIP capabilities unlocked for all 6 members simultaneously.\n\n• Add 6 team member email accounts into your collaborative team space.\n• Enjoy all CapCut Pro features on PC, Mac, Android, and iPhone.\n• Direct WhatsApp delivery and setup coordination.",
+    "shortDescription": "CapCut Pro multi-seat team space for up to 6 members. Shared collaborative projects, cloud storage, and pro features across all 6 seats.",
+    "images": [
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80"
     ],
-    "title": "Lovable — 1-Month Coupon",
-    "updatedAt": "2026-10-12T06:58:01.943Z",
-    "licensingNotes": "Redeemable coupon voucher code.",
+    "pricePKR": 1499,
+    "compareAtPricePKR": 3500,
+    "currency": "PKR",
+    "tags": ["CapCut", "Team License", "Agency", "Video Production", "Software"],
     "features": [
-      "Promotional coupon code for account upgrade",
-      "Instant code delivery via WhatsApp"
+      "6 Dedicated Pro Member Seats for Your Agency or Team",
+      "Full CapCut Pro VIP Features Unlocked for Every Member",
+      "Shared Team Cloud Storage & Seamless Collaborative Editing",
+      "Cross-Platform: Windows, Mac, iPad, iPhone & Android",
+      "Instant Onboarding & Support on WhatsApp (+92 310 7759274)"
     ],
     "productType": "software",
-    "id": "prod-soft-11",
-    "pricePKR": 2100,
-    "slug": "lovable-1-month-coupon",
-    "images": [
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80"
-    ],
-    "featured": false,
-    "category": "AI Development",
-    "shortDescription": "AI full-stack development coupon code.",
-    "deliveryType": "Digital Voucher Code",
+    "deliveryType": "Official Team Invite Links Dispatched via WhatsApp",
+    "validity": "1 Month Shared Team Space",
+    "licensingNotes": "Official multi-user team space with full renewal support.",
+    "featured": true,
     "status": "published",
-    "description": "Promotional credit coupon for building full-stack web applications with Lovable. Instant code delivery via WhatsApp."
+    "language": "English & Urdu",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "updatedAt": "2026-11-01T10:00:00.000Z"
+  },
+  {
+    "id": "prod-elevenlabs-credits",
+    "title": "ElevenLabs 1 Lakh Credits",
+    "slug": "elevenlabs-1-lakh-credits",
+    "category": "AI Voice & Audio Software",
+    "description": "Generate realistic, ultra-natural AI voices with ElevenLabs. This package includes 100,000 (1 Lakh) characters of voice generation credits, ideal for YouTube automation, TikTok narration, documentary channels, audiobooks, and commercial advertising.\n\n• Emotional depth, accurate human pacing, and voice cloning capabilities.\n• Instant credit-loaded account delivered straight to your WhatsApp.\n• Lowest PKR rate in Pakistan with manual Easypaisa or WhatsApp order.",
+    "shortDescription": "100,000 (1 Lakh) ElevenLabs voice credits for ultra-realistic AI voiceovers, voice cloning, and YouTube automation.",
+    "images": [
+      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80"
+    ],
+    "pricePKR": 500,
+    "compareAtPricePKR": 1200,
+    "currency": "PKR",
+    "tags": ["ElevenLabs", "AI Voice", "Text to Speech", "Audio", "Software"],
+    "features": [
+      "100,000 (1 Lakh) Text-to-Speech Voice Generation Characters",
+      "Access to All Premium Natural AI Voices & Regional Accents",
+      "Full Commercial Usage Rights for YouTube, Ads & Social Media",
+      "Instant Account Credentials Delivered via WhatsApp",
+      "Manual Easypaisa or Direct WhatsApp Business Ordering"
+    ],
+    "productType": "software",
+    "deliveryType": "Direct Account Access & Instructions via WhatsApp",
+    "validity": "1 Lakh Character Balance",
+    "licensingNotes": "Ready-to-use account with preloaded character credits.",
+    "featured": true,
+    "status": "published",
+    "language": "English, Urdu, Hindi & 29+ Languages",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "updatedAt": "2026-11-01T10:00:00.000Z"
+  },
+  {
+    "id": "prod-microsoft-365",
+    "title": "Microsoft 365 12 Subscription",
+    "slug": "microsoft-365-12-subscription",
+    "category": "Office & Productivity Software",
+    "description": "Equip your devices with genuine Microsoft 365 apps for a full 12 months (1 Year). Includes official desktop versions of Word, Excel, PowerPoint, Outlook, OneNote, along with 1TB (1000 GB) of secure cloud backup storage on Microsoft OneDrive.\n\n• Works across up to 5 devices simultaneously (PC, Mac, iPhone, Android).\n• Genuine subscription account with self password reset capability.\n• Instant delivery on WhatsApp (+923107759274).",
+    "shortDescription": "Full 12-month Microsoft 365 subscription with 1TB OneDrive cloud storage, Word, Excel, PowerPoint, and 5 devices access.",
+    "images": [
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80"
+    ],
+    "pricePKR": 999,
+    "compareAtPricePKR": 2800,
+    "currency": "PKR",
+    "tags": ["Microsoft 365", "Office", "OneDrive", "Excel", "Word", "Software"],
+    "features": [
+      "Full 12-Month (1 Year) Genuine Microsoft Subscription",
+      "Word, Excel, PowerPoint, Outlook & OneNote Desktop Apps",
+      "1TB (1000 GB) Private OneDrive Cloud Backup Storage",
+      "Simultaneous Installation on up to 5 PCs, Macs, or Phones",
+      "Direct WhatsApp Credentials Delivery with Step-by-Step Setup"
+    ],
+    "productType": "software",
+    "deliveryType": "Official Microsoft 365 Account Credentials via WhatsApp",
+    "validity": "12 Months (1 Year) Subscription License",
+    "licensingNotes": "Genuine personal Microsoft account credentials with 1-year warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English, Urdu & International",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "updatedAt": "2026-11-01T10:00:00.000Z"
+  },
+  {
+    "id": "prod-canva-panel-500",
+    "title": "Canva Panel 3 Years Subscription Warranty of 500 Users",
+    "slug": "canva-panel-500-users-3-years",
+    "category": "Design & Admin Tools",
+    "description": "Become a Canva administrator with your own dedicated Canva Panel capable of hosting, inviting, and managing up to 500 users. Backed by a full 3-year warranty from Digital Product Pakistan.\n\nManage your agency team, studio designers, or resell Canva Pro seats to your own clients for high-margin recurring income in Pakistan. Full admin dashboard allows one-click user invites, seat reassignment, and team branding oversight.\n\n• Admin panel with 500 user seat capacity.\n• 3-Year replacement warranty.\n• Order directly via WhatsApp (+923107759274) or checkout via Easypaisa.",
+    "shortDescription": "Official Canva Administrator Panel with 3 years warranty and 500 member capacity. Resell seats or manage your entire creative team.",
+    "images": [
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&auto=format&fit=crop&q=80"
+    ],
+    "pricePKR": 2999,
+    "compareAtPricePKR": 7500,
+    "currency": "PKR",
+    "tags": ["Canva", "Canva Panel", "Design", "Reseller Tool", "Admin Panel", "Tools"],
+    "features": [
+      "Dedicated Canva Pro Admin Panel Dashboard",
+      "500 Member / User Capacity with Full Admin Controls",
+      "3-Year (36 Months) Complete Replacement Warranty",
+      "Generate & Resell Canva Pro Seats to Your Own Clients",
+      "Immediate Delivery & Admin Guide via WhatsApp (+92 310 7759274)"
+    ],
+    "productType": "tool",
+    "deliveryType": "Admin Dashboard Credentials & Guide Delivered via WhatsApp",
+    "validity": "3 Years Warranty (500 User Seats)",
+    "licensingNotes": "Full Administrator Panel with 36-month replacement warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English, Urdu & Multilingual",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "updatedAt": "2026-11-01T10:00:00.000Z"
   }
 ]

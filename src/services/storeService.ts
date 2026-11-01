@@ -49,20 +49,13 @@ function saveToStorage(key: string, data: any) {
 // Cache in-memory with resilient localStorage backing
 function getInitialProductsWithDraftMigration(): Product[] {
   const loaded = loadFromStorage('dpp_custom_products', [...INITIAL_PRODUCTS]);
-  // Ensure that all seeded software items or user items that should be online are published
-  let modified = false;
-  const migrated = loaded.map(p => {
-    // If it was one of the initial software products or currently marked as draft, bring it online
-    if (p.id.startsWith('prod-soft-') && p.status === 'draft') {
-      modified = true;
-      return { ...p, status: 'published' as const };
-    }
-    return p;
-  });
-  if (modified) {
-    saveToStorage('dpp_custom_products', migrated);
+  // If stored products contain obsolete ebook or course products, reset to initial target products
+  const hasObsolete = loaded.some(p => p.id.startsWith('prod-ebook-') || p.id.startsWith('prod-course-'));
+  if (hasObsolete || loaded.length === 0) {
+    saveToStorage('dpp_custom_products', INITIAL_PRODUCTS);
+    return [...INITIAL_PRODUCTS];
   }
-  return migrated;
+  return loaded;
 }
 
 let localProducts: Product[] = getInitialProductsWithDraftMigration();
@@ -82,6 +75,26 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
         const data = d.data() as Product;
         items.push({ ...data, id: d.id });
       });
+
+      // Check if Firestore still has obsolete items
+      const hasObsolete = items.some(p => p.id.startsWith('prod-ebook-') || p.id.startsWith('prod-course-'));
+      if (hasObsolete) {
+        // Asynchronously cleanup obsolete docs and seed the 8 tools in Firestore
+        (async () => {
+          for (const item of items) {
+            if (item.id.startsWith('prod-ebook-') || item.id.startsWith('prod-course-')) {
+              try { await deleteDoc(doc(db, PRODUCTS_COLLECTION, item.id)); } catch (e) {}
+            }
+          }
+          for (const p of INITIAL_PRODUCTS) {
+            try { await setDoc(doc(db, PRODUCTS_COLLECTION, p.id), p); } catch (e) {}
+          }
+        })();
+        localProducts = [...INITIAL_PRODUCTS];
+        saveToStorage('dpp_custom_products', INITIAL_PRODUCTS);
+        return includeDrafts ? INITIAL_PRODUCTS : INITIAL_PRODUCTS.filter(p => p.status === 'published');
+      }
+
       localProducts = items;
       saveToStorage('dpp_custom_products', items);
 
@@ -93,6 +106,13 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
       }).catch(() => {});
 
       return includeDrafts ? items : items.filter(p => p.status === 'published');
+    } else {
+      // If Firestore is empty, seed it with the 8 products
+      (async () => {
+        for (const p of INITIAL_PRODUCTS) {
+          try { await setDoc(doc(db, PRODUCTS_COLLECTION, p.id), p); } catch (e) {}
+        }
+      })();
     }
   } catch (err) {
     console.warn('Firestore products fetch warning, trying server backend:', err);

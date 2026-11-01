@@ -200,48 +200,51 @@ function apiDevPlugin(): Plugin {
             const publishedProducts = allProductsList.filter((p: any) => p.status === 'published');
             const draftOrUnavailable = allProductsList.filter((p: any) => p.status !== 'published');
 
-            // Categorize published products
-            const courses = publishedProducts.filter((p: any) => p.productType === 'course');
+            // Categorize into the two official sections: Software and Tools
             const software = publishedProducts.filter((p: any) => p.productType === 'software');
-            const ebooks = publishedProducts.filter((p: any) => p.productType === 'ebook' || (!p.productType && p.category?.toLowerCase().includes('book')));
+            const tools = publishedProducts.filter((p: any) => p.productType === 'tool' || p.category?.toLowerCase().includes('tool'));
 
             const catalogSummary = `
-=== PUBLISHED & CURRENTLY AVAILABLE COURSES IN STORE (${courses.length} items) ===
-${courses.map((p: any) => `• Course: "${p.title}" | Live Price: PKR ${Number(p.pricePKR).toLocaleString()} | Features: ${(p.features || []).slice(0, 3).join(', ') || 'Video lessons + Project files'} | Delivery: Instant Google Drive link`).join('\n')}
+=== PUBLISHED & CURRENTLY AVAILABLE SOFTWARE (${software.length} items) ===
+${software.map((p: any) => `• Software: "${p.title}" | Live Price: PKR ${Number(p.pricePKR).toLocaleString()} | Validity: ${p.validity || 'Official access'} | Highlights: ${(p.features || []).slice(0, 3).join(', ')} | Delivery: Direct WhatsApp credentials/link`).join('\n')}
 
-=== PUBLISHED & CURRENTLY AVAILABLE SOFTWARE TOOLS IN STORE (${software.length} items) ===
-${software.map((p: any) => `• Software: "${p.title}" | Live Price: PKR ${Number(p.pricePKR).toLocaleString()} | Validity: ${p.validity || 'Official access'} | Features: ${(p.features || []).slice(0, 3).join(', ')} | Delivery: Direct WhatsApp credentials/link`).join('\n')}
-
-=== PUBLISHED & CURRENTLY AVAILABLE E-BOOKS IN STORE (${ebooks.length} items) ===
-${ebooks.map((p: any) => `• E-Book: "${p.title}" | Live Price: PKR ${Number(p.pricePKR).toLocaleString()} | Format: PDF & EPUB | Delivery: Direct download link`).join('\n')}
+=== PUBLISHED & CURRENTLY AVAILABLE TOOLS (${tools.length} items) ===
+${tools.map((p: any) => `• Tool: "${p.title}" | Live Price: PKR ${Number(p.pricePKR).toLocaleString()} | Validity: ${p.validity || 'Official access'} | Features: ${(p.features || []).slice(0, 3).join(', ')} ${p.featureSlides ? `[Includes ${p.featureSlides.length} illustrated feature slides]` : ''} | Delivery: Direct WhatsApp download/activation`).join('\n')}
 
 === CURRENTLY UNAVAILABLE OR DRAFT PRODUCTS (NOT FOR SALE AT THIS TIME) ===
 ${draftOrUnavailable.length > 0 ? draftOrUnavailable.map((p: any) => `• "${p.title}" (Status: ${p.status} - Not currently available for purchase)`).join('\n') : 'None. All listed catalog products are online.'}
 `;
 
-            const systemPrompt = `You are the official Customer AI Assistant for "Digital Product Pakistan" (DPP), Pakistan's premier digital goods store.
+            const systemPrompt = `You are the official Customer AI Assistant for "Digital Product Pakistan" (DPP), Pakistan's premier digital goods store specializing in Software and Digital Tools.
 Owner & Founder: Muhammad Kumail Ali.
 Official WhatsApp: +923107759274
 Official Easypaisa Account: 03010333544 (Account Title: MUHAMMAD KUMAIL ALI)
 Support Email: support@digitalproductpakistan.com / sahabsandhu455@gmail.com
-Currency: PKR (Pakistani Rupee).
+Store Currency: PKR (Pakistani Rupee).
 
 LIVE REAL-TIME STORE INVENTORY:
 ${catalogSummary}
 
 CRITICAL RULES FOR RESPONDING TO CUSTOMERS:
-1. ACCURATE REAL-TIME PRICES: Quote the EXACT price in PKR shown in the live inventory above. NEVER guess, make up, or round prices. When prices are updated in the admin panel, this inventory reflects them live.
+1. ACCURATE REAL-TIME PRICES IN PKR:
+   - ChatGPT Pro: Rs. 4,000 PKR
+   - Gemini Pro: Rs. 999 PKR
+   - WhatsApp Bulk SMS Sender Software: Rs. 2,499 PKR (has an 18-feature illustrated walkthrough with real screenshots!)
+   - CapCut Pro: Rs. 750 PKR
+   - CapCut Pro Team Access by 6 Members: Rs. 1,499 PKR
+   - ElevenLabs 1 Lakh Credits: Rs. 500 PKR
+   - Microsoft 365 12 Subscription: Rs. 999 PKR
+   - Canva Panel 3 Years Subscription Warranty of 500 Users: Rs. 2,999 PKR
+   Quote the EXACT price in PKR shown in the live inventory above. NEVER guess or alter prices.
 2. CURRENT AVAILABILITY ONLY:
-   - When asked what is available, or what courses/software we have: ONLY list the published courses, software, and e-books shown in the AVAILABLE sections above.
-   - If a customer asks for a product that is NOT in the available list (or is in draft/unavailable): clearly and politely inform them that this specific item is NOT currently available in our store right now. Recommend the closest available alternative, and let them know they can contact Muhammad Kumail Ali on WhatsApp (+923107759274) for custom requests.
-3. OFFICIAL PAYMENT INSTRUCTIONS:
-   - Manual Easypaisa payment to:
-     • Account Number: 03010333544
-     • Account Title: MUHAMMAD KUMAIL ALI
-   - JazzCash or bank transfer: Available upon WhatsApp request at +923107759274.
-   - Customer completes checkout, uploads transaction screenshot & TRX ID.
-4. DELIVERY: Instant delivery within minutes via Google Drive link, activation key, or invite sent directly to their WhatsApp and Email after manual payment verification.
-5. LANGUAGE: Polite, professional, and friendly Pakistani tone. Support both English and Urdu/Roman Urdu if customer speaks Urdu (e.g., "Courses kon kon se hain?", "Price kya hai?").`;
+   - We only have two sections: Software and Tools.
+   - When asked what is available, ONLY list the published software and tools above.
+   - If a customer asks for courses, e-books, or items not listed above, politely clarify that we now specialize exclusively in Software and Tools.
+3. HOW TO ORDER:
+   - Option A (Direct on WhatsApp): Customer can click the "Order on WhatsApp Direct" button or message +923107759274 directly to order immediately.
+   - Option B (Easypaisa on Website): Manual transfer to Easypaisa Account 03010333544 (Title: MUHAMMAD KUMAIL ALI), then upload TRX ID screenshot.
+4. DELIVERY: Credentials, team invites, and download links are dispatched directly to customer's WhatsApp within 15–30 minutes.
+5. LANGUAGE: Polite, professional, and friendly Pakistani tone. Support both English and Urdu/Roman Urdu effortlessly.`;
 
             // Prepare conversation prompt
             let historyText = '';
@@ -260,7 +263,7 @@ Assistant:`;
               contents: prompt,
             });
 
-            const reply = response.text || 'Thank you for reaching out to Digital Product Pakistan! How else may I assist you today?';
+            const reply = response.text || 'Thank you for contacting Digital Product Pakistan! How can I assist you with our software and tools today?';
             res.end(JSON.stringify({ reply }));
           } catch (e: any) {
             console.warn('Gemini chat error, generating smart catalog answer:', e.message);
@@ -269,20 +272,18 @@ Assistant:`;
             const published = serverProds.filter((p: any) => p.status === 'published');
             let fallbackReply = '';
 
-            if (lowerMsg.includes('available') || lowerMsg.includes('kya') || lowerMsg.includes('product') || lowerMsg.includes('course') || lowerMsg.includes('ebook') || lowerMsg.includes('software')) {
-              const courses = published.filter((p: any) => p.productType === 'course');
-              const software = published.filter((p: any) => p.productType === 'software');
-              const ebooks = published.filter((p: any) => p.productType === 'ebook' || (!p.productType && p.category?.toLowerCase().includes('book')));
+            const software = published.filter((p: any) => p.productType === 'software');
+            const tools = published.filter((p: any) => p.productType === 'tool' || p.category?.toLowerCase().includes('tool'));
 
-              fallbackReply = `As-salamu alaykum! Here are the products currently available in Digital Product Pakistan:\n\n` +
-                `📚 **Courses Available:**\n` + courses.map((p: any) => `• **${p.title}** — PKR ${Number(p.pricePKR).toLocaleString()}`).join('\n') + `\n\n` +
-                `⚡ **Software & Tools Available:**\n` + software.map((p: any) => `• **${p.title}** — PKR ${Number(p.pricePKR).toLocaleString()}`).join('\n') + `\n\n` +
-                `📖 **E-Books Available:**\n` + ebooks.map((p: any) => `• **${p.title}** — PKR ${Number(p.pricePKR).toLocaleString()}`).join('\n') + `\n\n` +
-                `📌 **Payment & Delivery:** Pay via Easypaisa to **03010333544** (Muhammad Kumail Ali). Instant Google Drive links sent to your WhatsApp (+923107759274) & Email after verification!`;
-            } else if (lowerMsg.includes('easypaisa') || lowerMsg.includes('pay') || lowerMsg.includes('jazzcash')) {
-              fallbackReply = `### How to Pay via Easypaisa:\n1. Open your Easypaisa app and transfer to:\n   - **Account Number:** \`03010333544\`\n   - **Account Title:** MUHAMMAD KUMAIL ALI\n2. At checkout, upload your Transaction Screenshot and TRX ID.\n3. Verified within minutes and Google Drive links are dispatched instantly to your WhatsApp & Email!`;
+            if (lowerMsg.includes('available') || lowerMsg.includes('kya') || lowerMsg.includes('product') || lowerMsg.includes('tool') || lowerMsg.includes('software')) {
+              fallbackReply = `As-salamu alaykum! Here are the official Software & Tools available in Digital Product Pakistan:\n\n` +
+                `⚡ **Software Subscriptions:**\n` + software.map((p: any) => `• **${p.title}** — PKR ${Number(p.pricePKR).toLocaleString()}`).join('\n') + `\n\n` +
+                `🛠️ **Marketing & Digital Tools:**\n` + tools.map((p: any) => `• **${p.title}** — PKR ${Number(p.pricePKR).toLocaleString()}`).join('\n') + `\n\n` +
+                `📌 **Order on WhatsApp:** Message Muhammad Kumail Ali directly at **+92 310 7759274** or pay via Easypaisa to **03010333544** (Title: MUHAMMAD KUMAIL ALI) for instant delivery!`;
+            } else if (lowerMsg.includes('easypaisa') || lowerMsg.includes('pay') || lowerMsg.includes('jazzcash') || lowerMsg.includes('order')) {
+              fallbackReply = `### How to Order on Digital Product Pakistan:\n1. **Order on WhatsApp:** Message us directly at **+92 310 7759274** for fast direct checkout.\n2. **Or Pay via Easypaisa:**\n   - **Account Number:** \`03010333544\`\n   - **Account Title:** MUHAMMAD KUMAIL ALI\n3. Upload your TRX screenshot at checkout or send it to WhatsApp (+923107759274). Your access is delivered within minutes!`;
             } else {
-              fallbackReply = `Welcome to Digital Product Pakistan! 🇵🇰\nWe provide verified e-books, premium online courses, and software licenses with manual Easypaisa payment verification and instant delivery.\n\n• **WhatsApp Support:** +923107759274 (Muhammad Kumail Ali)\n• **Easypaisa Account:** 03010333544 (MUHAMMAD KUMAIL ALI)\n• **Available Catalog:** ${published.length} products currently live and ready for order.\n\nAsk me about any course, software tool, or price!`;
+              fallbackReply = `Welcome to Digital Product Pakistan! 🇵🇰\nWe provide verified Software Subscriptions and Marketing Tools with instant WhatsApp delivery & manual Easypaisa payment verification.\n\n• **Official WhatsApp:** +92 310 7759274 (Muhammad Kumail Ali)\n• **Easypaisa Account:** 03010333544 (MUHAMMAD KUMAIL ALI)\n• **Live Catalog:** ${published.length} software & tools available.\n\nAsk me about ChatGPT Pro (4,000 PKR), Gemini Pro (999 PKR), WhatsApp Bulk SMS Sender (2,499 PKR), CapCut Pro (750 PKR), or Canva Panel (2,999 PKR)!`;
             }
 
             res.end(JSON.stringify({ reply: fallbackReply }));

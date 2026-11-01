@@ -7,9 +7,8 @@ import { CartDrawer } from './components/CartDrawer';
 import { SearchModal } from './components/SearchModal';
 import { CustomerChatbot } from './components/CustomerChatbot';
 import { HomePage } from './pages/HomePage';
-import { EbooksPage } from './pages/EbooksPage';
 import { SoftwarePage } from './pages/SoftwarePage';
-import { CoursesPage } from './pages/CoursesPage';
+import { ToolsPage } from './pages/ToolsPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { OrderConfirmationPage } from './pages/OrderConfirmationPage';
@@ -115,12 +114,10 @@ function MainApp() {
         } else {
           setCurrentRoute('blog');
         }
-      } else if (path === '/ebooks') {
-        setCurrentRoute('ebooks');
-      } else if (path === '/software') {
+      } else if (path === '/software' || path === '/ebooks') {
         setCurrentRoute('software');
-      } else if (path === '/courses') {
-        setCurrentRoute('courses');
+      } else if (path === '/tools' || path === '/courses') {
+        setCurrentRoute('tools');
       } else if (path === '/blog') {
         setCurrentRoute('blog');
       } else if (path === '/orders' || path === '/my-orders') {
@@ -153,9 +150,8 @@ function MainApp() {
   const navigateTo = (route: string) => {
     let targetPath = '/';
     if (route === 'home') targetPath = '/';
-    else if (route === 'ebooks') targetPath = '/ebooks';
-    else if (route === 'software') targetPath = '/software';
-    else if (route === 'courses') targetPath = '/courses';
+    else if (route === 'software' || route === 'ebooks') targetPath = '/software';
+    else if (route === 'tools' || route === 'courses') targetPath = '/tools';
     else if (route === 'blog') targetPath = '/blog';
     else if (route === 'orders') targetPath = '/orders';
     else if (route === 'checkout') targetPath = '/checkout';
@@ -220,13 +216,6 @@ function MainApp() {
           />
         )}
 
-        {currentRoute === 'ebooks' && (
-          <EbooksPage
-            products={products}
-            onSelectProduct={handleSelectProduct}
-          />
-        )}
-
         {currentRoute === 'software' && (
           <SoftwarePage
             products={products}
@@ -234,8 +223,8 @@ function MainApp() {
           />
         )}
 
-        {currentRoute === 'courses' && (
-          <CoursesPage
+        {currentRoute === 'tools' && (
+          <ToolsPage
             products={products}
             onSelectProduct={handleSelectProduct}
           />

@@ -29,12 +29,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
 
   const navLinks = [
     { label: 'Home', route: 'home' },
-    { label: 'E-books', route: 'ebooks', icon: BookOpen },
-    { label: 'Software & Tools', route: 'software', icon: Cpu },
-    { label: 'Courses', route: 'courses', icon: GraduationCap },
-    { label: 'Blog', route: 'blog', icon: Newspaper },
+    { label: 'Software', route: 'software', icon: Cpu },
+    { label: 'Tools', route: 'tools', icon: Cpu },
     { label: 'My Orders', route: 'orders', icon: PackageCheck },
-    { label: 'Contact', route: 'contact', icon: MessageCircle },
+    { label: 'Contact & Support', route: 'contact', icon: MessageCircle },
   ];
 
   const handleLinkClick = (route: string) => {
@@ -132,6 +130,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
               <ShieldCheck className="w-4 h-4" />
               <span className="hidden lg:inline">{isAdmin ? 'Admin Panel' : 'Admin'}</span>
             </button>
+
+            {/* WhatsApp Business Direct Order Link */}
+            <a
+              href="https://wa.me/923107759274?text=Salam%20Digital%20Product%20Pakistan!%20I%20want%20to%20order%20software%20or%20tools."
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba59] text-white px-3 py-2 rounded-xl font-bold text-xs transition-all shadow-md shadow-[#25D366]/20 active:scale-95"
+              title="Chat & Order on WhatsApp (+92 310 7759274)"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>WhatsApp</span>
+            </a>
 
             {/* Cart Button */}
             <button

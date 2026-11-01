@@ -41,34 +41,18 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2 text-sm">
               <li>
                 <button 
-                  onClick={() => onNavigate('ebooks')} 
-                  className="hover:text-[#B7F34A] transition-colors flex items-center gap-1.5 cursor-pointer"
-                >
-                  <BookOpen className="w-3.5 h-3.5 text-slate-500" /> E-books
-                </button>
-              </li>
-              <li>
-                <button 
                   onClick={() => onNavigate('software')} 
                   className="hover:text-[#B7F34A] transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
-                  <Cpu className="w-3.5 h-3.5 text-slate-500" /> Software & Tools
+                  <Cpu className="w-3.5 h-3.5 text-[#B7F34A]" /> Software Subscriptions
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => onNavigate('courses')} 
+                  onClick={() => onNavigate('tools')} 
                   className="hover:text-[#B7F34A] transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
-                  <GraduationCap className="w-3.5 h-3.5 text-slate-500" /> Online Courses
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('blog')} 
-                  className="hover:text-[#B7F34A] transition-colors cursor-pointer"
-                >
-                  Product & Skill Blog
+                  <Cpu className="w-3.5 h-3.5 text-[#25D366]" /> Marketing & Digital Tools
                 </button>
               </li>
               <li>
@@ -76,8 +60,18 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => onNavigate('orders')} 
                   className="hover:text-[#B7F34A] transition-colors font-medium text-white flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B7F34A]"></span> My Orders & Downloads
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B7F34A]"></span> My Orders & Verification
                 </button>
+              </li>
+              <li>
+                <a 
+                  href="https://wa.me/923107759274?text=Salam!%20I%20want%20to%20order%20from%20Digital%20Product%20Pakistan." 
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#25D366] hover:underline transition-colors flex items-center gap-1.5 font-bold"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" /> WhatsApp: +92 310 7759274
+                </a>
               </li>
             </ul>
           </div>

@@ -1,5 +1,12 @@
-export type ProductType = 'ebook' | 'software' | 'course';
+export type ProductType = 'software' | 'tool' | 'ebook' | 'course';
 export type ProductStatus = 'published' | 'draft' | 'archived';
+
+export interface ProductFeatureSlide {
+  id: string | number;
+  title: string;
+  description: string;
+  imageUrl: string;
+}
 
 export interface Product {
   id: string;
@@ -15,6 +22,7 @@ export interface Product {
   currency: string;
   tags: string[];
   features: string[];
+  featureSlides?: ProductFeatureSlide[];
   productType: ProductType;
   deliveryType: string;
   downloadUrl?: string;

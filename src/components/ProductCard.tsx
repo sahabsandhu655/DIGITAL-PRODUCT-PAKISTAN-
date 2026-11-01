@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, ArrowRight, BookOpen, Cpu, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { ShoppingBag, ArrowRight, Cpu, Sparkles, CheckCircle2, MessageCircle } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 
@@ -13,18 +13,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
 
   const getProductIcon = () => {
     switch (product.productType) {
-      case 'ebook':
-        return <BookOpen className="w-3.5 h-3.5" />;
+      case 'tool':
+        return <Sparkles className="w-3.5 h-3.5" />;
       case 'software':
-        return <Cpu className="w-3.5 h-3.5" />;
-      case 'course':
-        return <GraduationCap className="w-3.5 h-3.5" />;
       default:
-        return null;
+        return <Cpu className="w-3.5 h-3.5" />;
     }
   };
 
   const isAvailable = product.status === 'published';
+
+  const whatsappMessage = encodeURIComponent(
+    `Salam! I want to order *${product.title}* (Rs. ${Math.round(product.pricePKR).toLocaleString()} PKR) from Digital Product Pakistan. Please share payment and activation details.`
+  );
+  const whatsappUrl = `https://wa.me/923107759274?text=${whatsappMessage}`;
 
   return (
     <div className="group bg-[#15231F] border border-[#233730] hover:border-[#B7F34A]/50 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-[#B7F34A]/5">
@@ -34,7 +36,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
         className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#0E1714] cursor-pointer"
       >
         <img
-          src={product.images[0] || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'}
+          src={product.images[0] || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80'}
           alt={product.title}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
@@ -60,9 +62,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
       {/* Card Content */}
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div className="space-y-2">
-          {product.language && (
-            <span className="text-[11px] font-medium text-slate-400 block">
-              Language: {product.language}
+          {product.validity && (
+            <span className="text-[11px] font-semibold text-[#B7F34A] block uppercase tracking-wider">
+              {product.validity}
             </span>
           )}
 
@@ -80,58 +82,94 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
 
           {/* Key Feature bullet */}
           {product.features && product.features.length > 0 && (
-            <div className="pt-1 flex items-center gap-1.5 text-xs text-slate-400">
+            <div className="pt-1 flex items-center gap-1.5 text-xs text-slate-300">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#B7F34A] shrink-0" />
               <span className="truncate">{product.features[0]}</span>
             </div>
           )}
+
+          {/* WhatsApp Direct Help Banner */}
+          <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400">
+            <a 
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-[#25D366] hover:underline flex items-center gap-1 font-medium"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp: +92 310 7759274</span>
+            </a>
+            {product.featureSlides && (
+              <span className="bg-[#1A2924] border border-[#233730] text-[#B7F34A] text-[10px] font-bold px-1.5 py-0.5 rounded">
+                18 Visual Features
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Pricing & Actions */}
-        <div className="pt-5 mt-4 border-t border-[#233730]/70 flex items-center justify-between gap-3">
-          <div>
-            <span className="block text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
-              Price (PKR)
-            </span>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-lg font-extrabold text-white">
-                Rs. {Math.round(product.pricePKR).toLocaleString()}
+        <div className="pt-4 mt-4 border-t border-[#233730]/70 space-y-3">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="block text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                Price (PKR)
               </span>
-              {product.compareAtPricePKR && product.compareAtPricePKR > product.pricePKR && (
-                <span className="text-xs text-slate-500 line-through">
-                  Rs. {Math.round(product.compareAtPricePKR).toLocaleString()}
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-lg font-extrabold text-white">
+                  Rs. {Math.round(product.pricePKR).toLocaleString()}
                 </span>
+                {product.compareAtPricePKR && product.compareAtPricePKR > product.pricePKR && (
+                  <span className="text-xs text-slate-500 line-through">
+                    Rs. {Math.round(product.compareAtPricePKR).toLocaleString()}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => onSelect(product)}
+                className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-[#1A2924] transition-colors cursor-pointer"
+                title="View details & features"
+                aria-label={`View details for ${product.title}`}
+              >
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              {isAvailable && (
+                <button
+                  onClick={() => addToCart(product)}
+                  className="bg-[#1A2924] hover:bg-[#233730] text-white border border-[#233730] font-semibold text-xs px-2.5 py-2 rounded-xl flex items-center gap-1 transition-all active:scale-95 cursor-pointer"
+                  title="Add to shopping cart"
+                >
+                  <ShoppingBag className="w-3.5 h-3.5 text-[#B7F34A]" />
+                  <span>Cart</span>
+                </button>
               )}
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* Direct "Order on WhatsApp" Button */}
+          {isAvailable ? (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-[#25D366]/20 active:scale-95"
+            >
+              <MessageCircle className="w-4 h-4 fill-white/20" />
+              <span>Order on WhatsApp Direct</span>
+            </a>
+          ) : (
             <button
               onClick={() => onSelect(product)}
-              className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-[#1A2924] transition-colors cursor-pointer"
-              title="View details"
-              aria-label={`View details for ${product.title}`}
+              className="w-full bg-[#233730] text-slate-400 font-medium text-xs py-2 rounded-xl cursor-pointer hover:text-white"
             >
-              <ArrowRight className="w-4 h-4" />
+              View Specifications
             </button>
-
-            {isAvailable ? (
-              <button
-                onClick={() => addToCart(product)}
-                className="bg-[#B7F34A] hover:bg-[#A3E037] text-[#111C18] font-bold text-xs px-3.5 py-2.5 rounded-xl flex items-center gap-1.5 transition-all active:scale-95 shadow-md shadow-[#B7F34A]/10 cursor-pointer"
-              >
-                <ShoppingBag className="w-3.5 h-3.5" />
-                <span>Add</span>
-              </button>
-            ) : (
-              <button
-                onClick={() => onSelect(product)}
-                className="bg-[#233730] text-slate-400 font-medium text-xs px-3 py-2 rounded-xl cursor-pointer hover:text-white"
-              >
-                Details
-              </button>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </div>

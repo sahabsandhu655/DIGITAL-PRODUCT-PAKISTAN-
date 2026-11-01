@@ -57,7 +57,7 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
         {
           id: 'welcome-1',
           role: 'assistant',
-          text: `As-salamu alaykum! Welcome to **Digital Product Pakistan** 🇵🇰\n\nI am your official AI Assistant powered by Gemini. Ask me anything about:\n- **What products are currently available** in stock\n- Pricing, course outlines, and software licenses\n- How to pay via **Easypaisa / JazzCash**\n- Instant digital delivery to your Email & WhatsApp!`,
+          text: `As-salamu alaykum! Welcome to **Digital Product Pakistan** 🇵🇰\n\nI am your official AI Assistant powered by Gemini. Ask me anything about:\n- **Software & Tools available** in stock\n- Exact live PKR prices (ChatGPT Pro, Gemini Pro, WhatsApp Bulk SMS Sender, CapCut Pro, ElevenLabs, Canva Panel)\n- How to order directly on **WhatsApp (+92 310 7759274)**\n- How to pay via **Easypaisa (03010333544)**\n- Instant digital delivery & activation assistance!`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
@@ -73,11 +73,11 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
 
   // Quick prompt presets
   const quickPrompts = [
-    'What products are available right now?',
-    'How do I pay with Easypaisa?',
-    'Do you have programming & IT courses?',
-    'How does digital delivery work?',
-    'What is your return & refund policy?',
+    'What software & tools are available right now?',
+    'What is the price of ChatGPT Pro & Gemini Pro?',
+    'Tell me about WhatsApp Bulk SMS Sender (18 features)',
+    'How do I order directly on WhatsApp?',
+    'How do I pay with Easypaisa (03010333544)?',
   ];
 
   // Helper to match mentioned products in response
@@ -330,17 +330,29 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
                                     PKR {p.pricePKR.toLocaleString()}
                                   </span>
                                 </div>
-                                {onSelectProduct && (
-                                  <button
-                                    onClick={() => {
-                                      onSelectProduct(p);
-                                      setIsOpen(false);
-                                    }}
-                                    className="bg-[#B7F34A] text-[#111C18] text-[10px] font-bold px-2.5 py-1 rounded-lg shrink-0 cursor-pointer"
+                                <div className="flex items-center gap-1.5 shrink-0">
+                                  <a
+                                    href={`https://wa.me/923107759274?text=${encodeURIComponent(`Salam! I want to order *${p.title}* (PKR ${p.pricePKR.toLocaleString()}) from Digital Product Pakistan.`)}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="bg-[#25D366] hover:bg-[#20ba59] text-white text-[10px] font-bold px-2 py-1 rounded-lg flex items-center gap-1"
+                                    title="Order on WhatsApp"
                                   >
-                                    View
-                                  </button>
-                                )}
+                                    <Phone className="w-2.5 h-2.5" />
+                                    <span>WhatsApp</span>
+                                  </a>
+                                  {onSelectProduct && (
+                                    <button
+                                      onClick={() => {
+                                        onSelectProduct(p);
+                                        setIsOpen(false);
+                                      }}
+                                      className="bg-[#B7F34A] text-[#111C18] text-[10px] font-bold px-2 py-1 rounded-lg cursor-pointer"
+                                    >
+                                      View
+                                    </button>
+                                  )}
+                                </div>
                               </div>
                             ))}
                           </div>

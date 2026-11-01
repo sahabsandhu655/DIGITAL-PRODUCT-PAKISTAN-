@@ -1196,9 +1196,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         onChange={(e: any) => setEditingProduct({ ...editingProduct, productType: e.target.value })}
                         className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
                       >
-                        <option value="ebook">E-Book</option>
-                        <option value="software">Software & Tool</option>
-                        <option value="course">Online Course</option>
+                        <option value="software">Software Subscription</option>
+                        <option value="tool">Digital / Marketing Tool</option>
                       </select>
                     </div>
 

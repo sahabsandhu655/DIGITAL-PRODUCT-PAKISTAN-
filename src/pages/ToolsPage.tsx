@@ -1,0 +1,97 @@
+import React, { useState, useMemo } from 'react';
+import { Search, Sparkles, MessageCircle, ShieldCheck } from 'lucide-react';
+import { Product } from '../types';
+import { ProductCard } from '../components/ProductCard';
+
+interface ToolsPageProps {
+  products: Product[];
+  onSelectProduct: (product: Product) => void;
+}
+
+export const ToolsPage: React.FC<ToolsPageProps> = ({ products, onSelectProduct }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const toolProducts = useMemo(() => {
+    return products.filter(p => p.productType === 'tool');
+  }, [products]);
+
+  const filtered = useMemo(() => {
+    return toolProducts.filter(p => {
+      return (
+        searchQuery.trim() === '' ||
+        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    });
+  }, [toolProducts, searchQuery]);
+
+  const whatsappDisplay = '+92 310 7759274';
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+      {/* Header */}
+      <div className="border-b border-[#233730] pb-8">
+        <div className="flex items-center gap-2 text-xs font-bold text-[#25D366] uppercase tracking-wider mb-2">
+          <Sparkles className="w-4 h-4" />
+          <span>Marketing & Automation Tools</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-white">
+          Digital Marketing & Admin Tools
+        </h1>
+        <p className="mt-2 text-sm text-slate-300 max-w-3xl leading-relaxed">
+          High-performance tools for marketing automation and agency management in Pakistan. Includes the complete 18-feature WhatsApp Bulk SMS Sender software for Windows PC and Canva Administrator Reseller Panel with 3 years warranty.
+        </p>
+
+        {/* WhatsApp Direct Order Highlight */}
+        <div className="mt-6 bg-[#173024] border border-[#25D366]/40 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <MessageCircle className="w-6 h-6 text-[#25D366] shrink-0" />
+            <div>
+              <span className="font-bold text-white text-sm block">Direct WhatsApp Order Available</span>
+              <p className="text-xs text-slate-300">
+                Order any tool directly with Founder Muhammad Kumail Ali at <strong className="text-white">{whatsappDisplay}</strong>
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://wa.me/923107759274?text=Salam!%20I%20want%20to%20order%20marketing%20tools%20from%20Digital%20Product%20Pakistan."
+            target="_blank"
+            rel="noreferrer"
+            className="shrink-0 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all active:scale-95"
+          >
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      {/* Search Bar */}
+      <div className="bg-[#15231F] border border-[#233730] rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4">
+        <div className="relative flex-1">
+          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search tools (WhatsApp Sender, Canva Panel)..."
+            className="w-full bg-[#1A2924] border border-[#233730] focus:border-[#B7F34A] rounded-xl pl-10 pr-4 py-2 text-sm text-white placeholder-slate-400 focus:outline-none"
+          />
+        </div>
+        <span className="text-xs text-slate-400 font-semibold shrink-0">
+          {filtered.length} Tools Available
+        </span>
+      </div>
+
+      {/* Tools Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+        {filtered.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onSelect={onSelectProduct}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
