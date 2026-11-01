@@ -264,6 +264,7 @@ export async function saveProduct(product: Product): Promise<void> {
   const payload: Product = {
     ...product,
     id: docId,
+    pricePKR: Number(product.pricePKR) || 0,
     updatedAt: new Date().toISOString(),
     createdAt: product.createdAt || new Date().toISOString(),
   };
@@ -297,7 +298,7 @@ export async function saveProduct(product: Product): Promise<void> {
 
   // 4. Notify app components
   if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('dpp_products_updated', { detail: payload }));
+    window.dispatchEvent(new CustomEvent('dpp_products_updated', { detail: localProducts }));
   }
 }
 

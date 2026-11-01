@@ -80,9 +80,65 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
     'How do I pay with Easypaisa (03010333544)?',
   ];
 
+  // Get most up-to-date live products from local storage snapshot or props
+  const getLiveProductsSnapshot = (): Product[] => {
+    try {
+      const cached = localStorage.getItem('dpp_custom_products');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch (e) {}
+    return products;
+  };
+
+  // Helper to match specific product from user text
+  const matchSpecificProduct = (text: string, prods: Product[]): Product | null => {
+    const t = text.toLowerCase();
+    if (t.includes('chatgpt') || t.includes('chat gpt') || t.includes('gpt')) {
+      return prods.find(p => p.id === 'prod-chatgpt-pro') || prods.find(p => p.title.toLowerCase().includes('chatgpt')) || null;
+    }
+    if (t.includes('gemini')) {
+      return prods.find(p => p.id === 'prod-gemini-pro') || prods.find(p => p.title.toLowerCase().includes('gemini')) || null;
+    }
+    if (t.includes('whatsapp') || t.includes('sender') || t.includes('bulk sms')) {
+      return prods.find(p => p.id === 'prod-whatsapp-sender') || prods.find(p => p.title.toLowerCase().includes('whatsapp')) || null;
+    }
+    if (t.includes('notion')) {
+      return prods.find(p => p.id === 'prod-notion-plus') || prods.find(p => p.title.toLowerCase().includes('notion')) || null;
+    }
+    if (t.includes('microsoft') || t.includes('365') || t.includes('office') || t.includes('onedrive')) {
+      return prods.find(p => p.id === 'prod-ms-365') || prods.find(p => p.title.toLowerCase().includes('microsoft')) || null;
+    }
+    if (t.includes('capcut team') || (t.includes('capcut') && t.includes('team'))) {
+      return prods.find(p => p.id === 'prod-capcut-team') || null;
+    }
+    if (t.includes('capcut')) {
+      return prods.find(p => p.id === 'prod-capcut-pro') || null;
+    }
+    if (t.includes('elevenlabs') || t.includes('eleven') || t.includes('voice')) {
+      return prods.find(p => p.id === 'prod-elevenlabs') || prods.find(p => p.title.toLowerCase().includes('elevenlabs')) || null;
+    }
+    if (t.includes('canva')) {
+      return prods.find(p => p.id === 'prod-canva-panel-500') || prods.find(p => p.title.toLowerCase().includes('canva')) || null;
+    }
+    if (t.includes('hma') || t.includes('vpn')) {
+      return prods.find(p => p.id === 'prod-hma-vpn') || prods.find(p => p.title.toLowerCase().includes('vpn')) || null;
+    }
+    if (t.includes('outlook') || t.includes('mail')) {
+      return prods.find(p => p.id === 'prod-outlook-mail') || prods.find(p => p.title.toLowerCase().includes('outlook')) || null;
+    }
+    if (t.includes('duolingo') || t.includes('super duo')) {
+      return prods.find(p => p.id === 'prod-super-duolingo') || prods.find(p => p.title.toLowerCase().includes('duolingo')) || null;
+    }
+    return null;
+  };
+
   // Helper to match mentioned products in response
-  const detectProductsInText = (text: string): Product[] => {
-    const published = products.filter(p => p.status === 'published');
+  const detectProductsInText = (text: string, currentProds: Product[]): Product[] => {
+    const published = currentProds.filter(p => p.status === 'published');
     const matched: Product[] = [];
     for (const prod of published) {
       const titleLower = prod.title.toLowerCase();
@@ -103,6 +159,8 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
     const query = (textToSend || inputMessage).trim();
     if (!query || isLoading) return;
 
+    const liveProducts = getLiveProductsSnapshot();
+
     const userMsg: Message = {
       id: 'usr-' + Date.now(),
       role: 'user',
@@ -122,10 +180,10 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
           message: query,
           history: messages.slice(-5).map(m => ({ role: m.role === 'user' ? 'user' : 'model', content: m.text })),
           catalog: {
-            products: products.map(p => ({
+            products: liveProducts.map(p => ({
               id: p.id,
               title: p.title,
-              pricePKR: p.pricePKR,
+              pricePKR: Number(p.pricePKR),
               category: p.category,
               status: p.status,
               fileType: p.productType,
@@ -148,32 +206,59 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
       }
 
       const data = await response.json();
-      const replyText = data.reply || "Thank you for asking! How else may I assist your digital purchase today?";
-      const detectedProds = detectProductsInText(replyText);
+      let replyText = data.reply || "Thank you for asking! How else may I assist your digital purchase today?";
+      
+      // Auto-reconcile live price verification if a specific product was queried
+      const queriedProd = matchSpecificProduct(query, liveProducts);
+      if (queriedProd) {
+        const queryLower = query.toLowerCase();
+        const isPriceAsk = queryLower.includes('price') || queryLower.includes('rate') || queryLower.includes('kitne') || queryLower.includes('kitna') || queryLower.includes('cost') || queryLower.includes('pkr');
+        const formattedPrice = Number(queriedProd.pricePKR).toLocaleString();
+        if (isPriceAsk && !replyText.includes(formattedPrice)) {
+          replyText += `\n\n📌 **Verified Live Price:** **${queriedProd.title}** is currently **Rs. ${formattedPrice} PKR** (updated live from our store panel).`;
+        }
+      }
+
+      const detectedProds = detectProductsInText(replyText, liveProducts);
+      if (queriedProd && !detectedProds.some(p => p.id === queriedProd.id)) {
+        detectedProds.unshift(queriedProd);
+      }
 
       const assistantMsg: Message = {
         id: 'ast-' + Date.now(),
         role: 'assistant',
         text: replyText,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        suggestedProducts: detectedProds.length > 0 ? detectedProds : undefined,
+        suggestedProducts: detectedProds.length > 0 ? detectedProds.slice(0, 3) : undefined,
       };
 
       setMessages(prev => [...prev, assistantMsg]);
     } catch (err: any) {
-      console.warn('Chat error:', err);
-      // Resilient fallback logic if server error occurs
+      console.warn('Chat using live catalog fallback:', err);
       const lower = query.toLowerCase();
       let fallbackText = '';
-      if (lower.includes('available') || lower.includes('product') || lower.includes('course') || lower.includes('kya')) {
-        const available = products.filter(p => p.status === 'published');
-        fallbackText = `Here are the top digital products currently available in our catalog:\n\n` +
-          available.map(p => `• **${p.title}** — PKR ${Number(p.pricePKR).toLocaleString()} (${p.category.toUpperCase()})`).join('\n') +
-          `\n\nAll items include **instant Google Drive access** upon Easypaisa payment verification.`;
+      
+      const isPriceQuery = lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('kitne') || lower.includes('kitna') || lower.includes('pkr') || lower.includes('rupay') || lower.includes('rupee') || lower.includes('fee');
+      const matchedProd = matchSpecificProduct(query, liveProducts);
+
+      if (matchedProd && isPriceQuery) {
+        fallbackText = `The current live price for **${matchedProd.title}** is **Rs. ${Number(matchedProd.pricePKR).toLocaleString()} PKR**.\n\n• **Status:** ${matchedProd.status === 'published' ? '✅ In Stock & Ready for Instant Delivery' : '⏳ In Update / Draft'}\n• **Delivery:** Within 15–30 minutes directly to your WhatsApp\n• **Payment:** Easypaisa to \`${settings.easypaisaNumber || '03010333544'}\` (Account Title: MUHAMMAD KUMAIL ALI)\n• **WhatsApp Direct Order:** Click the button below or message **${settings.whatsappNumber || '+92 310 7759274'}**`;
+      } else if (matchedProd) {
+        fallbackText = `**${matchedProd.title}** is available in our store for **Rs. ${Number(matchedProd.pricePKR).toLocaleString()} PKR**.\n\n${matchedProd.shortDescription || matchedProd.description?.slice(0, 160)}\n\n• **Delivery:** Delivered within 15–30 minutes directly to WhatsApp\n• **Order Directly:** Message Muhammad Kumail Ali on WhatsApp at **${settings.whatsappNumber || '+92 310 7759274'}**`;
+      } else if (isPriceQuery || lower.includes('available') || lower.includes('product') || lower.includes('catalog') || lower.includes('kya')) {
+        const available = liveProducts.filter(p => p.status === 'published');
+        fallbackText = `Here are the latest live prices updated in our Admin Panel:\n\n` +
+          available.map(p => `• **${p.title}** — **Rs. ${Number(p.pricePKR).toLocaleString()} PKR** (${p.productType === 'software' ? 'Software' : 'Tool'})`).join('\n') +
+          `\n\nAll items are delivered directly to your WhatsApp within 15–30 minutes upon Easypaisa payment verification.`;
       } else if (lower.includes('easypaisa') || lower.includes('pay') || lower.includes('payment')) {
-        fallbackText = `### Easypaisa Payment Guide:\n1. Open your Easypaisa app and send the exact total to:\n   - **Account Number:** \`${settings.easypaisaNumber || '03010333544'}\`\n   - **Account Title:** Muhammad Kumail Ali\n2. At checkout, upload your Transaction Screenshot and TRX ID.\n3. Verified within minutes!`;
+        fallbackText = `### Easypaisa Payment Guide:\n1. Open your Easypaisa app and transfer the exact PKR amount to:\n   - **Account Number:** \`${settings.easypaisaNumber || '03010333544'}\`\n   - **Account Title:** MUHAMMAD KUMAIL ALI\n2. Share your Transaction Screenshot & TRX ID on WhatsApp at **${settings.whatsappNumber || '+92 310 7759274'}**.\n3. Verified and delivered within 15–30 minutes!`;
       } else {
-        fallbackText = `I am here to help you with all questions regarding Digital Product Pakistan products, Easypaisa payments, and instant delivery! For direct questions, you can also reach founder **Muhammad Kumail Ali** on WhatsApp at **${settings.whatsappNumber || '+923107759274'}**.`;
+        fallbackText = `I am here to help you with live software prices, Easypaisa payments, and direct WhatsApp activation! You can also message founder **Muhammad Kumail Ali** directly on WhatsApp at **${settings.whatsappNumber || '+92 310 7759274'}**.`;
+      }
+
+      const detectedProds = detectProductsInText(fallbackText, liveProducts);
+      if (matchedProd && !detectedProds.some(p => p.id === matchedProd.id)) {
+        detectedProds.unshift(matchedProd);
       }
 
       setMessages(prev => [
@@ -183,6 +268,7 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
           role: 'assistant',
           text: fallbackText,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          suggestedProducts: detectedProds.length > 0 ? detectedProds.slice(0, 3) : undefined,
         },
       ]);
     } finally {

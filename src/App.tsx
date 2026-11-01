@@ -73,12 +73,16 @@ function MainApp() {
     });
 
     // 2. Custom event listener for immediate same-page updates
-    const handleProductsUpdated = () => {
-      getProducts(true).then((prods) => {
-        if (prods && prods.length > 0) {
-          setProducts(prods);
-        }
-      }).catch(() => {});
+    const handleProductsUpdated = (event?: any) => {
+      if (event?.detail && Array.isArray(event.detail) && event.detail.length > 0) {
+        setProducts(event.detail);
+      } else {
+        getProducts(true).then((prods) => {
+          if (prods && prods.length > 0) {
+            setProducts(prods);
+          }
+        }).catch(() => {});
+      }
     };
 
     window.addEventListener('dpp_products_updated', handleProductsUpdated);
