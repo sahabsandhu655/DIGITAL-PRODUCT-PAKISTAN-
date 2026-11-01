@@ -205,47 +205,106 @@ export const VercelDomainManager: React.FC<VercelDomainManagerProps> = ({
   }, []);
 
   return (
-    <div className="space-y-8 animate-fadeIn">
-      {/* HEADER BANNER */}
-      <div className="bg-gradient-to-r from-[#111C18] via-[#15231F] to-[#101915] border border-[#233730] rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-xl">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-black/40 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-black text-white px-3 py-1 rounded-full text-xs font-bold border border-white/20">
-              {/* Vercel Triangle Logo */}
-              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 75 65" height="12" width="14">
-                <path d="M37.5.5 75 64.5H0Z" />
-              </svg>
-              <span>Vercel.com Deployment & Custom Domain</span>
+    <div className="space-y-6">
+      {/* DOMAIN UNREACHABLE & NETLIFY ALTERNATIVE NOTICE */}
+      <div className="bg-[#1A2924] border border-[#25D366]/50 rounded-3xl p-6 sm:p-7 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#25D366]/20 text-[#25D366] flex items-center justify-center font-bold text-lg">
+              🌐
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Custom Domain & Vercel Connection
-            </h2>
-            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              Connect and verify <span className="text-[#B7F34A] font-semibold">www.digitalproductpakistan.net</span> with Vercel Anycast CDN and automated SSL certificates.
+            <div>
+              <h3 className="text-base sm:text-lg font-bold text-white">
+                "Website Not Reachable" on Vercel? Deploy on Netlify or Fix DNS
+              </h3>
+              <p className="text-xs text-slate-300">
+                If your domain <span className="font-mono text-white font-semibold">digitalproductpakistan.net</span> is not loading on Vercel, you can deploy to Netlify instantly or verify your domain registrar DNS records.
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://app.netlify.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 bg-[#00ad9f] hover:bg-[#009286] text-white font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 shadow-md transition-all"
+          >
+            <span>Open Netlify Dashboard</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          {/* NETLIFY DNS CONFIG */}
+          <div className="bg-[#111C18] border border-[#233730] p-4 rounded-2xl space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-[#00ad9f] flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#00ad9f]" /> Option 1: Netlify Setup (Pre-configured)
+              </span>
+              <span className="text-[10px] bg-[#00ad9f]/10 text-[#00ad9f] font-bold px-2 py-0.5 rounded">
+                netlify.toml Ready
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-400">
+              `netlify.toml` and `_redirects` are already added. In your domain registrar (GoDaddy, Namecheap, etc.), set:
             </p>
+            <div className="space-y-1 font-mono text-[11px] bg-[#15231F] p-2.5 rounded-xl border border-[#233730]">
+              <div className="flex justify-between items-center text-slate-300">
+                <span>CNAME: <strong>www</strong> → <strong>digital-product-pakistan.netlify.app</strong></span>
+                <button onClick={() => copyToClipboard('digital-product-pakistan.netlify.app', 'net-cname')} className="text-xs text-[#B7F34A] hover:underline cursor-pointer">
+                  {copiedKey === 'net-cname' ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <div className="flex justify-between items-center text-slate-300">
+                <span>A Record: <strong>@</strong> → <strong>75.2.60.5</strong></span>
+                <button onClick={() => copyToClipboard('75.2.60.5', 'net-a')} className="text-xs text-[#B7F34A] hover:underline cursor-pointer">
+                  {copiedKey === 'net-a' ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href="https://vercel.com/dashboard"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white hover:bg-slate-200 text-black px-4 py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg transition-all"
-            >
-              <span>Open Vercel Dashboard</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
-            <a
-              href="https://vercel.com/new"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#1A2924] hover:bg-[#233730] text-white border border-[#233730] px-4 py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition-all"
-            >
-              <span>Deploy New Project</span>
-              <ArrowRight className="w-4 h-4 text-[#B7F34A]" />
-            </a>
+          {/* VERCEL DNS CONFIG */}
+          <div className="bg-[#111C18] border border-[#233730] p-4 rounded-2xl space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-white" /> Option 2: Vercel DNS Fix
+              </span>
+              <span className="text-[10px] bg-white/10 text-white font-bold px-2 py-0.5 rounded">
+                Official Records
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-400">
+              If sticking with Vercel, replace any old IP addresses in your domain registrar with:
+            </p>
+            <div className="space-y-1 font-mono text-[11px] bg-[#15231F] p-2.5 rounded-xl border border-[#233730]">
+              <div className="flex justify-between items-center text-slate-300">
+                <span>A Record: <strong>@</strong> → <strong>76.76.21.21</strong></span>
+                <button onClick={() => copyToClipboard('76.76.21.21', 'ver-a')} className="text-xs text-[#B7F34A] hover:underline cursor-pointer">
+                  {copiedKey === 'ver-a' ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <div className="flex justify-between items-center text-slate-300">
+                <span>CNAME: <strong>www</strong> → <strong>cname.vercel-dns.com</strong></span>
+                <button onClick={() => copyToClipboard('cname.vercel-dns.com', 'ver-cname')} className="text-xs text-[#B7F34A] hover:underline cursor-pointer">
+                  {copiedKey === 'ver-cname' ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Live Preview Fallback */}
+        <div className="bg-[#15231F] border border-[#233730] p-3 rounded-xl flex items-center justify-between text-xs text-slate-300">
+          <span>⚡ <strong>Instant Access Link:</strong> Customers and test orders work immediately without domain delays at:</span>
+          <a
+            href="https://ais-pre-hh6djduqo3utyn4xg54loq-358296613607.asia-southeast1.run.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#B7F34A] hover:underline font-bold flex items-center gap-1 shrink-0 ml-2"
+          >
+            <span>Live Web App Preview</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
 

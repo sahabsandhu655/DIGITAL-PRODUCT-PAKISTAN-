@@ -226,15 +226,19 @@ LIVE REAL-TIME STORE INVENTORY:
 ${catalogSummary}
 
 CRITICAL RULES FOR RESPONDING TO CUSTOMERS:
-1. ACCURATE REAL-TIME PRICES IN PKR:
+1. ACCURATE REAL-TIME PRICES IN PKR (ALWAYS CHECK LIVE INVENTORY):
    - ChatGPT Pro: Rs. 4,000 PKR
    - Gemini Pro: Rs. 999 PKR
-   - WhatsApp Bulk SMS Sender Software: Rs. 2,499 PKR (has an 18-feature illustrated walkthrough with real screenshots!)
+   - WhatsApp Bulk SMS Sender Software: Rs. 2,499 PKR (includes 5 illustrated feature showcase screenshots!)
    - CapCut Pro: Rs. 750 PKR
    - CapCut Pro Team Access by 6 Members: Rs. 1,499 PKR
    - ElevenLabs 1 Lakh Credits: Rs. 500 PKR
-   - Microsoft 365 12 Subscription: Rs. 999 PKR
+   - Microsoft 365 12 Month Plan: Rs. 1,174 PKR
    - Canva Panel 3 Years Subscription Warranty of 500 Users: Rs. 2,999 PKR
+   - Notion Plus 12 Month Plan: Rs. 1,443 PKR
+   - HMA VPN Private Access: Rs. 402 PKR
+   - Outlook Mail Trust Private: Rs. 107 PKR
+   - Super Duolingo Private Access: Rs. 512 PKR
    Quote the EXACT price in PKR shown in the live inventory above. NEVER guess or alter prices.
 2. CURRENT AVAILABILITY ONLY:
    - We only have two sections: Software and Tools.
@@ -259,7 +263,7 @@ Customer: ${message}
 Assistant:`;
 
             const response = await ai.models.generateContent({
-              model: 'gemini-3.8-flash',
+              model: 'gemini-2.5-flash',
               contents: prompt,
             });
 
@@ -283,7 +287,7 @@ Assistant:`;
             } else if (lowerMsg.includes('easypaisa') || lowerMsg.includes('pay') || lowerMsg.includes('jazzcash') || lowerMsg.includes('order')) {
               fallbackReply = `### How to Order on Digital Product Pakistan:\n1. **Order on WhatsApp:** Message us directly at **+92 310 7759274** for fast direct checkout.\n2. **Or Pay via Easypaisa:**\n   - **Account Number:** \`03010333544\`\n   - **Account Title:** MUHAMMAD KUMAIL ALI\n3. Upload your TRX screenshot at checkout or send it to WhatsApp (+923107759274). Your access is delivered within minutes!`;
             } else {
-              fallbackReply = `Welcome to Digital Product Pakistan! 🇵🇰\nWe provide verified Software Subscriptions and Marketing Tools with instant WhatsApp delivery & manual Easypaisa payment verification.\n\n• **Official WhatsApp:** +92 310 7759274 (Muhammad Kumail Ali)\n• **Easypaisa Account:** 03010333544 (MUHAMMAD KUMAIL ALI)\n• **Live Catalog:** ${published.length} software & tools available.\n\nAsk me about ChatGPT Pro (4,000 PKR), Gemini Pro (999 PKR), WhatsApp Bulk SMS Sender (2,499 PKR), CapCut Pro (750 PKR), or Canva Panel (2,999 PKR)!`;
+              fallbackReply = `Welcome to Digital Product Pakistan! 🇵🇰\nWe provide verified Software Subscriptions and Marketing Tools with instant WhatsApp delivery & manual Easypaisa payment verification.\n\n• **Official WhatsApp:** +92 310 7759274 (Muhammad Kumail Ali)\n• **Easypaisa Account:** 03010333544 (MUHAMMAD KUMAIL ALI)\n• **Live Catalog:** ${published.length} software & tools available.\n\nAsk me about Notion Plus (1,443 PKR), Microsoft 365 (1,174 PKR), ChatGPT Pro (4,000 PKR), Gemini Pro (999 PKR), WhatsApp Bulk SMS Sender (2,499 PKR), CapCut Pro (750 PKR), HMA VPN (402 PKR), or Outlook Mail (107 PKR)!`;
             }
 
             res.end(JSON.stringify({ reply: fallbackReply }));

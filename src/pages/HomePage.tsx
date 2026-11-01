@@ -77,7 +77,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           {/* Subtitle */}
           <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-            Get instant activation for ChatGPT Pro, Gemini Pro, WhatsApp Bulk SMS Sender, CapCut Pro, ElevenLabs, and Canva Panel in PKR with manual Easypaisa verification.
+            Get instant activation for ChatGPT Pro, Gemini Pro, WhatsApp Bulk SMS Sender, Notion Plus, Microsoft 365, CapCut Pro, ElevenLabs, Canva Panel, HMA VPN, and Super Duolingo in PKR with manual Easypaisa verification.
           </p>
 
           {/* Quick Contact & WhatsApp Order Strip */}
@@ -111,7 +111,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 type="text"
                 value={heroSearch}
                 onChange={(e) => setHeroSearch(e.target.value)}
-                placeholder="Search ChatGPT, CapCut, WhatsApp Sender, Canva..."
+                placeholder="Search ChatGPT, Notion, Microsoft 365, CapCut, WhatsApp Sender, VPN..."
                 className="w-full bg-[#162420] border-2 border-[#233730] focus:border-[#B7F34A] text-white placeholder-slate-400 text-sm rounded-2xl py-3.5 pl-12 pr-4 focus:outline-none transition-all shadow-xl shadow-black/40"
               />
             </div>
@@ -224,7 +224,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     Software Subscriptions
                   </h3>
                   <p className="text-xs text-slate-400">
-                    ChatGPT Pro, Gemini Pro, CapCut Pro individual & team, ElevenLabs, and Microsoft 365
+                    ChatGPT Pro, Gemini Pro, Notion Plus, Microsoft 365, CapCut Pro individual & team, ElevenLabs, HMA VPN, Outlook Mail, and Super Duolingo
                   </p>
                 </div>
               </div>
@@ -255,7 +255,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     Digital & Marketing Tools
                   </h3>
                   <p className="text-xs text-slate-400">
-                    WhatsApp Bulk SMS Sender (18 illustrated features) and Canva Admin Reseller Panel
+                    WhatsApp Bulk SMS Sender (5-image interactive showcase) and Canva Admin Reseller Panel
                   </p>
                 </div>
               </div>

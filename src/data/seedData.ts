@@ -29,7 +29,7 @@ export const INITIAL_STORE_SETTINGS: StoreSettings = {
   customDomain: 'digitalproductpakistan.net',
   vercelProjectName: 'digital-product-pakistan',
   netlifySiteName: 'digital-product-pakistan',
-  deploymentPlatform: 'vercel',
+  deploymentPlatform: 'netlify',
   dnsMethod: 'external',
 };
 
@@ -49,7 +49,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     pricePKR: 4000,
     compareAtPricePKR: 6000,
     currency: 'PKR',
-    tags: ['AI', 'ChatGPT', 'GPT-4o', 'OpenAI', 'Software'],
+    tags: ['AI', 'ChatGPT', 'GPT-4o', 'OpenAI', 'Software', 'chatgpt pro price in pakistan', 'buy chatgpt pakistan'],
     features: [
       'Full Access to GPT-4o & Advanced Reasoning Models',
       'Peak-Time Priority Bandwidth & Lightning-Fast Output',
@@ -83,7 +83,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     pricePKR: 999,
     compareAtPricePKR: 2000,
     currency: 'PKR',
-    tags: ['Gemini', 'Google AI', 'AI Assistant', 'Productivity', 'Software'],
+    tags: ['Gemini', 'Google AI', 'AI Assistant', 'Productivity', 'Software', 'gemini pro price in pakistan', 'buy gemini pro'],
     features: [
       'Massive 1M+ Token Context Window for Large Books & Docs',
       'Next-Gen Multimodal Vision, Audio & Code Understanding',
@@ -102,25 +102,27 @@ export const INITIAL_PRODUCTS: Product[] = [
     updatedAt: new Date().toISOString(),
   },
 
-  // 3. WhatsApp Bulk SMS Sender Software (with 18 feature slides)
+  // 3. WhatsApp Bulk SMS Sender Software (Streamlined 5-image showcase with direct admin upload)
   {
     id: 'prod-whatsapp-bulk-sender',
     title: 'WhatsApp Bulk SMS Sender Software',
     slug: 'whatsapp-bulk-sms-sender-software',
     category: 'Marketing Tools',
-    description: `Pakistan's top-rated WhatsApp Marketing Software for Windows PC. Connect directly with thousands of potential customers on WhatsApp with zero per-message cost.\n\nBuilt for online stores, digital agencies, freelancers, educational institutes, and real estate consultants across Pakistan. Features an anti-ban intelligent delay algorithm, Excel/CSV contact list importer, group participant extractor, dynamic personalized tags, automated keyword auto-replies, and rich media message dispatch.\n\nExplore our complete 18-feature illustrated walkthrough below to see how each tool function works. One-time purchase with instant activation.`,
-    shortDescription: 'Complete Windows bulk WhatsApp marketing software with contact list import, anti-ban delay, group extractor, auto-reply bot, and 18-slide feature gallery.',
+    description: `Pakistan's top-rated WhatsApp Marketing Software for Windows PC. Connect directly with thousands of potential customers on WhatsApp with zero per-message cost.\n\nBuilt for online stores, digital agencies, freelancers, educational institutes, and real estate consultants across Pakistan. Features an anti-ban intelligent delay algorithm, Excel/CSV contact list importer, group participant extractor, dynamic personalized tags, automated keyword auto-replies, and rich media message dispatch.\n\n• One-time payment of Rs. 2,499 PKR.\n• Full Windows 10 & 11 compatibility.\n• Video installation guide and WhatsApp activation.\n• Includes customizable 5-picture showcase gallery.`,
+    shortDescription: 'Complete Windows bulk WhatsApp marketing software with Excel contact import, anti-ban delay, group extractor, and auto-reply bot.',
     images: [
       'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80'
     ],
     pricePKR: 2499,
     compareAtPricePKR: 5000,
     currency: 'PKR',
-    tags: ['WhatsApp', 'Marketing', 'Bulk SMS', 'Automation', 'Tools'],
+    tags: ['WhatsApp', 'Marketing', 'Bulk SMS', 'Automation', 'Tools', 'whatsapp marketing software pakistan', 'whatsapp bulk sender buy'],
     features: [
-      '18 Professional Marketing Features (See Visual Tour Below)',
+      '5 Core Visual Showcase Features with Admin Upload Support',
       'Unlimited Contact List Import via Excel (.xlsx) and CSV Files',
       'Anti-Ban Speed Delays & Safe Random Interval Controls',
       'Instant WhatsApp Group Member Grabber & Exporter',
@@ -158,93 +160,15 @@ export const INITIAL_PRODUCTS: Product[] = [
       },
       {
         id: 'slide-04',
-        title: 'Feature 04: Multi-Account Rotation & Account Switcher',
-        description: 'Pair multiple WhatsApp Web sessions simultaneously to distribute heavy broadcast campaigns across different numbers automatically.',
-        imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=80'
+        title: 'Feature 04: Group Number Grabber & Media Attachments',
+        description: 'Extract group participants and attach high-resolution product photos, sales video reels, PDF brochures, rate lists, and voice notes.',
+        imageUrl: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=900&auto=format&fit=crop&q=80'
       },
       {
         id: 'slide-05',
-        title: 'Feature 05: Active WhatsApp Number Filter & Validator',
-        description: 'Filter clean active WhatsApp phone numbers from raw lists before launching broadcasts to avoid wasted bandwidth and failed deliveries.',
-        imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-06',
-        title: 'Feature 06: Direct WhatsApp Group Member Grabber',
-        description: 'Extract and export phone numbers of all active group participants from any joined community or group with a single click.',
-        imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-07',
-        title: 'Feature 07: Rich Media, Video & PDF Brochure Attachments',
-        description: 'Attach high-resolution product photos, sales video reels, PDF brochures, rate lists, and voice notes with custom captions.',
-        imageUrl: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-08',
-        title: 'Feature 08: 24/7 Intelligent Keyword Auto-Reply Bot',
-        description: 'Automate immediate answers to inquiries matching keywords like "price", "catalog", "order", or "discount" even while you sleep.',
-        imageUrl: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-09',
-        title: 'Feature 09: Scheduled Campaign Time Dispatcher',
-        description: 'Schedule bulk marketing broadcasts to execute at optimal evening or weekend engagement hours with hands-free automation.',
-        imageUrl: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-10',
-        title: 'Feature 10: Segmented Contact List Management',
-        description: 'Tag and segment your contact lists into categories (e.g. VIP Buyers, Inactive Leads, Wholesale Clients, Lahore Inquiries).',
-        imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-11',
-        title: 'Feature 11: Real-Time Live Broadcast Delivery Tracker',
-        description: 'Visual progress bar displaying live message delivery counts, successes, skips, and connection status in real-time.',
+        title: 'Feature 05: Real-Time Live Broadcast Delivery Tracker',
+        description: 'Visual progress bar displaying live message delivery counts, successes, skips, and full Excel audit logs in real-time.',
         imageUrl: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-12',
-        title: 'Feature 12: Detailed Excel Analytics & Delivery Logs',
-        description: 'Export complete delivery audit reports to Excel with exact dispatch timestamps, message status, and failure error logs.',
-        imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-13',
-        title: 'Feature 13: Native Urdu & Unicode Font Support',
-        description: 'Full compatibility with Urdu Nastaliq text, Urdu keyboard, Arabic, regional fonts, and emojis without any broken characters.',
-        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-14',
-        title: 'Feature 14: One-Click Unsubscribe Opt-Out Compliance',
-        description: 'Easily include opt-out tags to respect recipient preferences and maintain high WhatsApp sender trust scores.',
-        imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-15',
-        title: 'Feature 15: Spam Guard & Account Warm-Up Dialogue',
-        description: 'Built-in warm-up mode simulating back-and-forth conversational dialogues between linked numbers to prime fresh accounts.',
-        imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-16',
-        title: 'Feature 16: Built-in Message Template Library',
-        description: 'Store, categorize, and recall your best-performing sales pitches, Eid Mubarak greetings, and payment reminder templates.',
-        imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-17',
-        title: 'Feature 17: Native Windows 10 & 11 Desktop Compatibility',
-        description: 'Lightweight desktop software with zero heavy cloud dependencies. Runs smoothly on any standard Windows PC or laptop.',
-        imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&auto=format&fit=crop&q=80'
-      },
-      {
-        id: 'slide-18',
-        title: 'Feature 18: Lifetime License & Direct WhatsApp Support',
-        description: 'One-time investment with no recurring monthly subscriptions. Comes with setup video and direct WhatsApp assistance from our team.',
-        imageUrl: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=900&auto=format&fit=crop&q=80'
       }
     ]
   },
@@ -264,7 +188,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     pricePKR: 750,
     compareAtPricePKR: 1500,
     currency: 'PKR',
-    tags: ['CapCut', 'Video Editing', 'Reels', 'TikTok', 'Software'],
+    tags: ['CapCut', 'Video Editing', 'Reels', 'TikTok', 'Software', 'capcut pro buy pakistan', 'capcut pro apk buy'],
     features: [
       'Unlock All Pro VIP Filters, Transitions & AI Body Effects',
       'AI Auto-Captions with Multi-Language Speech Recognition',
@@ -298,7 +222,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     pricePKR: 1499,
     compareAtPricePKR: 3500,
     currency: 'PKR',
-    tags: ['CapCut', 'Team License', 'Agency', 'Video Production', 'Software'],
+    tags: ['CapCut', 'Team License', 'Agency', 'Video Production', 'Software', 'capcut team 6 members', 'capcut agency account'],
     features: [
       '6 Dedicated Pro Member Seats for Your Agency or Team',
       'Full CapCut Pro VIP Features Unlocked for Every Member',
@@ -332,7 +256,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     pricePKR: 500,
     compareAtPricePKR: 1200,
     currency: 'PKR',
-    tags: ['ElevenLabs', 'AI Voice', 'Text to Speech', 'Audio', 'Software'],
+    tags: ['ElevenLabs', 'AI Voice', 'Text to Speech', 'Audio', 'Software', 'elevenlabs pakistan', 'buy elevenlabs credits'],
     features: [
       '100,000 (1 Lakh) Text-to-Speech Voice Generation Characters',
       'Access to All Premium Natural AI Voices & Regional Accents',
@@ -351,11 +275,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     updatedAt: new Date().toISOString(),
   },
 
-  // 7. Microsoft 365 12 Subscription
+  // 7. Microsoft 365 12 Month Plan (Updated Price: 1,174 PKR)
   {
     id: 'prod-microsoft-365',
-    title: 'Microsoft 365 12 Subscription',
-    slug: 'microsoft-365-12-subscription',
+    title: 'Microsoft 365 12 Month Plan',
+    slug: 'microsoft-365-12-month-plan',
     category: 'Office & Productivity Software',
     description: `Equip your devices with genuine Microsoft 365 apps for a full 12 months (1 Year). Includes official desktop versions of Word, Excel, PowerPoint, Outlook, OneNote, along with 1TB (1000 GB) of secure cloud backup storage on Microsoft OneDrive.\n\n• Works across up to 5 devices simultaneously (PC, Mac, iPhone, Android).\n• Genuine subscription account with self password reset capability.\n• Instant delivery on WhatsApp (+923107759274).`,
     shortDescription: 'Full 12-month Microsoft 365 subscription with 1TB OneDrive cloud storage, Word, Excel, PowerPoint, and 5 devices access.',
@@ -363,10 +287,10 @@ export const INITIAL_PRODUCTS: Product[] = [
       'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80'
     ],
-    pricePKR: 999,
+    pricePKR: 1174,
     compareAtPricePKR: 2800,
     currency: 'PKR',
-    tags: ['Microsoft 365', 'Office', 'OneDrive', 'Excel', 'Word', 'Software'],
+    tags: ['Microsoft 365', 'Office', 'OneDrive', 'Excel', 'Word', 'Software', 'microsoft 365 price pakistan', '1tb onedrive buy pakistan'],
     features: [
       'Full 12-Month (1 Year) Genuine Microsoft Subscription',
       'Word, Excel, PowerPoint, Outlook & OneNote Desktop Apps',
@@ -400,7 +324,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     pricePKR: 2999,
     compareAtPricePKR: 7500,
     currency: 'PKR',
-    tags: ['Canva', 'Canva Panel', 'Design', 'Reseller Tool', 'Admin Panel', 'Tools'],
+    tags: ['Canva', 'Canva Panel', 'Design', 'Reseller Tool', 'Admin Panel', 'Tools', 'canva pro panel pakistan', 'canva 500 users'],
     features: [
       'Dedicated Canva Pro Admin Panel Dashboard',
       '500 Member / User Capacity with Full Admin Controls',
@@ -415,6 +339,142 @@ export const INITIAL_PRODUCTS: Product[] = [
     featured: true,
     status: 'published',
     language: 'English, Urdu & Multilingual',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+
+  // 9. Notion Plus 12 Month Plan (NEW - 1,443 PKR)
+  {
+    id: 'prod-notion-plus-12m',
+    title: 'Notion Plus 12 Month Plan',
+    slug: 'notion-plus-12-month-plan',
+    category: 'Productivity Software',
+    description: `Upgrade your workspace with official Notion Plus for 12 months (1 Full Year). Enjoy unlimited blocks, unlimited file uploads, 30-day page version history, and invite up to 100 guests to collaborate on your databases, projects, and notes.\n\n• Perfect for freelancers, university students, and growing startup teams.\n• Genuine private workspace activation.\n• Delivered directly to your WhatsApp (+92 310 7759274) with complete setup guidance.`,
+    shortDescription: 'Official 12-month Notion Plus subscription with unlimited blocks, unlimited file uploads, and collaborative team workspace.',
+    images: [
+      'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&auto=format&fit=crop&q=80'
+    ],
+    pricePKR: 1443,
+    compareAtPricePKR: 3500,
+    currency: 'PKR',
+    tags: ['Notion', 'Notion Plus', 'Productivity', 'Notes', 'Software', 'notion plus price in pakistan', 'buy notion plus pakistan'],
+    features: [
+      '12 Months (1 Year) Full Notion Plus Workspace License',
+      'Unlimited Blocks for Teams & Individuals',
+      'Unlimited File Upload Size (No 5MB limit)',
+      '30-Day Page Version History & Collaborative Access',
+      'Instant Delivery & Onboarding via WhatsApp'
+    ],
+    productType: 'software',
+    deliveryType: 'Direct Workspace Upgrade / Invite via WhatsApp',
+    validity: '12 Months (1 Year) Official Plan',
+    licensingNotes: 'Genuine workspace upgrade with 12-month full warranty.',
+    featured: true,
+    status: 'published',
+    language: 'English & Urdu Support',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+
+  // 10. HMA VPN Private Access (NEW - 402 PKR)
+  {
+    id: 'prod-hma-vpn',
+    title: 'HMA VPN Private Access',
+    slug: 'hma-vpn-private-access',
+    category: 'Security & VPN Software',
+    description: `Browse securely and bypass regional restrictions with HideMyAss (HMA) VPN Private Access. Access lightning-fast servers in over 190+ countries with military-grade 256-bit AES encryption, IP shuffling, and strict zero-logging protection.\n\n• Works seamlessly across Windows, Mac, iOS, Android, and Linux.\n• High-speed streaming and private browsing with dedicated speeds.\n• Instant setup credentials dispatched via WhatsApp.`,
+    shortDescription: 'High-speed HMA VPN private access with 190+ country servers, AES-256 encryption, and IP shuffle protection.',
+    images: [
+      'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80'
+    ],
+    pricePKR: 402,
+    compareAtPricePKR: 1000,
+    currency: 'PKR',
+    tags: ['VPN', 'HMA VPN', 'Privacy', 'Security', 'Software', 'hma vpn price in pakistan', 'cheap vpn buy pakistan'],
+    features: [
+      'Private High-Speed Access to 190+ Country Server Locations',
+      'Military Grade 256-Bit AES Encryption & Zero-Log Policy',
+      'Lightning-Fast Streaming & Torrent Optimization',
+      'Cross-Platform: Windows, Android, iPhone, Mac',
+      'Direct WhatsApp Credentials Delivery within Minutes'
+    ],
+    productType: 'software',
+    deliveryType: 'Direct WhatsApp Login Credentials & Setup Instructions',
+    validity: 'Private Access Warranty',
+    licensingNotes: 'Private credentials with prompt replacement warranty.',
+    featured: true,
+    status: 'published',
+    language: 'English & Multi-language',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+
+  // 11. Outlook Mail Trust Private (NEW - 107 PKR)
+  {
+    id: 'prod-outlook-mail-trust',
+    title: 'Outlook Mail Trust Private',
+    slug: 'outlook-mail-trust-private',
+    category: 'Account & Email Software',
+    description: `Get a verified, clean, and trusted private Microsoft Outlook email account with full recovery access. Ideal for freelancing profiles, business registrations, agency client outreach, or separating personal and professional workflows.\n\n• Clean IP creation with trusted reputation history.\n• Delivered with full credentials (email, password, recovery key).\n• Immediate delivery on WhatsApp (+92 310 7759274).`,
+    shortDescription: 'Verified clean private Microsoft Outlook account with trusted sender reputation and full recovery credentials.',
+    images: [
+      'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80'
+    ],
+    pricePKR: 107,
+    compareAtPricePKR: 300,
+    currency: 'PKR',
+    tags: ['Outlook', 'Microsoft Email', 'Email', 'Accounts', 'Software', 'buy outlook account pakistan', 'cheap outlook mail'],
+    features: [
+      '100% Private, Fresh & Clean Microsoft Outlook Account',
+      'Full Ownership: Email + Password + Recovery Mail Access',
+      'High Inbox Delivery Reputation for Outreach & Registrations',
+      'Usable with Microsoft Webmail, Outlook App & Third-Party Clients',
+      'Instant Delivery on WhatsApp (+92 310 7759274)'
+    ],
+    productType: 'software',
+    deliveryType: 'Direct Email & Password Credentials via WhatsApp',
+    validity: 'Lifetime Private Ownership',
+    licensingNotes: 'Complete access handover with password changeable by customer.',
+    featured: true,
+    status: 'published',
+    language: 'English & Global',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+
+  // 12. Super Duolingo Private Access (NEW - 512 PKR)
+  {
+    id: 'prod-super-duolingo',
+    title: 'Super Duolingo Private Access',
+    slug: 'super-duolingo-private-access',
+    category: 'Learning & Language Software',
+    description: `Master any language without interruptions using Super Duolingo Private Access. Enjoy unlimited hearts, practice mistakes in the personalized review hub, test out of lessons, repair streaks, and learn with completely ad-free focus.\n\n• Learn English, German, French, Spanish, Arabic, Turkish, and 40+ languages.\n• Fast activation directly on your mobile device or desktop.\n• Order directly via WhatsApp (+92 310 7759274) or pay via Easypaisa.`,
+    shortDescription: 'Super Duolingo private access with unlimited hearts, ad-free lessons, personalized practice hub, and streak freeze.',
+    images: [
+      'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80'
+    ],
+    pricePKR: 512,
+    compareAtPricePKR: 1200,
+    currency: 'PKR',
+    tags: ['Duolingo', 'Super Duolingo', 'Language Learning', 'English', 'Software', 'super duolingo price in pakistan', 'buy duolingo plus pakistan'],
+    features: [
+      'Unlimited Hearts — Never Wait for Hearts to Refill',
+      '100% Ad-Free Learning Experience',
+      'Mistakes Review Hub with Targeted Grammar Practice',
+      'Unlimited Skill Level Test-Outs & Progress Quizzes',
+      'Instant Delivery on WhatsApp (+92 310 7759274)'
+    ],
+    productType: 'software',
+    deliveryType: 'Direct Private Access Activation Link / Invite via WhatsApp',
+    validity: 'Super Subscription Access',
+    licensingNotes: 'Genuine subscriber status with replacement guarantee.',
+    featured: true,
+    status: 'published',
+    language: 'English, Urdu, German, French & 40+ Languages',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   }

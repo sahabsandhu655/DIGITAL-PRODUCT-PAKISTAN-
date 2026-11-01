@@ -25,7 +25,10 @@ import {
   AlertCircle,
   Save,
   Check,
-  Globe
+  Globe,
+  Image as ImageIcon,
+  Upload,
+  Zap
 } from 'lucide-react';
 import { useAuth, MASTER_ADMIN_EMAIL, DEFAULT_ADMIN_PASSCODE } from '../context/AuthContext';
 import { Product, Order, BlogPost, StoreSettings, PaymentStatus, OrderStatus, DeliveryStatus } from '../types';
@@ -101,6 +104,25 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const [productFilter, setProductFilter] = useState<'all' | 'published' | 'draft'>('all');
   const [productSearch, setProductSearch] = useState('');
   const [isPublishingAll, setIsPublishingAll] = useState(false);
+
+  // Quick Inline Price Editing State
+  const [inlinePrices, setInlinePrices] = useState<Record<string, number>>({});
+  const [savingPriceId, setSavingPriceId] = useState<string | null>(null);
+  const [savedPriceId, setSavedPriceId] = useState<string | null>(null);
+
+  // Quick Add Product Card State
+  const [showQuickAddCard, setShowQuickAddCard] = useState(false);
+  const [newProdTitle, setNewProdTitle] = useState('');
+  const [newProdType, setNewProdType] = useState<'software' | 'tool'>('software');
+  const [newProdPrice, setNewProdPrice] = useState<number>(999);
+  const [newProdCategory, setNewProdCategory] = useState('Software');
+  const [newProdImage, setNewProdImage] = useState('');
+  const [newProdDesc, setNewProdDesc] = useState('');
+
+  // 5-Image Showcase Manager State (For WhatsApp Bulk SMS Sender & Any Product)
+  const [galleryProduct, setGalleryProduct] = useState<Product | null>(null);
+  const [galleryImages, setGalleryImages] = useState<string[]>(['', '', '', '', '']);
+  const [isGallerySaving, setIsGallerySaving] = useState(false);
 
   // Blog Modal State
   const [editingBlog, setEditingBlog] = useState<BlogPost | null>(null);
@@ -269,6 +291,106 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       }
     } catch (err: any) {
       showToast(`Error updating product status: ${err.message}`, 'error');
+    }
+  };
+
+  // Quick 1-Click Inline Price Save
+  const handleSaveInlinePrice = async (prod: Product) => {
+    const newPrice = inlinePrices[prod.id] !== undefined ? inlinePrices[prod.id] : prod.pricePKR;
+    if (typeof newPrice !== 'number' || isNaN(newPrice) || newPrice < 0) {
+      showToast('Please enter a valid price in PKR', 'error');
+      return;
+    }
+    setSavingPriceId(prod.id);
+    try {
+      const updated: Product = {
+        ...prod,
+        pricePKR: newPrice,
+        updatedAt: new Date().toISOString(),
+      };
+      await saveProduct(updated);
+      setSavedPriceId(prod.id);
+      setTimeout(() => setSavedPriceId(null), 2500);
+      showToast(`Updated "${prod.title}" price to Rs. ${newPrice.toLocaleString()} PKR!`);
+      onRefreshData();
+    } catch (err: any) {
+      console.error('Error saving inline price:', err);
+      showToast('Failed to update price', 'error');
+    } finally {
+      setSavingPriceId(null);
+    }
+  };
+
+  // 5-Image Showcase Manager Handlers
+  const handleOpen5ImageManager = (prod: Product) => {
+    setGalleryProduct(prod);
+    const existing = [...(prod.images || [])];
+    while (existing.length < 5) existing.push('');
+    setGalleryImages(existing.slice(0, 5));
+  };
+
+  const handleSave5Images = async () => {
+    if (!galleryProduct) return;
+    setIsGallerySaving(true);
+    try {
+      const cleanImgs = galleryImages.map(img => img.trim()).filter(Boolean);
+      const updated: Product = {
+        ...galleryProduct,
+        images: cleanImgs.length > 0 ? cleanImgs : galleryProduct.images,
+        updatedAt: new Date().toISOString(),
+      };
+      await saveProduct(updated);
+      showToast(`Saved ${cleanImgs.length} showcase images for "${galleryProduct.title}"!`);
+      setGalleryProduct(null);
+      onRefreshData();
+    } catch (err: any) {
+      console.error('Error saving gallery images:', err);
+      showToast('Failed to save showcase images', 'error');
+    } finally {
+      setIsGallerySaving(false);
+    }
+  };
+
+  // Quick Add Product Handler
+  const handleQuickAddProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newProdTitle.trim()) {
+      showToast('Please enter a product title', 'error');
+      return;
+    }
+    const slug = newProdTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const product: Product = {
+      id: `prod-${Date.now()}`,
+      title: newProdTitle.trim(),
+      slug,
+      category: newProdCategory.trim() || (newProdType === 'software' ? 'Software' : 'Marketing Tools'),
+      description: newProdDesc.trim() || `${newProdTitle.trim()} official access in Pakistan. Delivered directly via WhatsApp (+92 310 7759274).`,
+      shortDescription: `${newProdTitle.trim()} access in Pakistan with instant activation.`,
+      images: [newProdImage.trim() || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80'],
+      pricePKR: Number(newProdPrice) || 0,
+      currency: 'PKR',
+      tags: [newProdType, 'Pakistan', 'Direct Delivery', newProdTitle.toLowerCase()],
+      features: ['Instant WhatsApp Delivery', 'Manual Easypaisa Verification', 'Genuine Access'],
+      productType: newProdType,
+      deliveryType: 'Direct WhatsApp Delivery',
+      validity: 'Official Subscription Access',
+      featured: true,
+      status: 'published',
+      language: 'English & Urdu',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    try {
+      await saveProduct(product);
+      showToast(`Added "${product.title}" (Rs. ${product.pricePKR.toLocaleString()} PKR) to catalog!`);
+      setNewProdTitle('');
+      setNewProdPrice(999);
+      setNewProdImage('');
+      setNewProdDesc('');
+      setShowQuickAddCard(false);
+      onRefreshData();
+    } catch (err: any) {
+      showToast(`Failed to add product: ${err.message}`, 'error');
     }
   };
 
@@ -1005,6 +1127,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               >
                 <Plus className="w-4 h-4" /> Add Product
               </button>
+              <button
+                onClick={() => setShowQuickAddCard(!showQuickAddCard)}
+                className="bg-emerald-500/20 text-[#B7F34A] border border-[#B7F34A]/40 hover:bg-[#B7F34A]/30 font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 cursor-pointer transition-colors"
+                title="Toggle Quick 1-Click Product Creator"
+              >
+                <Zap className="w-4 h-4 text-[#B7F34A]" /> {showQuickAddCard ? 'Hide Quick Add' : '⚡ Quick Add Product'}
+              </button>
             </div>
           </div>
 
@@ -1055,6 +1184,106 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             </div>
           </div>
 
+          {/* Quick Add Product Card */}
+          {showQuickAddCard && (
+            <div className="bg-[#182B24] border-2 border-[#B7F34A]/50 rounded-2xl p-5 shadow-2xl space-y-4 animate-in fade-in duration-200">
+              <div className="flex items-center justify-between pb-3 border-b border-[#233730]">
+                <div className="flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-[#B7F34A]" />
+                  <h3 className="font-extrabold text-white text-sm">⚡ Quick Add New Product (Live Online in 1-Click)</h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowQuickAddCard(false)}
+                  className="text-slate-400 hover:text-white text-xs font-bold cursor-pointer"
+                >
+                  ✕ Close
+                </button>
+              </div>
+
+              <form onSubmit={handleQuickAddProduct} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                <div className="sm:col-span-2">
+                  <label className="block text-slate-300 font-semibold mb-1">Product Title *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Notion Plus 12 Month Plan"
+                    value={newProdTitle}
+                    onChange={(e) => setNewProdTitle(e.target.value)}
+                    className="w-full bg-[#111C18] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-3 py-2 text-white focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Price (PKR) *</label>
+                  <input
+                    type="number"
+                    required
+                    min="1"
+                    placeholder="e.g. 1443"
+                    value={newProdPrice}
+                    onChange={(e) => setNewProdPrice(Number(e.target.value))}
+                    className="w-full bg-[#111C18] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-3 py-2 text-white font-bold focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Section / Type</label>
+                  <select
+                    value={newProdType}
+                    onChange={(e: any) => setNewProdType(e.target.value)}
+                    className="w-full bg-[#111C18] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-3 py-2 text-white focus:outline-none"
+                  >
+                    <option value="software">Software</option>
+                    <option value="tool">Tools</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-slate-300 font-semibold mb-1">Category</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Marketing Tools, AI Tools"
+                    value={newProdCategory}
+                    onChange={(e) => setNewProdCategory(e.target.value)}
+                    className="w-full bg-[#111C18] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-3 py-2 text-white focus:outline-none"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-slate-300 font-semibold mb-1">Image URL</label>
+                  <input
+                    type="url"
+                    placeholder="https://images.unsplash.com/..."
+                    value={newProdImage}
+                    onChange={(e) => setNewProdImage(e.target.value)}
+                    className="w-full bg-[#111C18] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-3 py-2 text-white focus:outline-none"
+                  />
+                </div>
+
+                <div className="sm:col-span-3">
+                  <label className="block text-slate-300 font-semibold mb-1">Short Description</label>
+                  <input
+                    type="text"
+                    placeholder="Brief summary shown to customers on store..."
+                    value={newProdDesc}
+                    onChange={(e) => setNewProdDesc(e.target.value)}
+                    className="w-full bg-[#111C18] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-3 py-2 text-white focus:outline-none"
+                  />
+                </div>
+
+                <div className="flex items-end">
+                  <button
+                    type="submit"
+                    className="w-full bg-[#B7F34A] hover:bg-[#A3E037] text-[#111C18] font-black text-xs py-2.5 px-4 rounded-xl shadow-lg shadow-[#B7F34A]/25 cursor-pointer flex items-center justify-center gap-1.5 transition-all"
+                  >
+                    <Plus className="w-4 h-4" /> Add & Publish Live
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+
           <div className="bg-[#15231F] border border-[#233730] rounded-2xl overflow-hidden shadow-xl">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
@@ -1094,7 +1323,30 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       </td>
                       <td className="py-3 px-4 text-slate-300 capitalize">{prod.productType}</td>
                       <td className="py-3 px-4 text-slate-300">{prod.category}</td>
-                      <td className="py-3 px-4 font-bold text-white">Rs. {Math.round(prod.pricePKR).toLocaleString()}</td>
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-1.5 min-w-[160px]">
+                          <span className="text-slate-400 font-semibold text-xs">Rs.</span>
+                          <input
+                            type="number"
+                            value={inlinePrices[prod.id] !== undefined ? inlinePrices[prod.id] : Math.round(prod.pricePKR)}
+                            onChange={(e) => setInlinePrices({ ...inlinePrices, [prod.id]: Number(e.target.value) })}
+                            className="w-20 sm:w-24 bg-[#1A2924] border border-[#233730] focus:border-[#B7F34A] rounded-lg px-2 py-1 text-white text-xs font-bold focus:outline-none"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleSaveInlinePrice(prod)}
+                            disabled={savingPriceId === prod.id}
+                            className={`px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer transition-colors shadow-sm ${
+                              savedPriceId === prod.id
+                                ? 'bg-emerald-500 text-black'
+                                : 'bg-[#B7F34A]/20 text-[#B7F34A] border border-[#B7F34A]/30 hover:bg-[#B7F34A] hover:text-[#111C18]'
+                            }`}
+                            title="Save price change to store and live app immediately"
+                          >
+                            {savingPriceId === prod.id ? '...' : savedPriceId === prod.id ? '✓ Saved' : 'Save'}
+                          </button>
+                        </div>
+                      </td>
                       <td className="py-3 px-4">
                         {prod.status === 'published' ? (
                           <button
@@ -1117,6 +1369,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         )}
                       </td>
                       <td className="py-3 px-4 text-right space-x-1.5">
+                        <button
+                          type="button"
+                          onClick={() => handleOpen5ImageManager(prod)}
+                          className="p-1.5 text-slate-300 hover:text-[#B7F34A] hover:bg-[#1A2924] rounded-lg cursor-pointer"
+                          title="5 Showcase Images (Upload / Change Images)"
+                        >
+                          <ImageIcon className="w-4 h-4" />
+                        </button>
                         {prod.status === 'draft' && (
                           <button
                             onClick={() => handleToggleProductStatus(prod.id)}
@@ -1298,6 +1558,140 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     </button>
                   </div>
                 </form>
+              </div>
+            </div>
+          )}
+
+          {/* 5-IMAGE SHOWCASE MANAGER MODAL */}
+          {galleryProduct && (
+            <div className="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-10 flex justify-center items-center">
+              <div 
+                className="fixed inset-0 bg-black/85 backdrop-blur-md"
+                onClick={() => setGalleryProduct(null)}
+              />
+
+              <div className="relative bg-[#15231F] border border-[#233730] rounded-3xl max-w-3xl w-full p-6 sm:p-8 space-y-6 shadow-2xl z-10 max-h-[92vh] overflow-y-auto">
+                <div className="flex items-center justify-between border-b border-[#233730] pb-4">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <ImageIcon className="w-5 h-5 text-[#B7F34A]" />
+                      <h2 className="text-lg font-extrabold text-white">
+                        5 Showcase Images Manager
+                      </h2>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-0.5">
+                      Managing showcase images for: <span className="text-[#B7F34A] font-bold">{galleryProduct.title}</span>
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setGalleryProduct(null)}
+                    className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-[#1A2924] cursor-pointer"
+                  >
+                    <XCircle className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="bg-[#111C18] border border-[#233730] p-3.5 rounded-xl text-xs text-slate-300">
+                  💡 <strong className="text-white">Upload or Paste Your 5 Showcase Images:</strong> You can either paste an image URL or click <span className="text-[#B7F34A] font-bold">"Upload File"</span> to pick screenshots directly from your phone/computer. These images will be displayed immediately to customers on the live product detail page!
+                </div>
+
+                <div className="space-y-4">
+                  {galleryImages.map((imgUrl, idx) => (
+                    <div key={idx} className="bg-[#1A2924] border border-[#233730] rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-4">
+                      <div className="w-24 h-24 rounded-xl bg-black border border-[#233730] overflow-hidden shrink-0 flex items-center justify-center relative">
+                        {imgUrl ? (
+                          <img src={imgUrl} alt={`Slot ${idx + 1}`} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="text-center p-2">
+                            <ImageIcon className="w-6 h-6 text-slate-600 mx-auto mb-1" />
+                            <span className="text-[10px] text-slate-500 font-semibold">Image {idx + 1}</span>
+                          </div>
+                        )}
+                        <span className="absolute top-1 left-1 bg-black/70 text-[#B7F34A] text-[10px] font-black px-1.5 py-0.5 rounded">
+                          #{idx + 1}
+                        </span>
+                      </div>
+
+                      <div className="flex-1 w-full space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold text-white">
+                            {idx === 0 ? 'Image 1 (Main Cover Hero)' : `Showcase Image #${idx + 1}`}
+                          </span>
+                          {imgUrl && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const updated = [...galleryImages];
+                                updated[idx] = '';
+                                setGalleryImages(updated);
+                              }}
+                              className="text-[11px] text-red-400 hover:text-red-300 cursor-pointer"
+                            >
+                              Clear Image
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            placeholder={`Paste image URL for Slot #${idx + 1}...`}
+                            value={imgUrl}
+                            onChange={(e) => {
+                              const updated = [...galleryImages];
+                              updated[idx] = e.target.value;
+                              setGalleryImages(updated);
+                            }}
+                            className="flex-1 bg-[#111C18] border border-[#233730] focus:border-[#B7F34A] rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none"
+                          />
+
+                          <label className="bg-[#233730] hover:bg-[#2C453C] text-slate-200 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer shrink-0 flex items-center gap-1.5 transition-colors">
+                            <Upload className="w-3.5 h-3.5 text-[#B7F34A]" />
+                            <span>Upload File</span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                  const reader = new FileReader();
+                                  reader.onload = () => {
+                                    const result = reader.result as string;
+                                    const updated = [...galleryImages];
+                                    updated[idx] = result;
+                                    setGalleryImages(updated);
+                                  };
+                                  reader.readAsDataURL(file);
+                                }
+                              }}
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#233730]">
+                  <button
+                    type="button"
+                    onClick={() => setGalleryProduct(null)}
+                    className="px-4 py-2 bg-[#1A2924] text-slate-300 hover:text-white rounded-xl text-xs font-semibold cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    disabled={isGallerySaving}
+                    onClick={handleSave5Images}
+                    className="px-6 py-2 bg-[#B7F34A] hover:bg-[#A3E037] text-[#111C18] rounded-xl text-xs font-black cursor-pointer shadow-lg shadow-[#B7F34A]/20 flex items-center gap-1.5 disabled:opacity-50"
+                  >
+                    <Save className="w-4 h-4" />
+                    <span>{isGallerySaving ? 'Saving...' : 'Save 5 Showcase Images'}</span>
+                  </button>
+                </div>
               </div>
             </div>
           )}

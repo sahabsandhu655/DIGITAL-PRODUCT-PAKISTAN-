@@ -30,10 +30,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   const getIcon = (type: string) => {
     switch (type) {
-      case 'ebook': return <BookOpen className="w-4 h-4 text-[#B7F34A]" />;
-      case 'software': return <Cpu className="w-4 h-4 text-[#B7F34A]" />;
-      case 'course': return <GraduationCap className="w-4 h-4 text-[#B7F34A]" />;
-      default: return null;
+      case 'tool': return <Cpu className="w-4 h-4 text-[#25D366]" />;
+      case 'software': default: return <Cpu className="w-4 h-4 text-[#B7F34A]" />;
     }
   };
 
@@ -53,7 +51,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search e-books, tools, and courses..."
+            placeholder="Search software & tools (ChatGPT, Notion, Duolingo, WhatsApp, VPN, CapCut)..."
             className="flex-1 bg-transparent text-white placeholder-slate-400 focus:outline-none text-base"
             autoFocus
           />

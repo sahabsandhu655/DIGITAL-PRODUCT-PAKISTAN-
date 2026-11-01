@@ -347,20 +347,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
         </div>
       </div>
 
-      {/* 18-FEATURE SLIDE GALLERY (For WhatsApp Bulk SMS Sender & Tools with featureSlides) */}
+      {/* FEATURE SHOWCASE GALLERY */}
       {featureSlides.length > 0 && (
         <section className="pt-12 border-t border-[#233730] space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 bg-[#1A2924] border border-[#25D366]/40 text-[#25D366] text-xs font-bold px-3 py-1 rounded-full mb-2">
                 <Layers className="w-3.5 h-3.5" />
-                <span>Complete 18-Feature Visual Tour</span>
+                <span>Feature Visual Showcase ({featureSlides.length} Key Views)</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                Explore All 18 Features with Illustrated Walkthrough
+                Explore Core Capabilities with Illustrated Walkthrough
               </h2>
               <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-                See real tool screenshots and capabilities of the WhatsApp Bulk SMS Sender Software before ordering.
+                See real tool screenshots and capabilities before ordering. All licenses are backed by direct WhatsApp support.
               </p>
             </div>
 
@@ -380,7 +380,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   galleryViewMode === 'grid' ? 'bg-[#B7F34A] text-[#111C18]' : 'text-slate-400 hover:text-white'
                 }`}
               >
-                All 18 Features Grid
+                All {featureSlides.length} Features Grid
               </button>
             </div>
           </div>
@@ -433,11 +433,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </div>
               </div>
 
-              {/* 18 Slide Thumbnail Selector Strip */}
+              {/* Feature Slides Thumbnail Selector Strip */}
               <div className="p-4 bg-[#111C18] border-t border-[#233730]">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-semibold text-slate-400">
-                    Click any slide below to view feature (1 to 18):
+                    Click any view below to inspect (1 to {featureSlides.length}):
                   </span>
                   <a
                     href={whatsappOrderUrl}
@@ -445,12 +445,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     rel="noreferrer"
                     className="text-xs font-bold text-[#25D366] hover:underline flex items-center gap-1"
                   >
-                    <span>Order this tool on WhatsApp</span>
+                    <span>Order on WhatsApp</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
 
-                <div className="grid grid-cols-6 sm:grid-cols-9 md:grid-cols-18 gap-2">
+                <div className="flex flex-wrap gap-2.5">
                   {featureSlides.map((slide, idx) => (
                     <button
                       key={slide.id || idx}

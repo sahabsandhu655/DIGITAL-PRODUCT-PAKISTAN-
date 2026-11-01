@@ -1,118 +1,68 @@
-# Streamlined Software & Tools Marketplace with Direct WhatsApp Business Ordering
+# Implementation Plan — Catalog Expansion, Inline Price Editor, 5-Image Uploader & Netlify Deployment
 
-Refocus the Digital Product Pakistan storefront into two focused sections—Software and Digital Tools—replacing all obsolete sections with the user's verified 8-tool catalog, direct WhatsApp Business ordering buttons, and a multi-image feature showcase for WhatsApp Bulk SMS Sender.
-
-## User Review & Critical Decisions
-
-> [!IMPORTANT]
-> Key choices confirmed from Phase 1 and implementation defaults:
-> - **Primary Ordering Channel**: Direct WhatsApp Business integration configured for official number `+923107759274` (`03107759274`) with pre-composed order messages (tool title, price in PKR, customer prompt).
-> - **Storefront Navigation**: Streamlined exclusively into **Software** and **Tools** (removing separate E-books, Courses, and Blog tabs while preserving the secure Admin Dashboard and Order History).
-> - **Product Catalog Scope**: Replaced with the user's exact requested 8 digital tools with verified PKR pricing, authentic product imagery, and WhatsApp Bulk SMS Sender multi-feature gallery.
+Upgrade Digital Product Pakistan with 5 new requested products, update Microsoft 365 to 1,174 PKR, streamline WhatsApp Bulk SMS Sender to a 5-image customizable gallery with direct Admin upload, implement an inline 1-click Quick Price Editor in the Admin Panel, configure Netlify deployment (`netlify.toml` + DNS guide), and embed high-volume Pakistani search keywords.
 
 ---
 
-### Confirmed Tool Catalog & Verified Pricing
-
-1. **ChatGPT Pro** — `Rs. 4,000 PKR` (Flagship OpenAI reasoning models, Canvas, Advanced Voice, Python code interpreter, custom GPTs)
-2. **Gemini Pro** — `Rs. 999 PKR` (Google multimodal reasoning, 2M token context, workspace integration)
-3. **WhatsApp Bulk SMS Sender Software** — `Rs. 2,499 PKR` (Automated batch messaging, Excel/CSV contact import, personalized tags, anti-ban interval controls, with a dedicated 18-feature visual walkthrough gallery)
-4. **CapCut Pro** — `Rs. 750 PKR` (Single user private access, 4K 60FPS export, AI auto-captions, background cutout)
-5. **CapCut Pro Team Access (6 Members)** — `Rs. 1,499 PKR` (Agency team seat panel for 6 active members, shared brand assets)
-6. **ElevenLabs (1 Lakh / 100K Credits)** — `Rs. 500 PKR` (Ultra-realistic voice cloning, multilingual speech synthesis, commercial license)
-7. **Microsoft 365 (12-Month / 1-Year Subscription)** — `Rs. 999 PKR` (Official Word, Excel, PowerPoint, Outlook + 1TB OneDrive cloud storage)
-8. **Canva Panel (3 Years Warranty / 500 Users)** — `Rs. 2,999 PKR` (Enterprise admin panel managing up to 500 team members with 3-year warranty)
-
----
-
-## 1. Overview & Core Concept
-
-- **What It Does**: Transforms the website into a high-conversion digital tools store tailored for Pakistani remote workers, agencies, video editors, and businesses. Users can browse software subscriptions and utility tools, view real high-resolution screenshots and feature walkthroughs, and place orders directly on WhatsApp Business (`+923107759274`) or through the automated on-site checkout.
-- **Target Audience**: Pakistani freelancers, content creators, digital marketers, agency owners, and students requiring affordable, verified digital licenses with instant WhatsApp support.
-- **Key Value**: Direct one-tap WhatsApp ordering eliminates checkout friction, while transparent PKR pricing and verified feature imagery build immediate trust.
+## 1. Catalog Updates & New Products
+- **Add 5 New Requested Products & Update Pricing**:
+  1. **Notion Plus 12 Month Plan**: Rs. 1,443 PKR (Software — Unlimited blocks, file uploads, AI integrations)
+  2. **Microsoft 365 12 Month Plan**: Rs. 1,174 PKR (Software — Updated from 999 PKR; 1TB OneDrive + Word/Excel/PowerPoint)
+  3. **HMA VPN Private Access**: Rs. 402 PKR (Software — High-speed VPN, privacy protection, multi-location)
+  4. **Outlook Mail Trust Private**: Rs. 107 PKR (Software — Verified clean Outlook account with recovery access)
+  5. **Super Duolingo Private Access**: Rs. 512 PKR (Software — Unlimited hearts, streak repair, ad-free learning)
+- **Retain Existing Core Catalog**:
+  - ChatGPT Pro: Rs. 4,000 PKR
+  - Gemini Pro: Rs. 999 PKR
+  - WhatsApp Bulk SMS Sender Software: Rs. 2,499 PKR
+  - CapCut Pro: Rs. 750 PKR
+  - CapCut Pro Team Access by 6 Members: Rs. 1,499 PKR
+  - ElevenLabs 1 Lakh Credits: Rs. 500 PKR
+  - Canva Panel 3 Years Warranty / 500 Users: Rs. 2,999 PKR
+- **Sync All Stores**: Update `src/data/seedData.ts`, `src/data/liveProducts.json`, Firestore sync, and `/api/products` server backend.
 
 ---
 
-## 2. User Experience & Visual Design
-
-### Key User Flows
-
-1. **Storefront Browsing**:
-   - Customer lands on the storefront featuring a streamlined hero and two crisp category segments: **Software Subscriptions** (AI models, creative suites, cloud storage) and **Digital Tools** (WhatsApp Bulk SMS Sender, Canva Panel).
-   - Each card displays authentic product photography, pricing in tabular bold numbers (`Rs. 2,499`), key features, and two immediate actions: **Order on WhatsApp** (WhatsApp green CTA) and **Quick View / Add to Cart**.
-
-2. **Direct WhatsApp Business Ordering**:
-   - Clicking **"Order on WhatsApp"** on any card or product page automatically launches WhatsApp Business with a pre-formatted message:
-     ```
-     Salam! I want to order *[Product Title]* for *Rs. [Price] PKR* from Digital Product Pakistan. Please share payment and activation details.
-     ```
-   - On the product detail view, clicking anywhere on the tool highlights the official verified contact number `+923107759274` (Muhammad Kumail Ali) with a prominent WhatsApp badge and click-to-chat link.
-
-3. **WhatsApp Bulk SMS Sender Feature Gallery**:
-   - The WhatsApp Bulk SMS Sender product page features an interactive multi-image carousel and gallery with 18 distinct annotated capability slides (Campaign scheduler, number filter, group grabber, anti-ban timing, dynamic Excel variables, instant report logs).
-
-### Visual Identity & Theme
-
-- **Palette**: Deep Forest Charcoal (`#111C18` background, `#15231F` card surface, `#233730` subtle borders) energized with Electric Lime (`#B7F34A`) accents and official WhatsApp Green (`#25D366`) for direct ordering.
-- **Zero-Pill Discipline**: Metadata rendered cleanly without candy-colored pill badges. Clean tabular numbers for PKR currency formatting.
-- **Typography**: Crisp modern sans-serif (`Inter` / `Plus Jakarta Sans`) with heavy display weights (`font-black`) for headers and high-contrast labels.
+## 2. WhatsApp Bulk SMS Sender: 5-Image Custom Admin Uploader
+- Per user clarification ("BAKI 18 IMAGES ME ADD NAHI KROGA JO UPAR WALI 5 IMAGES HE WO ME ADD KERDO GA"):
+  - Streamline WhatsApp Bulk SMS Sender from 18 complex slides down to 5 focused showcase images.
+  - Add a dedicated **5-Image Uploader / Media Manager** in the Admin Dashboard for WhatsApp Bulk SMS Sender (and any product) allowing the owner to upload images directly from their device or paste image URLs with instant preview.
+  - Update `ProductDetailPage.tsx` to render the clean 5-image gallery with high-resolution view, thumbnail selector, and WhatsApp order CTA.
 
 ---
 
-## 3. Key Product Decisions & Trade-Offs
-
-- **WhatsApp Order Priority over Complex Carts**:
-  - *Chosen*: Add prominent direct WhatsApp ordering button (`wa.me/+923107759274?...`) alongside the existing on-site Easypaisa checkout.
-  - *Rationale*: Most Pakistani digital product customers prefer discussing delivery timelines directly on WhatsApp before sending funds. Providing both instant WhatsApp ordering and standard checkout caters to all preferences without removing functionality.
-- **Focused Two-Section Architecture**:
-  - *Chosen*: Consolidate navigation to **Software** and **Tools**, while removing outdated E-Books and Courses links from the header and home layout.
-  - *Rationale*: Directly addresses the user brief to declutter the storefront and focus 100% on high-demand software licenses and digital tools.
-- **Real-Time Catalog Sync**:
-  - *Chosen*: Update `src/data/seedData.ts`, `liveProducts.json`, and the `/api/gemini/chat` inventory simultaneously.
-  - *Rationale*: Ensures the Gemini AI chatbot always knows the exact 8 tools and their live prices without discrepancies.
+## 3. Inline 1-Click Price Editor & Simplified "Add Product" in Admin Panel
+- **Quick Inline Price Editor**:
+  - In `AdminDashboard.tsx`, add an editable price column with an inline input and instant "Save" checkmark.
+  - Owner can change any price (e.g., from 999 to 1174) in 1 click without opening a full edit modal.
+  - Automatically syncs to Firestore, local JSON, and alerts customer view in real-time.
+- **Frictionless "Add New Product" Quick Form**:
+  - Simplified 1-step form: Title, Category (Software or Tool), Price (PKR), Image URL / File Upload, Description, and WhatsApp Delivery details.
 
 ---
 
-## 4. Technical Architecture & Data Strategy
+## 4. Netlify Deployment Setup & Domain Reachability Fix
+- For user's issue ("THE APP DOES NOT OPEN FROM VERCEL ... HAM IS APP KO NETLIFY ME DEPLOY KER DE GE"):
+  - Create `netlify.toml` with build commands (`npm run build`), publish directory (`dist`), and SPA single-page redirect rules (`/* -> /index.html 200`).
+  - Create `_redirects` in `public/` to ensure 100% reliable deep routing on both Netlify and Vercel.
+  - Add a **Netlify & Vercel Custom Domain Helper** tab in `AdminDashboard.tsx` giving the exact DNS records to enter into their domain registrar for `digitalproductpakistan.net`:
+    - Netlify DNS: CNAME `digitalproductpakistan.net` -> your-site.netlify.app or A record `75.2.60.5`
+    - Vercel DNS: A record `@` -> `76.76.21.21`, CNAME `www` -> `cname.vercel-dns.com`
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Storefront UI (React)                    │
-│  ┌────────────────────────┐     ┌────────────────────────┐  │
-│  │     Software Tab       │     │       Tools Tab        │  │
-│  └───────────┬────────────┘     └───────────┬────────────┘  │
-│              └───────────────┬──────────────┘               │
-│                              ▼                              │
-│              ┌───────────────────────────────┐              │
-│              │     ProductCard Component     │              │
-│              │ • Authentic Product Image     │              │
-│              │ • Live Price in PKR           │              │
-│              │ • "Order on WhatsApp" (Direct)│              │
-│              │ • "Details / Add to Cart"     │              │
-│              └───────────────┬───────────────┘              │
-└──────────────────────────────┼──────────────────────────────┘
-                               │
-       ┌───────────────────────┴───────────────────────┐
-       ▼                                               ▼
-┌──────────────────────────────┐       ┌──────────────────────────────┐
-│  WhatsApp Business Redirect  │       │  Store Service & Live Sync   │
-│  wa.me/923107759274?text=... │       │  • /api/products (Server)    │
-│  Pre-filled order query      │       │  • Firestore (ai-studio)     │
-│                              │       │  • Gemini Real-Time Chatbot  │
-└──────────────────────────────┘       └──────────────────────────────┘
-```
+---
 
-### Component & File Workflows
+## 5. High-Impact Pakistani SEO & Search Keywords
+- **Target Keywords Integrated**:
+  - In `index.html` (`<meta name="keywords">`, `<meta name="description">`):
+    `"digital product pakistan, chatgpt pro price in pakistan, gemini pro buy pakistan, whatsapp bulk sms sender software, capcut pro pakistan, elevenlabs credits pakistan, notion plus 12 month plan pakistan, microsoft 365 1tb onedrive pakistan, hma vpn buy easypaisa, outlook mail trust pakistan, super duolingo cheap pakistan, canva pro panel reseller, buy software with easypaisa, digital tools pakistan"`
+  - In `src/components/SearchModal.tsx`, `HomePage.tsx`, and `ProductCard.tsx`: Index all alternative spelling keywords so users searching for "chatgpt", "capcut", "notion", "duolingo", "vpn", "office 365", "bulk whatsapp" immediately find the exact tool.
+- **Gemini Chatbot Synchronization**:
+  - Update system prompt in `vite.config.ts` with all 12 products, exact live PKR prices, and immediate answers when users ask about Notion Plus, Microsoft 365 (1,174 PKR), HMA VPN, Outlook Mail, or Super Duolingo.
 
-1. **`src/data/seedData.ts` & `src/data/liveProducts.json`**:
-   - Seed the exact 8 items with high-resolution Google/Unsplash tech assets, pricing, and specs.
-   - Configure WhatsApp Bulk SMS Sender with an array of annotated feature screenshots.
-2. **`src/components/Navbar.tsx`**:
-   - Simplify links to: `Home`, `Software`, `Tools`, `My Orders`, `Admin`.
-3. **`src/components/ProductCard.tsx` & `src/pages/ProductDetailPage.tsx`**:
-   - Add the dedicated **"Order on WhatsApp"** button linking directly to `wa.me/923107759274`.
-   - Prominently feature the seller WhatsApp number with copy-to-clipboard and click-to-call actions.
-4. **`src/pages/HomePage.tsx`**:
-   - Remove E-book and course shelves. Present the two dedicated sections: **Software Subscriptions** and **Digital Tools**.
-5. **`vite.config.ts` (`/api/gemini/chat`)**:
-   - Update prompt grounding to reflect the 8 new software/tools and official contact number.
+---
+
+## Verification Plan
+1. **Compilation & Linting**: Run `compile_applet` and `lint_applet` to ensure TypeScript types and build succeed.
+2. **Catalog & API Check**: Test `/api/products` via curl to verify all 12 products and exact PKR prices are loaded.
+3. **Chatbot Test**: Test `/api/gemini/chat` to ensure the AI knows the new products (Notion Plus 1443 PKR, Microsoft 365 1174 PKR, HMA VPN 402 PKR, Outlook 107 PKR, Super Duolingo 512 PKR).
+4. **Dev Server Restart**: Restart dev server and verify live preview.
