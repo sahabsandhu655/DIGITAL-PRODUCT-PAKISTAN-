@@ -192,21 +192,22 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
 
   return (
     <>
-      {/* FLOATING LAUNCHER BUTTON */}
+      {/* FLOATING LAUNCHER BUTTON - Compact & Non-Obstructive on Mobile */}
       {!isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2">
           <button
             onClick={() => setIsOpen(true)}
             aria-label="Open AI Assistant"
-            className="group relative flex items-center gap-2.5 bg-[#B7F34A] hover:bg-[#a6e03f] text-[#111C18] font-black text-sm px-4 sm:px-5 py-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer border border-[#c4f866]"
+            className="group relative flex items-center justify-center gap-2 bg-[#B7F34A] hover:bg-[#a6e03f] text-[#111C18] font-black text-xs sm:text-sm w-11 h-11 sm:w-auto sm:h-auto sm:px-4 sm:py-2.5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer border border-[#c4f866]"
+            title="Ask DPP AI Assistant about availability and prices"
           >
-            <div className="relative">
-              <Sparkles className="w-5 h-5 text-[#111C18] animate-pulse" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-600 rounded-full animate-ping" />
+            <div className="relative shrink-0">
+              <Sparkles className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#111C18]" />
+              <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-600 rounded-full animate-ping" />
             </div>
-            <span>Ask DPP AI</span>
+            <span className="hidden sm:inline">Ask DPP AI</span>
             {isAdmin && (
-              <span className="bg-[#111C18] text-[#B7F34A] text-[10px] font-extrabold px-1.5 py-0.5 rounded-full uppercase ml-1">
+              <span className="hidden sm:inline bg-[#111C18] text-[#B7F34A] text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase ml-0.5">
                 Admin
               </span>
             )}

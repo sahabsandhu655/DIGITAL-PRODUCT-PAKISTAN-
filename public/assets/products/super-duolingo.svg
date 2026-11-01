@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="duoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09140B" />
+      <stop offset="50%" stop-color="#16381D" />
+      <stop offset="100%" stop-color="#050C07" />
+    </linearGradient>
+    <linearGradient id="duoGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#58CC02" />
+      <stop offset="100%" stop-color="#46A302" />
+    </linearGradient>
+    <linearGradient id="superStreak" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF4B4B" />
+      <stop offset="50%" stop-color="#FF9600" />
+      <stop offset="100%" stop-color="#FFD900" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#duoBg)" />
+  <circle cx="400" cy="190" r="170" fill="#58CC02" opacity="0.1" filter="blur(40px)" />
+
+  <!-- Duolingo Duo Owl Face & Super Streak Graphic -->
+  <g transform="translate(400, 185) scale(1.15)">
+    <!-- Base Icon Box -->
+    <rect x="-70" y="-70" width="140" height="140" rx="36" fill="#112B16" stroke="#58CC02" stroke-width="3" />
+    
+    <!-- Duo Owl Body -->
+    <circle cx="0" cy="5" r="48" fill="url(#duoGreen)" />
+    
+    <!-- Big Owl Eyes -->
+    <circle cx="-18" cy="-5" r="16" fill="#FFFFFF" />
+    <circle cx="18" cy="-5" r="16" fill="#FFFFFF" />
+    <circle cx="-14" cy="-5" r="8" fill="#1C3820" />
+    <circle cx="14" cy="-5" r="8" fill="#1C3820" />
+    <circle cx="-12" cy="-8" r="3" fill="#FFFFFF" />
+    <circle cx="16" cy="-8" r="3" fill="#FFFFFF" />
+    
+    <!-- Orange Beak -->
+    <path d="M -8 10 L 8 10 L 0 22 Z" fill="#FF9600" />
+
+    <!-- Super Badge with Flame -->
+    <rect x="-45" y="42" width="90" height="22" rx="11" fill="url(#superStreak)" />
+    <text x="0" y="57" font-family="sans-serif" font-size="11" font-weight="900" fill="#FFFFFF" text-anchor="middle">SUPER 🔥</text>
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">
+    Super <tspan fill="#58CC02">Duolingo</tspan> Private
+  </text>
+  
+  <text x="400" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="500" fill="#94A3B8" text-anchor="middle">
+    Unlimited Hearts • Zero Ads • Mastery Quizzes & Full Offline Practice
+  </text>
+
+  <!-- Badges -->
+  <g transform="translate(400, 425)">
+    <rect x="-190" y="-18" width="115" height="32" rx="16" fill="#15361D" stroke="#58CC02" stroke-width="1.5" />
+    <text x="-132" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#58CC02" text-anchor="middle">UNLIMITED HEARTS</text>
+    
+    <rect x="-60" y="-18" width="125" height="32" rx="16" fill="#15361D" stroke="#58CC02" stroke-width="1.5" />
+    <text x="2" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">512 PKR ONLY</text>
+    
+    <rect x="80" y="-18" width="115" height="32" rx="16" fill="#15361D" stroke="#58CC02" stroke-width="1.5" />
+    <text x="137" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#58CC02" text-anchor="middle">AD-FREE LEARNING</text>
+  </g>
+</svg>

@@ -57,6 +57,14 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button 
+                  onClick={() => onNavigate('articles')} 
+                  className="hover:text-[#B7F34A] transition-colors flex items-center gap-1.5 cursor-pointer"
+                >
+                  <BookOpen className="w-3.5 h-3.5 text-[#B7F34A]" /> Articles & SEO Guides (32)
+                </button>
+              </li>
+              <li>
+                <button 
                   onClick={() => onNavigate('orders')} 
                   className="hover:text-[#B7F34A] transition-colors font-medium text-white flex items-center gap-1.5 cursor-pointer"
                 >

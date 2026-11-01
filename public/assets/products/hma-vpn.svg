@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hmaBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1017" />
+      <stop offset="50%" stop-color="#1A2033" />
+      <stop offset="100%" stop-color="#08090D" />
+    </linearGradient>
+    <linearGradient id="hmaYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD00" />
+      <stop offset="100%" stop-color="#FF9900" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#hmaBg)" />
+  <circle cx="400" cy="190" r="170" fill="#FFDD00" opacity="0.08" filter="blur(40px)" />
+
+  <!-- HMA Security Shield with Lock -->
+  <g transform="translate(400, 185) scale(1.1)">
+    <!-- Base Shield -->
+    <path d="M 0 -70 L 60 -45 L 60 15 C 60 55 0 80 0 80 C 0 80 -60 55 -60 15 L -60 -45 Z" fill="#141A29" stroke="url(#hmaYellow)" stroke-width="3" />
+    
+    <!-- Lock inside Shield -->
+    <rect x="-22" y="-10" width="44" height="36" rx="8" fill="url(#hmaYellow)" />
+    <path d="M -14 -10 L -14 -24 C -14 -34 14 -34 14 -24 L 14 -10" fill="none" stroke="url(#hmaYellow)" stroke-width="5" stroke-linecap="round" />
+    <circle cx="0" cy="6" r="4" fill="#141A29" />
+    <line x1="0" y1="8" x2="0" y2="16" stroke="#141A29" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- VPN Badge -->
+    <rect x="-35" y="45" width="70" height="20" rx="10" fill="url(#hmaYellow)" />
+    <text x="0" y="59" font-family="sans-serif" font-size="10" font-weight="900" fill="#08090D" text-anchor="middle">HMA VPN</text>
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">
+    HMA VPN <tspan fill="#FFDD00">Private Access</tspan>
+  </text>
+  
+  <text x="400" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="500" fill="#94A3B8" text-anchor="middle">
+    290+ Countries • High-Speed Streaming • Strict No-Logs Policy
+  </text>
+
+  <!-- Badges -->
+  <g transform="translate(400, 425)">
+    <rect x="-190" y="-18" width="115" height="32" rx="16" fill="#1B2135" stroke="#FFDD00" stroke-width="1.5" />
+    <text x="-132" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#FFDD00" text-anchor="middle">290+ COUNTRIES</text>
+    
+    <rect x="-60" y="-18" width="125" height="32" rx="16" fill="#1B2135" stroke="#FFDD00" stroke-width="1.5" />
+    <text x="2" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">402 PKR ONLY</text>
+    
+    <rect x="80" y="-18" width="115" height="32" rx="16" fill="#1B2135" stroke="#FFDD00" stroke-width="1.5" />
+    <text x="137" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#FFDD00" text-anchor="middle">PRIVATE CREDENTIALS</text>
+  </g>
+</svg>

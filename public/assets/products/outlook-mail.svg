@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="outlookBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07111D" />
+      <stop offset="50%" stop-color="#112942" />
+      <stop offset="100%" stop-color="#040A12" />
+    </linearGradient>
+    <linearGradient id="outlookBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0078D4" />
+      <stop offset="100%" stop-color="#004C87" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#outlookBg)" />
+  <circle cx="400" cy="190" r="170" fill="#0078D4" opacity="0.1" filter="blur(40px)" />
+
+  <!-- Microsoft Outlook Envelope & 'O' Icon -->
+  <g transform="translate(400, 185) scale(1.15)">
+    <!-- Base Icon Box -->
+    <rect x="-70" y="-55" width="140" height="110" rx="24" fill="#0D2136" stroke="#0078D4" stroke-width="2.5" />
+    
+    <!-- Envelope Flap & Lines -->
+    <path d="M -60 -45 L 0 5 L 60 -45" fill="none" stroke="#0078D4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    
+    <!-- Outlook 'O' Shield -->
+    <circle cx="0" cy="5" r="28" fill="url(#outlookBlue)" />
+    <text x="0" y="15" font-family="-apple-system, sans-serif" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">O</text>
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">
+    Outlook Mail <tspan fill="#0078D4">Trust Private</tspan>
+  </text>
+  
+  <text x="400" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="500" fill="#94A3B8" text-anchor="middle">
+    High-Reputation Business Email • Zero Spam Penalty • Dedicated Private Access
+  </text>
+
+  <!-- Badges -->
+  <g transform="translate(400, 425)">
+    <rect x="-190" y="-18" width="115" height="32" rx="16" fill="#112740" stroke="#0078D4" stroke-width="1.5" />
+    <text x="-132" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#0078D4" text-anchor="middle">HIGH TRUST SCORE</text>
+    
+    <rect x="-60" y="-18" width="125" height="32" rx="16" fill="#112740" stroke="#0078D4" stroke-width="1.5" />
+    <text x="2" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">107 PKR ONLY</text>
+    
+    <rect x="80" y="-18" width="115" height="32" rx="16" fill="#112740" stroke="#0078D4" stroke-width="1.5" />
+    <text x="137" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#0078D4" text-anchor="middle">VERIFIED INBOX</text>
+  </g>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="capcutTeamBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080F1E" />
+      <stop offset="50%" stop-color="#122B4D" />
+      <stop offset="100%" stop-color="#050A14" />
+    </linearGradient>
+    <linearGradient id="teamCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF" />
+      <stop offset="100%" stop-color="#7B2CBF" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#capcutTeamBg)" />
+  <circle cx="400" cy="190" r="170" fill="#7B2CBF" opacity="0.09" filter="blur(40px)" />
+
+  <!-- CapCut Pro Team Geometry with 6 Members -->
+  <g transform="translate(400, 185) scale(1.05)">
+    <!-- Base Icon Box -->
+    <rect x="-80" y="-70" width="160" height="140" rx="36" fill="#0E1D33" stroke="url(#teamCyan)" stroke-width="3" />
+    
+    <!-- Team Member Avatars Indicator -->
+    <g transform="translate(0, -10)">
+      <circle cx="-40" cy="-15" r="14" fill="#00F0FF" />
+      <circle cx="0" cy="-22" r="16" fill="#7B2CBF" />
+      <circle cx="40" cy="-15" r="14" fill="#00F0FF" />
+      
+      <circle cx="-25" cy="15" r="13" fill="#3A86FF" />
+      <circle cx="25" cy="15" r="13" fill="#3A86FF" />
+      <circle cx="0" cy="22" r="12" fill="#B7F34A" />
+    </g>
+
+    <!-- Team Pro Badge -->
+    <rect x="-60" y="42" width="120" height="24" rx="12" fill="#00F0FF" />
+    <text x="0" y="58" font-family="sans-serif" font-size="11" font-weight="900" fill="#050A14" text-anchor="middle">TEAM • 6 SEATS</text>
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">
+    CapCut Pro <tspan fill="#00F0FF">Team Access</tspan> (6 Members)
+  </text>
+  
+  <text x="400" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" fill="#94A3B8" text-anchor="middle">
+    Full Agency Video Production Suite • 6 Individual Simultaneous Logins
+  </text>
+
+  <!-- Badges -->
+  <g transform="translate(400, 425)">
+    <rect x="-190" y="-18" width="115" height="32" rx="16" fill="#12243F" stroke="#00F0FF" stroke-width="1.5" />
+    <text x="-132" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#00F0FF" text-anchor="middle">6 MEMBER ACCESS</text>
+    
+    <rect x="-60" y="-18" width="130" height="32" rx="16" fill="#12243F" stroke="#00F0FF" stroke-width="1.5" />
+    <text x="5" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">1,499 PKR / MONTH</text>
+    
+    <rect x="85" y="-18" width="115" height="32" rx="16" fill="#12243F" stroke="#00F0FF" stroke-width="1.5" />
+    <text x="142" y="3" font-family="sans-serif" font-size="12" font-weight="700" fill="#7B2CBF" text-anchor="middle">AGENCY EDITION</text>
+  </g>
+</svg>

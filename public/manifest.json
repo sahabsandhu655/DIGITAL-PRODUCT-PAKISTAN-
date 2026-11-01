@@ -1,0 +1,17 @@
+{
+  "name": "Digital Product Pakistan",
+  "short_name": "DP Pakistan",
+  "description": "Official Software Subscriptions & Tools in Pakistan with direct WhatsApp ordering and manual Easypaisa verification.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111C18",
+  "theme_color": "#111C18",
+  "icons": [
+    {
+      "src": "/assets/products/gemini-pro.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

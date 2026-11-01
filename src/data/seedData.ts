@@ -1,3 +1,4 @@
+import { COMPREHENSIVE_BLOG_ARTICLES } from './blogArticles';
 import { Product, BlogPost, StoreSettings } from '../types';
 
 export const INITIAL_STORE_SETTINGS: StoreSettings = {
@@ -42,10 +43,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'AI Software',
     description: `Get official ChatGPT Pro subscription access in Pakistan. Unlock OpenAI's flagship GPT-4o architecture, high-speed priority server allocation during peak hours, unlimited DALL-E 3 image generation, advanced code canvas, and deep analytical capabilities.\n\n• Dedicated priority access with zero rate bottlenecks.\n• Instant setup guidance and direct WhatsApp support in Pakistan.\n• Pay conveniently via Easypaisa or order directly on WhatsApp Business.`,
     shortDescription: 'Official ChatGPT Pro access featuring GPT-4o, advanced reasoning models, priority speeds, and unlimited generation.',
-    images: [
-      'https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/chatgpt-pro.svg'],
     pricePKR: 4000,
     compareAtPricePKR: 6000,
     currency: 'PKR',
@@ -76,10 +74,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'AI Software',
     description: `Supercharge your productivity with Google Gemini Pro. Harness Google's state-of-the-art multimodal AI model equipped with an enormous 1 Million+ token context window, deep document understanding, creative synthesis, and direct Google Workspace integration at an affordable PKR price.\n\n• Seamless document, PDF, and spreadsheet analysis.\n• Ultra-fast multimodal reasoning and code generation.\n• Order directly via WhatsApp (+923107759274) or pay via Easypaisa.`,
     shortDescription: 'Google Gemini Pro subscription with 1M+ token context window, multimodal reasoning, and workspace integration.',
-    images: [
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/gemini-pro.svg'],
     pricePKR: 999,
     compareAtPricePKR: 2000,
     currency: 'PKR',
@@ -110,13 +105,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Marketing Tools',
     description: `Pakistan's top-rated WhatsApp Marketing Software for Windows PC. Connect directly with thousands of potential customers on WhatsApp with zero per-message cost.\n\nBuilt for online stores, digital agencies, freelancers, educational institutes, and real estate consultants across Pakistan. Features an anti-ban intelligent delay algorithm, Excel/CSV contact list importer, group participant extractor, dynamic personalized tags, automated keyword auto-replies, and rich media message dispatch.\n\n• One-time payment of Rs. 2,499 PKR.\n• Full Windows 10 & 11 compatibility.\n• Video installation guide and WhatsApp activation.\n• Includes customizable 5-picture showcase gallery.`,
     shortDescription: 'Complete Windows bulk WhatsApp marketing software with Excel contact import, anti-ban delay, group extractor, and auto-reply bot.',
-    images: [
-      'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/whatsapp-bulk-sender.svg'],
     pricePKR: 2499,
     compareAtPricePKR: 5000,
     currency: 'PKR',
@@ -181,10 +170,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Video Editing Software',
     description: `Upgrade your video editing with official CapCut Pro individual account access in Pakistan. Unlock all VIP transitions, auto-velocity effects, AI auto-captions, vocal isolators, body effects, chroma key, and 4K 60FPS high-bitrate export without watermarks.\n\n• Works seamlessly across Windows PC, iPhone, iPad, and Android.\n• Instant setup credentials and direct WhatsApp delivery.\n• Pay easily via Easypaisa or order directly on WhatsApp.`,
     shortDescription: 'CapCut Pro individual account access with all VIP transitions, AI auto-captions, 4K 60fps export, and cloud storage.',
-    images: [
-      'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/capcut-pro.svg'],
     pricePKR: 750,
     compareAtPricePKR: 1500,
     currency: 'PKR',
@@ -283,10 +269,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Office & Productivity Software',
     description: `Equip your devices with genuine Microsoft 365 apps for a full 12 months (1 Year). Includes official desktop versions of Word, Excel, PowerPoint, Outlook, OneNote, along with 1TB (1000 GB) of secure cloud backup storage on Microsoft OneDrive.\n\n• Works across up to 5 devices simultaneously (PC, Mac, iPhone, Android).\n• Genuine subscription account with self password reset capability.\n• Instant delivery on WhatsApp (+923107759274).`,
     shortDescription: 'Full 12-month Microsoft 365 subscription with 1TB OneDrive cloud storage, Word, Excel, PowerPoint, and 5 devices access.',
-    images: [
-      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/microsoft-365.svg'],
     pricePKR: 1174,
     compareAtPricePKR: 2800,
     currency: 'PKR',
@@ -317,10 +300,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Design & Admin Tools',
     description: `Become a Canva administrator with your own dedicated Canva Panel capable of hosting, inviting, and managing up to 500 users. Backed by a full 3-year warranty from Digital Product Pakistan.\n\nManage your agency team, studio designers, or resell Canva Pro seats to your own clients for high-margin recurring income in Pakistan. Full admin dashboard allows one-click user invites, seat reassignment, and team branding oversight.\n\n• Admin panel with 500 user seat capacity.\n• 3-Year replacement warranty.\n• Order directly via WhatsApp (+923107759274) or checkout via Easypaisa.`,
     shortDescription: 'Official Canva Administrator Panel with 3 years warranty and 500 member capacity. Resell seats or manage your entire creative team.',
-    images: [
-      'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/canva-panel.svg'],
     pricePKR: 2999,
     compareAtPricePKR: 7500,
     currency: 'PKR',
@@ -351,10 +331,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Productivity Software',
     description: `Upgrade your workspace with official Notion Plus for 12 months (1 Full Year). Enjoy unlimited blocks, unlimited file uploads, 30-day page version history, and invite up to 100 guests to collaborate on your databases, projects, and notes.\n\n• Perfect for freelancers, university students, and growing startup teams.\n• Genuine private workspace activation.\n• Delivered directly to your WhatsApp (+92 310 7759274) with complete setup guidance.`,
     shortDescription: 'Official 12-month Notion Plus subscription with unlimited blocks, unlimited file uploads, and collaborative team workspace.',
-    images: [
-      'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/notion-plus.svg'],
     pricePKR: 1443,
     compareAtPricePKR: 3500,
     currency: 'PKR',
@@ -385,10 +362,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Security & VPN Software',
     description: `Browse securely and bypass regional restrictions with HideMyAss (HMA) VPN Private Access. Access lightning-fast servers in over 190+ countries with military-grade 256-bit AES encryption, IP shuffling, and strict zero-logging protection.\n\n• Works seamlessly across Windows, Mac, iOS, Android, and Linux.\n• High-speed streaming and private browsing with dedicated speeds.\n• Instant setup credentials dispatched via WhatsApp.`,
     shortDescription: 'High-speed HMA VPN private access with 190+ country servers, AES-256 encryption, and IP shuffle protection.',
-    images: [
-      'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/hma-vpn.svg'],
     pricePKR: 402,
     compareAtPricePKR: 1000,
     currency: 'PKR',
@@ -419,10 +393,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Account & Email Software',
     description: `Get a verified, clean, and trusted private Microsoft Outlook email account with full recovery access. Ideal for freelancing profiles, business registrations, agency client outreach, or separating personal and professional workflows.\n\n• Clean IP creation with trusted reputation history.\n• Delivered with full credentials (email, password, recovery key).\n• Immediate delivery on WhatsApp (+92 310 7759274).`,
     shortDescription: 'Verified clean private Microsoft Outlook account with trusted sender reputation and full recovery credentials.',
-    images: [
-      'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/outlook-mail.svg'],
     pricePKR: 107,
     compareAtPricePKR: 300,
     currency: 'PKR',
@@ -453,10 +424,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     category: 'Learning & Language Software',
     description: `Master any language without interruptions using Super Duolingo Private Access. Enjoy unlimited hearts, practice mistakes in the personalized review hub, test out of lessons, repair streaks, and learn with completely ad-free focus.\n\n• Learn English, German, French, Spanish, Arabic, Turkish, and 40+ languages.\n• Fast activation directly on your mobile device or desktop.\n• Order directly via WhatsApp (+92 310 7759274) or pay via Easypaisa.`,
     shortDescription: 'Super Duolingo private access with unlimited hearts, ad-free lessons, personalized practice hub, and streak freeze.',
-    images: [
-      'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80'
-    ],
+    images: ['/assets/products/super-duolingo.svg'],
     pricePKR: 512,
     compareAtPricePKR: 1200,
     currency: 'PKR',
@@ -480,59 +448,4 @@ export const INITIAL_PRODUCTS: Product[] = [
   }
 ];
 
-export const INITIAL_BLOG_POSTS: BlogPost[] = [
-  {
-    id: 'blog-01',
-    title: 'How to Choose Between ChatGPT Pro and Gemini Pro in Pakistan',
-    slug: 'chatgpt-pro-vs-gemini-pro-pakistan',
-    excerpt: 'A comprehensive comparison of ChatGPT Pro and Google Gemini Pro for Pakistani freelancers, developers, and students.',
-    content: `When selecting an AI subscription in Pakistan, knowing the unique strengths of ChatGPT Pro versus Gemini Pro helps you maximize productivity and ROI.
-
-### ChatGPT Pro: Deep Reasoning & Coding Canvas
-ChatGPT Pro powered by GPT-4o excels in programming tasks, creative generation, structured agent canvases, and DALL-E 3 image generation. It remains the gold standard for software engineers and prompt engineers.
-
-### Gemini Pro: 1M Context Window & Workspace Integration
-Google Gemini Pro provides an enormous 1 Million token context window, allowing you to upload full books, entire repositories, or corporate financial records in a single prompt.
-
-### Direct WhatsApp Ordering
-At Digital Product Pakistan, both tools are available with instant PKR payment via Easypaisa and direct WhatsApp delivery.`,
-    coverImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80',
-    imageAlt: 'AI software and intelligence concept',
-    author: 'DPP Tech Team',
-    category: 'Software Guides',
-    tags: ['AI', 'ChatGPT', 'Gemini', 'Productivity'],
-    status: 'published',
-    publishedAt: new Date().toISOString(),
-    seoTitle: 'ChatGPT Pro vs Gemini Pro Guide — Digital Product Pakistan',
-    metaDescription: 'Detailed comparison between ChatGPT Pro and Gemini Pro for digital professionals in Pakistan.',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 'blog-02',
-    title: 'Why WhatsApp Marketing Drives Higher Conversion in Pakistan Than Email',
-    slug: 'whatsapp-marketing-guide-pakistan',
-    excerpt: 'How businesses in Pakistan use WhatsApp Bulk SMS Sender Software to achieve 98% open rates and immediate sales.',
-    content: `In Pakistan, email marketing open rates for retail and services average below 15%, whereas WhatsApp messages achieve open rates exceeding 95% within minutes.
-
-### 1. Direct Engagement
-Pakistani consumers check WhatsApp continuously. Broadcast notifications with dynamic {Name} variables create instant personal connections.
-
-### 2. Multi-Media & Catalogs
-Sending PDF catalogs, video demos, and payment details directly inside the chat eliminates friction and accelerates transactions.
-
-### 3. Anti-Ban Safety
-Using smart randomized delay timers and verified lists protects sender accounts while scaling campaigns effectively.`,
-    coverImage: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&auto=format&fit=crop&q=80',
-    imageAlt: 'WhatsApp bulk marketing on mobile and PC',
-    author: 'Marketing Desk',
-    category: 'Tools',
-    tags: ['WhatsApp Marketing', 'Bulk SMS', 'Sales', 'Tools'],
-    status: 'published',
-    publishedAt: new Date().toISOString(),
-    seoTitle: 'WhatsApp Marketing Guide for Pakistani Businesses — Digital Product Pakistan',
-    metaDescription: 'Discover why bulk WhatsApp marketing outconverts email in Pakistan and how to leverage automated tools safely.',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  }
-];
+export const INITIAL_BLOG_POSTS: BlogPost[] = COMPREHENSIVE_BLOG_ARTICLES;

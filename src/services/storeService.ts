@@ -47,28 +47,43 @@ function saveToStorage(key: string, data: any) {
 }
 
 // Cache in-memory with resilient localStorage backing
+// Cache in-memory with resilient localStorage backing and SVG image migration
 function getInitialProductsWithDraftMigration(): Product[] {
   const loaded = loadFromStorage('dpp_custom_products', [...INITIAL_PRODUCTS]);
-  // If stored products contain obsolete ebook or course products, reset to initial target products
   const hasObsolete = loaded.some(p => p.id.startsWith('prod-ebook-') || p.id.startsWith('prod-course-'));
-  if (hasObsolete || loaded.length === 0) {
+  // Check if any product has an outdated unsplash image or missing modern SVG
+  const hasOldImages = loaded.some(p => p.images && p.images[0] && p.images[0].includes('unsplash.com'));
+  if (hasObsolete || hasOldImages || loaded.length < INITIAL_PRODUCTS.length) {
     saveToStorage('dpp_custom_products', INITIAL_PRODUCTS);
     return [...INITIAL_PRODUCTS];
   }
   return loaded;
 }
 
+function getInitialBlogsWithMigration(): BlogPost[] {
+  const loaded = loadFromStorage('dpp_custom_blogs', [...INITIAL_BLOG_POSTS]);
+  if (!loaded || loaded.length < INITIAL_BLOG_POSTS.length) {
+    saveToStorage('dpp_custom_blogs', INITIAL_BLOG_POSTS);
+    return [...INITIAL_BLOG_POSTS];
+  }
+  return loaded;
+}
+
 let localProducts: Product[] = getInitialProductsWithDraftMigration();
-let localBlogs: BlogPost[] = loadFromStorage('dpp_custom_blogs', [...INITIAL_BLOG_POSTS]);
+let localBlogs: BlogPost[] = getInitialBlogsWithMigration();
 let localSettings: StoreSettings = loadFromStorage('dpp_custom_settings', { ...INITIAL_STORE_SETTINGS });
 let localOrders: Order[] = loadFromStorage('dpp_submitted_orders', []);
 
-// PRODUCTS
+// PRODUCTS (Non-blocking with 2.5s timeout race for instant mobile speeds)
 export async function getProducts(includeDrafts = false): Promise<Product[]> {
-  // 1. Try Firestore primary source of truth
+  // 1. Try Firestore with a 2.5s timeout race so mobile never hangs
   try {
     const colRef = collection(db, PRODUCTS_COLLECTION);
-    const snap = await getDocs(colRef);
+    const snapPromise = getDocs(colRef);
+    const timeoutPromise = new Promise<never>((_, reject) => 
+      setTimeout(() => reject(new Error('Firestore timeout')), 2500)
+    );
+    const snap = await Promise.race([snapPromise, timeoutPromise]);
     if (!snap.empty) {
       const items: Product[] = [];
       snap.forEach(d => {
@@ -79,7 +94,6 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
       // Check if Firestore still has obsolete items
       const hasObsolete = items.some(p => p.id.startsWith('prod-ebook-') || p.id.startsWith('prod-course-'));
       if (hasObsolete) {
-        // Asynchronously cleanup obsolete docs and seed the 8 tools in Firestore
         (async () => {
           for (const item of items) {
             if (item.id.startsWith('prod-ebook-') || item.id.startsWith('prod-course-')) {
@@ -107,7 +121,7 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
 
       return includeDrafts ? items : items.filter(p => p.status === 'published');
     } else {
-      // If Firestore is empty, seed it with the 8 products
+      // If Firestore is empty, seed it with the INITIAL_PRODUCTS in background
       (async () => {
         for (const p of INITIAL_PRODUCTS) {
           try { await setDoc(doc(db, PRODUCTS_COLLECTION, p.id), p); } catch (e) {}

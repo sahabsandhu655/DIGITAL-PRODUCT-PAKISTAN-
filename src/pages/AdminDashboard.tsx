@@ -44,7 +44,7 @@ import {
   getOrders, 
   updateOrder 
 } from '../services/storeService';
-import { VercelDomainManager } from '../components/VercelDomainManager';
+import { NetlifyDeployManager } from '../components/NetlifyDeployManager';
 import { AdminImageStudio } from '../components/AdminImageStudio';
 
 interface AdminDashboardProps {
@@ -663,7 +663,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           { id: 'products', label: `Products (${products.length})`, icon: Package },
           { id: 'blogs', label: `Blog (${blogPosts.length})`, icon: Newspaper },
           { id: 'settings', label: 'Store Settings', icon: Settings },
-          { id: 'domain', label: 'Domain & Vercel', icon: Globe },
+          { id: 'domain', label: 'Domain & Netlify', icon: Globe },
           { id: 'ai', label: 'AI Content Assistant', icon: Sparkles },
         ].map(tab => {
           const Icon = tab.icon;
@@ -2055,9 +2055,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
       )}
 
-      {/* TAB: VERCEL CUSTOM DOMAIN */}
+      {/* TAB: NETLIFY CUSTOM DOMAIN & DEPLOY CENTER */}
       {activeTab === 'domain' && (
-        <VercelDomainManager
+        <NetlifyDeployManager
           settings={settingsForm}
           onSettingsUpdated={(updated) => {
             setSettingsForm(updated);

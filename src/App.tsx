@@ -26,7 +26,7 @@ import {
   subscribeToProducts
 } from './services/storeService';
 import { Product, BlogPost, StoreSettings, Order } from './types';
-import { INITIAL_STORE_SETTINGS } from './data/seedData';
+import { INITIAL_PRODUCTS, INITIAL_BLOG_POSTS, INITIAL_STORE_SETTINGS } from './data/seedData';
 
 function MainApp() {
   const { addToCart, setIsCartOpen } = useCart();
@@ -38,11 +38,11 @@ function MainApp() {
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
 
-  // Data state
-  const [products, setProducts] = useState<Product[]>([]);
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  // Data state - Instant Hydration for 0ms First Mobile Paint
+  const [products, setProducts] = useState<Product[]>(INITIAL_PRODUCTS);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(INITIAL_BLOG_POSTS);
   const [settings, setSettings] = useState<StoreSettings>(INITIAL_STORE_SETTINGS);
-  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [isLoadingData, setIsLoadingData] = useState(false);
 
   // Initialize Data
   const loadData = async () => {
@@ -118,8 +118,8 @@ function MainApp() {
         setCurrentRoute('software');
       } else if (path === '/tools' || path === '/courses') {
         setCurrentRoute('tools');
-      } else if (path === '/blog') {
-        setCurrentRoute('blog');
+      } else if (path === '/blog' || path === '/articles') {
+        setCurrentRoute('articles');
       } else if (path === '/orders' || path === '/my-orders') {
         setCurrentRoute('orders');
       } else if (path === '/checkout') {
@@ -265,10 +265,11 @@ function MainApp() {
           />
         )}
 
-        {currentRoute === 'blog' && (
+        {(currentRoute === 'blog' || currentRoute === 'articles' || currentRoute === 'blog-index') && (
           <BlogIndexPage
             posts={blogPosts}
             onSelectBlog={handleSelectBlog}
+            onNavigate={navigateTo}
           />
         )}
 

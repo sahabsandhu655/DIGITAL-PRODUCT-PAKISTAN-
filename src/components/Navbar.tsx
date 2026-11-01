@@ -31,6 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
     { label: 'Home', route: 'home' },
     { label: 'Software', route: 'software', icon: Cpu },
     { label: 'Tools', route: 'tools', icon: Cpu },
+    { label: 'Articles', route: 'articles', icon: Newspaper },
     { label: 'My Orders', route: 'orders', icon: PackageCheck },
     { label: 'Contact & Support', route: 'contact', icon: MessageCircle },
   ];
@@ -42,28 +43,30 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
 
   return (
     <header className="sticky top-0 z-40 bg-[#111C18]/95 backdrop-blur-md border-b border-[#233730]">
-      {/* Announcement bar */}
-      <div className="bg-[#1A2924] border-b border-[#233730] py-1.5 px-4 text-center text-xs text-slate-300 flex items-center justify-center gap-2">
-        <span className="inline-block w-2 h-2 rounded-full bg-[#B7F34A] animate-pulse"></span>
-        <span>Manual Easypaisa payment verification & direct WhatsApp delivery across Pakistan</span>
+      {/* Announcement bar - Clean, non-overlapping flow */}
+      <div className="bg-[#15231F] border-b border-[#233730] py-1 px-3 text-center text-[11px] sm:text-xs text-slate-300 flex items-center justify-center gap-1.5 leading-snug">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#B7F34A] shrink-0 animate-pulse" />
+        <span className="truncate sm:whitespace-normal font-medium">
+          Manual Easypaisa payment verification & direct WhatsApp delivery across Pakistan
+        </span>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16 gap-2">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button 
               onClick={() => handleLinkClick('home')}
-              className="flex items-center gap-2.5 text-left group cursor-pointer"
+              className="flex items-center gap-2 text-left group cursor-pointer min-w-0"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#B7F34A] to-[#86C227] flex items-center justify-center text-[#111C18] font-black text-xl shadow-lg shadow-[#B7F34A]/10 group-hover:scale-105 transition-transform">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#B7F34A] to-[#86C227] flex items-center justify-center text-[#111C18] font-black text-sm sm:text-xl shadow-md shrink-0 group-hover:scale-105 transition-transform">
                 DP
               </div>
-              <div>
-                <span className="block font-bold text-lg tracking-tight text-white group-hover:text-[#B7F34A] transition-colors leading-tight">
+              <div className="min-w-0">
+                <span className="block font-bold text-sm sm:text-base tracking-tight text-white group-hover:text-[#B7F34A] transition-colors leading-tight truncate">
                   Digital Product <span className="text-[#B7F34A]">Pakistan</span>
                 </span>
-                <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-semibold">
+                <span className="hidden sm:block text-[9px] text-slate-400 uppercase tracking-widest font-semibold">
                   Verified Marketplace
                 </span>
               </div>
@@ -91,20 +94,20 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
           </nav>
 
           {/* Action buttons */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Search Button */}
             <button
               onClick={onSearchClick}
               aria-label="Search catalog"
-              className="p-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-[#1A2924] transition-colors cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-[#1A2924] transition-colors cursor-pointer"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
-            {/* My Orders button */}
+            {/* My Orders button - Desktop */}
             <button
               onClick={() => handleLinkClick('orders')}
-              className={`p-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              className={`hidden sm:flex p-2 rounded-lg text-xs font-semibold items-center gap-1.5 transition-colors cursor-pointer ${
                 currentRoute === 'orders'
                   ? 'bg-[#B7F34A] text-[#111C18]'
                   : 'text-slate-300 hover:text-white hover:bg-[#1A2924]'
@@ -115,10 +118,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
               <span className="hidden xl:inline">My Orders</span>
             </button>
 
-            {/* Admin shortcut badge */}
+            {/* Admin shortcut badge - Desktop */}
             <button
               onClick={() => handleLinkClick('admin')}
-              className={`p-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              className={`hidden lg:flex p-2 rounded-lg text-xs font-semibold items-center gap-1.5 transition-colors cursor-pointer ${
                 currentRoute === 'admin'
                   ? 'bg-[#B7F34A] text-[#111C18]'
                   : isAdmin
@@ -128,7 +131,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
               title="Admin Portal"
             >
               <ShieldCheck className="w-4 h-4" />
-              <span className="hidden lg:inline">{isAdmin ? 'Admin Panel' : 'Admin'}</span>
+              <span>{isAdmin ? 'Admin Panel' : 'Admin'}</span>
             </button>
 
             {/* WhatsApp Business Direct Order Link */}
@@ -147,12 +150,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
             <button
               onClick={() => setIsCartOpen(true)}
               aria-label="View Shopping Cart"
-              className="relative flex items-center gap-2 bg-[#B7F34A] text-[#111C18] hover:bg-[#A3E037] px-3.5 py-2 rounded-xl font-bold text-sm transition-all shadow-md shadow-[#B7F34A]/20 cursor-pointer active:scale-95"
+              className="relative flex items-center gap-1.5 sm:gap-2 bg-[#B7F34A] text-[#111C18] hover:bg-[#A3E037] px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-md shadow-[#B7F34A]/20 cursor-pointer active:scale-95 shrink-0"
             >
               <ShoppingBag className="w-4 h-4" />
               <span className="hidden sm:inline">Cart</span>
               {itemCount > 0 && (
-                <span className="bg-[#111C18] text-[#B7F34A] text-xs font-extrabold px-1.5 py-0.5 rounded-full min-w-5 text-center">
+                <span className="bg-[#111C18] text-[#B7F34A] text-[10px] sm:text-xs font-black px-1.5 py-0.2 rounded-full min-w-4 text-center">
                   {itemCount}
                 </span>
               )}
@@ -161,10 +164,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentRoute, onNavigate, onSear
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-slate-300 hover:text-white hover:bg-[#1A2924] rounded-lg cursor-pointer"
+              className="md:hidden p-1.5 text-slate-300 hover:text-white hover:bg-[#1A2924] rounded-lg cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
