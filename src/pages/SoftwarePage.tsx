@@ -12,7 +12,7 @@ export const SoftwarePage: React.FC<SoftwarePageProps> = ({ products, onSelectPr
   const [searchQuery, setSearchQuery] = useState('');
 
   const softwareProducts = useMemo(() => {
-    return products.filter(p => p.productType === 'software');
+    return products.filter(p => p.productType === 'software' || p.productType === 'course');
   }, [products]);
 
   const filtered = useMemo(() => {
@@ -40,7 +40,7 @@ export const SoftwarePage: React.FC<SoftwarePageProps> = ({ products, onSelectPr
           Software Subscriptions
         </h1>
         <p className="mt-2 text-sm text-slate-300 max-w-3xl leading-relaxed">
-          Official accounts and subscription licenses for ChatGPT Pro, Google Gemini Pro, CapCut Pro individual & team, ElevenLabs voice credits, and Microsoft 365 with 1TB OneDrive. Pay in PKR via Easypaisa or order directly on WhatsApp.
+          Official accounts and subscription licenses for ChatGPT Pro, Google Gemini Pro, Notion Plus, Microsoft 365, CapCut Pro individual & team, ElevenLabs, HMA VPN, Outlook Mail, and Super Duolingo. Pay in PKR via Easypaisa or order directly on WhatsApp.
         </p>
 
         {/* WhatsApp Direct Order Highlight */}

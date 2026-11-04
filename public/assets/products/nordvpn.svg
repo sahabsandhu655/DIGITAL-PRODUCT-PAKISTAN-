@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="nordBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070D18" />
+      <stop offset="50%" stop-color="#0E1D33" />
+      <stop offset="100%" stop-color="#060910" />
+    </linearGradient>
+    <linearGradient id="nordCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4687FF" />
+      <stop offset="50%" stop-color="#2D70F7" />
+      <stop offset="100%" stop-color="#004AD7" />
+    </linearGradient>
+    <linearGradient id="nordSnow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#D7E7FF" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#nordBg)" />
+  <circle cx="400" cy="180" r="160" fill="#2D70F7" opacity="0.12" filter="blur(45px)" />
+
+  <!-- Nord Mountain & Shield -->
+  <g transform="translate(400, 175) scale(1.15)">
+    <!-- Base Shield -->
+    <path d="M 0 -68 L 56 -42 L 56 16 C 56 52 0 76 0 76 C 0 76 -56 52 -56 16 L -56 -42 Z" fill="#0E1A2E" stroke="url(#nordCyan)" stroke-width="3" />
+    
+    <!-- Iconic Mountain Peak -->
+    <path d="M 0 -38 L 32 20 L -32 20 Z" fill="url(#nordCyan)" />
+    <!-- Snow Cap -->
+    <path d="M 0 -38 L 13 -14 L 6 -10 L 0 -15 L -6 -10 L -13 -14 Z" fill="url(#nordSnow)" />
+    
+    <!-- Keyhole / Secure icon -->
+    <circle cx="0" cy="38" r="4" fill="#4687FF" />
+    <path d="M -2 40 L -3 48 L 3 48 L 2 40 Z" fill="#4687FF" />
+
+    <!-- Private Plan Badge -->
+    <rect x="-44" y="52" width="88" height="20" rx="10" fill="url(#nordCyan)" />
+    <text x="0" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="900" fill="#FFFFFF" text-anchor="middle">PRIVATE PLAN</text>
+  </g>
+
+  <!-- Title & Meta -->
+  <text x="400" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">
+    NordVPN <tspan fill="#4687FF">Private Plan</tspan>
+  </text>
+  
+  <text x="400" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#94A3B8" text-anchor="middle">
+    6000+ Servers • 111 Countries • Dedicated High-Speed Access
+  </text>
+
+  <!-- Price Badge -->
+  <g transform="translate(400, 430)">
+    <rect x="-175" y="-18" width="350" height="36" rx="18" fill="#0E1829" stroke="#1E3354" stroke-width="1.5" />
+    <circle cx="-150" cy="0" r="5" fill="#4687FF" />
+    <text x="-135" y="5" font-family="sans-serif" font-size="12" font-weight="700" fill="#E2E8F0">Price in Pakistan: Rs. 500 PKR / mo</text>
+    <text x="75" y="5" font-family="sans-serif" font-size="12" font-weight="800" fill="#4687FF">Dedicated</text>
+  </g>
+</svg>

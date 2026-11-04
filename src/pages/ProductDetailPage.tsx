@@ -123,11 +123,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Left Column: Images & Gallery */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="aspect-square rounded-3xl overflow-hidden bg-[#15231F] border border-[#233730] shadow-2xl relative">
+          <div className="aspect-square rounded-3xl overflow-hidden bg-[#15231F] border border-[#233730] shadow-2xl relative p-6 flex items-center justify-center">
             <img
               src={product.images[selectedImageIndex] || product.images[0]}
               alt={product.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             {!isAvailable && (
               <div className="absolute top-4 right-4 bg-amber-500 text-[#111C18] text-xs font-bold px-3 py-1 rounded-full shadow-md">

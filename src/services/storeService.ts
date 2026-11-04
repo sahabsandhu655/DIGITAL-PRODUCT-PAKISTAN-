@@ -50,14 +50,34 @@ function saveToStorage(key: string, data: any) {
 // Cache in-memory with resilient localStorage backing and SVG image migration
 function getInitialProductsWithDraftMigration(): Product[] {
   const loaded = loadFromStorage('dpp_custom_products', [...INITIAL_PRODUCTS]);
-  const hasObsolete = loaded.some(p => p.id.startsWith('prod-ebook-') || p.id.startsWith('prod-course-'));
-  // Check if any product has an outdated unsplash image or missing modern SVG
-  const hasOldImages = loaded.some(p => p.images && p.images[0] && p.images[0].includes('unsplash.com'));
-  if (hasObsolete || hasOldImages || loaded.length < INITIAL_PRODUCTS.length) {
-    saveToStorage('dpp_custom_products', INITIAL_PRODUCTS);
-    return [...INITIAL_PRODUCTS];
-  }
-  return loaded;
+  // Merge INITIAL_PRODUCTS with any user-created custom products in localStorage
+  const existingMap = new Map<string, Product>();
+  loaded.forEach(p => existingMap.set(p.id, p));
+
+  const merged = INITIAL_PRODUCTS.map(initP => {
+    const existing = existingMap.get(initP.id);
+    if (existing) {
+      existingMap.delete(initP.id);
+      return {
+        ...initP,
+        ...existing,
+        // Ensure updated seed prices (e.g. Canva 4000) take effect if not manually changed
+        pricePKR: existing.pricePKR !== undefined ? existing.pricePKR : initP.pricePKR,
+        images: (existing.images && existing.images[0] && !existing.images[0].includes('unsplash.com')) ? existing.images : initP.images,
+      };
+    }
+    return initP;
+  });
+
+  // Keep any extra admin-created products
+  existingMap.forEach(extra => {
+    if (!extra.id.startsWith('prod-sample-')) {
+      merged.push(extra);
+    }
+  });
+
+  saveToStorage('dpp_custom_products', merged);
+  return merged;
 }
 
 function getInitialBlogsWithMigration(): BlogPost[] {
@@ -85,41 +105,43 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
     );
     const snap = await Promise.race([snapPromise, timeoutPromise]);
     if (!snap.empty) {
-      const items: Product[] = [];
+      const firestoreMap = new Map<string, Product>();
       snap.forEach(d => {
         const data = d.data() as Product;
-        items.push({ ...data, id: d.id });
+        firestoreMap.set(d.id, { ...data, id: d.id });
       });
 
-      // Check if Firestore still has obsolete items
-      const hasObsolete = items.some(p => p.id.startsWith('prod-ebook-') || p.id.startsWith('prod-course-'));
-      if (hasObsolete) {
-        (async () => {
-          for (const item of items) {
-            if (item.id.startsWith('prod-ebook-') || item.id.startsWith('prod-course-')) {
-              try { await deleteDoc(doc(db, PRODUCTS_COLLECTION, item.id)); } catch (e) {}
-            }
-          }
-          for (const p of INITIAL_PRODUCTS) {
-            try { await setDoc(doc(db, PRODUCTS_COLLECTION, p.id), p); } catch (e) {}
-          }
-        })();
-        localProducts = [...INITIAL_PRODUCTS];
-        saveToStorage('dpp_custom_products', INITIAL_PRODUCTS);
-        return includeDrafts ? INITIAL_PRODUCTS : INITIAL_PRODUCTS.filter(p => p.status === 'published');
-      }
+      // Merge Firestore documents with INITIAL_PRODUCTS by id
+      const merged: Product[] = INITIAL_PRODUCTS.map(initial => {
+        const fromDb = firestoreMap.get(initial.id);
+        if (fromDb) {
+          firestoreMap.delete(initial.id);
+          return {
+            ...initial,
+            ...fromDb,
+            pricePKR: Number(fromDb.pricePKR) !== undefined && !isNaN(Number(fromDb.pricePKR)) ? Number(fromDb.pricePKR) : initial.pricePKR,
+            images: (fromDb.images && fromDb.images[0] && !fromDb.images[0].includes('unsplash.com')) ? fromDb.images : initial.images,
+          };
+        }
+        return initial;
+      });
 
-      localProducts = items;
-      saveToStorage('dpp_custom_products', items);
+      // Add any custom products created by admin
+      firestoreMap.forEach(customP => {
+        merged.push(customP);
+      });
+
+      localProducts = merged;
+      saveToStorage('dpp_custom_products', merged);
 
       // Async sync server backend store in background
       fetch('/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ products: items }),
+        body: JSON.stringify({ products: merged }),
       }).catch(() => {});
 
-      return includeDrafts ? items : items.filter(p => p.status === 'published');
+      return includeDrafts ? merged : merged.filter(p => p.status === 'published');
     } else {
       // If Firestore is empty, seed it with the INITIAL_PRODUCTS in background
       (async () => {
@@ -151,19 +173,41 @@ export async function getProducts(includeDrafts = false): Promise<Product[]> {
   return includeDrafts ? localProducts : localProducts.filter(p => p.status === 'published');
 }
 
-// Real-time listener for live sync across customer and admin screens
+// Real-time listener for live sync across customer and admin screens on ALL devices
 export function subscribeToProducts(callback: (products: Product[]) => void): () => void {
   try {
     const colRef = collection(db, PRODUCTS_COLLECTION);
     const unsubscribe = onSnapshot(colRef, (snap) => {
       if (!snap.empty) {
-        const items: Product[] = [];
+        const firestoreMap = new Map<string, Product>();
         snap.forEach(d => {
-          items.push({ ...(d.data() as Product), id: d.id });
+          const data = d.data() as Product;
+          firestoreMap.set(d.id, { ...data, id: d.id });
         });
-        localProducts = items;
-        saveToStorage('dpp_custom_products', items);
-        callback(items);
+
+        const merged: Product[] = INITIAL_PRODUCTS.map(initial => {
+          const fromDb = firestoreMap.get(initial.id);
+          if (fromDb) {
+            firestoreMap.delete(initial.id);
+            return {
+              ...initial,
+              ...fromDb,
+              pricePKR: Number(fromDb.pricePKR) !== undefined && !isNaN(Number(fromDb.pricePKR)) ? Number(fromDb.pricePKR) : initial.pricePKR,
+              images: (fromDb.images && fromDb.images[0] && !fromDb.images[0].includes('unsplash.com')) ? fromDb.images : initial.images,
+            };
+          }
+          return initial;
+        });
+
+        firestoreMap.forEach(customP => {
+          if (!customP.id.startsWith('prod-ebook-') && !customP.id.startsWith('prod-course-')) {
+            merged.push(customP);
+          }
+        });
+
+        localProducts = merged;
+        saveToStorage('dpp_custom_products', merged);
+        callback(merged);
       }
     }, (err) => {
       console.warn('Firestore onSnapshot subscription warning:', err);

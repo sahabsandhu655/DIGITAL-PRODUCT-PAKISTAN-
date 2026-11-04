@@ -45,6 +45,7 @@ import {
   updateOrder 
 } from '../services/storeService';
 import { NetlifyDeployManager } from '../components/NetlifyDeployManager';
+import { VercelDomainManager } from '../components/VercelDomainManager';
 import { AdminImageStudio } from '../components/AdminImageStudio';
 
 interface AdminDashboardProps {
@@ -101,6 +102,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // Product Modal State
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [isNewProductMode, setIsNewProductMode] = useState(false);
+  const [deployPlatformTab, setDeployPlatformTab] = useState<'vercel' | 'netlify'>('vercel');
   const [productFilter, setProductFilter] = useState<'all' | 'published' | 'draft'>('all');
   const [productSearch, setProductSearch] = useState('');
   const [isPublishingAll, setIsPublishingAll] = useState(false);
@@ -240,15 +243,70 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   };
 
   // Product CRUD
+  const handleOpenAddProductModal = () => {
+    setIsNewProductMode(true);
+    setEditingProduct({
+      id: `prod-${Date.now()}`,
+      title: '',
+      slug: '',
+      category: 'Software',
+      description: '',
+      shortDescription: '',
+      images: ['/assets/products/nordvpn.svg'],
+      pricePKR: 1000,
+      compareAtPricePKR: 2000,
+      currency: 'PKR',
+      tags: ['Featured', 'Pakistan', 'Direct Delivery'],
+      features: [
+        'Direct WhatsApp Credentials Delivery (+92 310 7759274)',
+        'Full Replacement Warranty',
+        'Direct Account Access with Fast Activation'
+      ],
+      productType: 'software',
+      deliveryType: 'Direct WhatsApp Delivery',
+      validity: '1 Month Subscription',
+      featured: true,
+      status: 'published',
+      language: 'English & Urdu',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
+    setIsProductModalOpen(true);
+  };
+
   const handleSaveProduct = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingProduct) return;
+    if (!editingProduct.title.trim()) {
+      showToast('Please enter a product title', 'error');
+      return;
+    }
+
+    const title = editingProduct.title.trim();
+    const slug = editingProduct.slug?.trim() || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const pricePKR = Number(editingProduct.pricePKR) || 0;
+    const cleanImg = editingProduct.images && editingProduct.images[0] && editingProduct.images[0].trim()
+      ? editingProduct.images[0].trim()
+      : '/assets/products/nordvpn.svg';
+
+    const payload: Product = {
+      ...editingProduct,
+      title,
+      slug,
+      pricePKR,
+      images: [cleanImg],
+      description: editingProduct.description?.trim() || `${title} official subscription access in Pakistan with instant WhatsApp delivery.`,
+      shortDescription: editingProduct.shortDescription?.trim() || `${title} access in Pakistan.`,
+      updatedAt: new Date().toISOString(),
+    };
+
     try {
-      await saveProduct(editingProduct);
+      await saveProduct(payload);
       setIsProductModalOpen(false);
       setEditingProduct(null);
+      setIsNewProductMode(false);
       onRefreshData();
-      showToast('Product saved successfully!', 'success');
+      showToast(`Product "${payload.title}" (Rs. ${pricePKR.toLocaleString()} PKR) saved and published!`, 'success');
     } catch (err: any) {
       showToast(`Error saving product: ${err.message}`, 'error');
     }
@@ -759,29 +817,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </button>
               )}
               <button
-                onClick={() => {
-                  setEditingProduct({
-                    id: `prod-${Date.now()}`,
-                    title: '',
-                    slug: '',
-                    category: 'Business Books',
-                    description: '',
-                    shortDescription: '',
-                    images: ['https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'],
-                    pricePKR: 1000,
-                    currency: 'PKR',
-                    tags: ['New'],
-                    features: ['Instant Download'],
-                    productType: 'ebook',
-                    deliveryType: 'Direct WhatsApp link',
-                    featured: false,
-                    status: 'published',
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString(),
-                  });
-                  setIsProductModalOpen(true);
-                }}
-                className="bg-[#B7F34A] text-[#111C18] font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 cursor-pointer"
+                onClick={handleOpenAddProductModal}
+                className="bg-[#B7F34A] text-[#111C18] font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#B7F34A]/20"
               >
                 <Plus className="w-4 h-4" /> Add New Product
               </button>
@@ -1101,29 +1138,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </button>
               )}
               <button
-                onClick={() => {
-                  setEditingProduct({
-                    id: `prod-${Date.now()}`,
-                    title: '',
-                    slug: '',
-                    category: 'Business Books',
-                    description: '',
-                    shortDescription: '',
-                    images: ['https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80'],
-                    pricePKR: 1500,
-                    currency: 'PKR',
-                    tags: ['Featured'],
-                    features: ['Instant Download'],
-                    productType: 'ebook',
-                    deliveryType: 'Direct Download Link',
-                    featured: false,
-                    status: 'published',
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString(),
-                  });
-                  setIsProductModalOpen(true);
-                }}
-                className="bg-[#B7F34A] text-[#111C18] font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#B7F34A]/20"
+                onClick={handleOpenAddProductModal}
+                className="bg-[#B7F34A] text-[#111C18] font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#B7F34A]/20 hover:bg-[#A3E037] active:scale-95 transition-all"
               >
                 <Plus className="w-4 h-4" /> Add Product
               </button>
@@ -1388,6 +1404,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         )}
                         <button
                           onClick={() => {
+                            setIsNewProductMode(false);
                             setEditingProduct({ ...prod });
                             setIsProductModalOpen(true);
                           }}
@@ -1421,9 +1438,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
               <div className="relative bg-[#15231F] border border-[#233730] rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
                 <div className="flex items-center justify-between border-b border-[#233730] pb-4">
-                  <h2 className="text-xl font-extrabold text-white">
-                    {editingProduct.id ? 'Edit Product' : 'Add New Product'}
-                  </h2>
+                  <div>
+                    <h2 className="text-xl font-extrabold text-white">
+                      {isNewProductMode ? 'Add New Product to Store' : 'Edit Product'}
+                    </h2>
+                    <span className="text-[11px] text-[#B7F34A] font-medium">
+                      {isNewProductMode ? 'New product will be published online instantly' : `Editing ID: ${editingProduct.id}`}
+                    </span>
+                  </div>
                   <button
                     onClick={() => setIsProductModalOpen(false)}
                     className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-[#1A2924] cursor-pointer"
@@ -1434,10 +1456,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
                 <form onSubmit={handleSaveProduct} className="space-y-4 text-xs">
                   <div>
-                    <label className="block font-semibold text-slate-300 mb-1">Product Title</label>
+                    <label className="block font-semibold text-slate-300 mb-1">Product Title *</label>
                     <input
                       type="text"
                       required
+                      placeholder="e.g. Course Pro 1 Year Access, NordVPN Private Plan"
                       value={editingProduct.title}
                       onChange={(e) => {
                         const title = e.target.value;
@@ -1450,7 +1473,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block font-semibold text-slate-300 mb-1">Product Type</label>
+                      <label className="block font-semibold text-slate-300 mb-1">Product Section / Type</label>
                       <select
                         value={editingProduct.productType}
                         onChange={(e: any) => setEditingProduct({ ...editingProduct, productType: e.target.value })}
@@ -1458,6 +1481,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       >
                         <option value="software">Software Subscription</option>
                         <option value="tool">Digital / Marketing Tool</option>
+                        <option value="course">Educational & Pro Course</option>
                       </select>
                     </div>
 
@@ -1466,8 +1490,46 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       <input
                         type="text"
                         required
+                        list="category-suggestions"
+                        placeholder="e.g. Security & VPN, Streaming, AI Tools"
                         value={editingProduct.category}
                         onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
+                        className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
+                      />
+                      <datalist id="category-suggestions">
+                        <option value="Security & VPN Software" />
+                        <option value="Streaming & Entertainment" />
+                        <option value="AI Software" />
+                        <option value="Educational & Pro Courses" />
+                        <option value="Design & Admin Tools" />
+                        <option value="Marketing Tools" />
+                        <option value="Office & Productivity Software" />
+                      </datalist>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-semibold text-slate-300 mb-1">Selling Price (PKR) *</label>
+                      <input
+                        type="number"
+                        required
+                        min="0"
+                        placeholder="e.g. 4000"
+                        value={editingProduct.pricePKR}
+                        onChange={(e) => setEditingProduct({ ...editingProduct, pricePKR: parseInt(e.target.value) || 0 })}
+                        className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white font-bold focus:outline-none focus:border-[#B7F34A]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-semibold text-slate-300 mb-1">Original Cut Price (PKR)</label>
+                      <input
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 8000"
+                        value={editingProduct.compareAtPricePKR || ''}
+                        onChange={(e) => setEditingProduct({ ...editingProduct, compareAtPricePKR: parseInt(e.target.value) || undefined })}
                         className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
                       />
                     </div>
@@ -1475,13 +1537,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block font-semibold text-slate-300 mb-1">Price (PKR - Integer)</label>
+                      <label className="block font-semibold text-slate-300 mb-1">Validity / Access Duration</label>
                       <input
-                        type="number"
-                        required
-                        min="0"
-                        value={editingProduct.pricePKR}
-                        onChange={(e) => setEditingProduct({ ...editingProduct, pricePKR: parseInt(e.target.value) || 0 })}
+                        type="text"
+                        placeholder="e.g. 1 Year Full Access, 1 Month Private Access"
+                        value={editingProduct.validity || ''}
+                        onChange={(e) => setEditingProduct({ ...editingProduct, validity: e.target.value })}
                         className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
                       />
                     </div>
@@ -1493,27 +1554,58 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         onChange={(e: any) => setEditingProduct({ ...editingProduct, status: e.target.value })}
                         className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
                       >
-                        <option value="published">Published (Available for Purchase)</option>
-                        <option value="draft">Draft (Unverified / Hidden from Cart)</option>
+                        <option value="published">Published (Live Online & Purchasable)</option>
+                        <option value="draft">Draft (Hidden from Marketplace)</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block font-semibold text-slate-300 mb-1">Image URL</label>
-                    <input
-                      type="url"
-                      required
-                      value={editingProduct.images[0] || ''}
-                      onChange={(e) => setEditingProduct({ ...editingProduct, images: [e.target.value] })}
-                      className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
-                    />
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="font-semibold text-slate-300">Product Image URL or Upload</label>
+                      <label className="text-[11px] text-[#B7F34A] hover:underline cursor-pointer flex items-center gap-1 font-semibold">
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>Upload Photo from Device</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onload = () => {
+                                const res = reader.result as string;
+                                setEditingProduct({ ...editingProduct, images: [res] });
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. /assets/products/nordvpn.svg or paste image URL"
+                        value={editingProduct.images[0] || ''}
+                        onChange={(e) => setEditingProduct({ ...editingProduct, images: [e.target.value] })}
+                        className="flex-1 bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none focus:border-[#B7F34A]"
+                      />
+                      {editingProduct.images[0] && (
+                        <div className="w-9 h-9 rounded-lg bg-black border border-[#233730] overflow-hidden shrink-0 flex items-center justify-center p-0.5">
+                          <img src={editingProduct.images[0]} alt="Preview" className="w-full h-full object-contain" />
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div>
                     <label className="block font-semibold text-slate-300 mb-1">Short Description</label>
                     <input
                       type="text"
+                      placeholder="Brief one-line summary for product card"
                       value={editingProduct.shortDescription || ''}
                       onChange={(e) => setEditingProduct({ ...editingProduct, shortDescription: e.target.value })}
                       className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
@@ -1525,19 +1617,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     <textarea
                       rows={4}
                       required
+                      placeholder="Detailed product features, instructions, and Pakistan delivery details..."
                       value={editingProduct.description}
                       onChange={(e) => setEditingProduct({ ...editingProduct, description: e.target.value })}
-                      className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block font-semibold text-slate-300 mb-1">Licensing & Verification Disclosures</label>
-                    <input
-                      type="text"
-                      value={editingProduct.licensingNotes || ''}
-                      onChange={(e) => setEditingProduct({ ...editingProduct, licensingNotes: e.target.value })}
-                      placeholder="e.g. Authorized team invitation model, terms subject to provider policy."
                       className="w-full bg-[#1A2924] border border-[#233730] rounded-xl px-3 py-2 text-white focus:outline-none"
                     />
                   </div>
@@ -1546,15 +1628,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     <button
                       type="button"
                       onClick={() => setIsProductModalOpen(false)}
-                      className="bg-[#1A2924] text-slate-300 px-4 py-2 rounded-xl cursor-pointer"
+                      className="bg-[#1A2924] text-slate-300 px-4 py-2.5 rounded-xl cursor-pointer hover:text-white"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="bg-[#B7F34A] text-[#111C18] font-bold px-6 py-2 rounded-xl cursor-pointer"
+                      className="bg-[#B7F34A] hover:bg-[#A3E037] text-[#111C18] font-black px-6 py-2.5 rounded-xl cursor-pointer shadow-lg shadow-[#B7F34A]/20 active:scale-95 transition-all flex items-center gap-1.5"
                     >
-                      Save Product
+                      <Save className="w-4 h-4" />
+                      <span>Save & Publish Product</span>
                     </button>
                   </div>
                 </form>
@@ -2055,15 +2138,54 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
       )}
 
-      {/* TAB: NETLIFY CUSTOM DOMAIN & DEPLOY CENTER */}
+      {/* TAB: DOMAIN & DEPLOY CENTER (VERCEL & NETLIFY) */}
       {activeTab === 'domain' && (
-        <NetlifyDeployManager
-          settings={settingsForm}
-          onSettingsUpdated={(updated) => {
-            setSettingsForm(updated);
-            onRefreshData();
-          }}
-        />
+        <div className="space-y-6">
+          <div className="flex items-center gap-3 bg-[#15231F] border border-[#233730] p-2 rounded-2xl">
+            <button
+              type="button"
+              onClick={() => setDeployPlatformTab('vercel')}
+              className={`flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                deployPlatformTab === 'vercel'
+                  ? 'bg-black text-white border border-white/20 shadow-lg'
+                  : 'text-slate-400 hover:text-white hover:bg-[#1A2924]'
+              }`}
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>
+              <span>Vercel Connection & DNS Guide</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setDeployPlatformTab('netlify')}
+              className={`flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                deployPlatformTab === 'netlify'
+                  ? 'bg-[#00AD9F] text-[#111C18] shadow-lg shadow-[#00AD9F]/20'
+                  : 'text-slate-400 hover:text-white hover:bg-[#1A2924]'
+              }`}
+            >
+              <Globe className="w-4 h-4" />
+              <span>Netlify Deploy Center</span>
+            </button>
+          </div>
+
+          {deployPlatformTab === 'vercel' ? (
+            <VercelDomainManager
+              settings={settingsForm}
+              onSettingsUpdated={(updated) => {
+                setSettingsForm(updated);
+                onRefreshData();
+              }}
+            />
+          ) : (
+            <NetlifyDeployManager
+              settings={settingsForm}
+              onSettingsUpdated={(updated) => {
+                setSettingsForm(updated);
+                onRefreshData();
+              }}
+            />
+          )}
+        </div>
       )}
 
       {/* TAB 6: AI STUDIO & IMAGE CREATOR/EDITOR (GEMINI POWERED) */}

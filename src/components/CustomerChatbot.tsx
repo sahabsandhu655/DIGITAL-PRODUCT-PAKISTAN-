@@ -104,7 +104,7 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
       return prods.find(p => p.id === 'prod-gemini-pro') || prods.find(p => p.title.toLowerCase().includes('gemini')) || null;
     }
     if (t.includes('whatsapp') || t.includes('sender') || t.includes('bulk sms')) {
-      return prods.find(p => p.id === 'prod-whatsapp-sender') || prods.find(p => p.title.toLowerCase().includes('whatsapp')) || null;
+      return prods.find(p => p.id === 'prod-whatsapp-bulk-sender') || prods.find(p => p.id === 'prod-whatsapp-sender') || prods.find(p => p.title.toLowerCase().includes('whatsapp')) || null;
     }
     if (t.includes('notion')) {
       return prods.find(p => p.id === 'prod-notion-plus') || prods.find(p => p.title.toLowerCase().includes('notion')) || null;
@@ -124,8 +124,26 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
     if (t.includes('canva')) {
       return prods.find(p => p.id === 'prod-canva-panel-500') || prods.find(p => p.title.toLowerCase().includes('canva')) || null;
     }
+    if (t.includes('course pro') || (t.includes('course') && !t.includes('capcut'))) {
+      return prods.find(p => p.id === 'prod-course-pro-1year') || prods.find(p => p.title.toLowerCase().includes('course pro')) || null;
+    }
+    if (t.includes('nordvpn') || t.includes('nord')) {
+      return prods.find(p => p.id === 'prod-nordvpn-private') || prods.find(p => p.title.toLowerCase().includes('nord')) || null;
+    }
+    if (t.includes('surfshark') || t.includes('surf')) {
+      return prods.find(p => p.id === 'prod-surfshark-vpn-private') || prods.find(p => p.title.toLowerCase().includes('surfshark')) || null;
+    }
+    if (t.includes('netflix')) {
+      return prods.find(p => p.id === 'prod-netflix-1m') || prods.find(p => p.title.toLowerCase().includes('netflix')) || null;
+    }
+    if (t.includes('prime') || t.includes('amazon')) {
+      if (t.includes('6') || t.includes('six') || t.includes('half')) {
+        return prods.find(p => p.id === 'prod-amazon-prime-6m') || prods.find(p => p.title.toLowerCase().includes('6 month')) || null;
+      }
+      return prods.find(p => p.id === 'prod-amazon-prime-1m') || prods.find(p => p.title.toLowerCase().includes('1 month')) || prods.find(p => p.title.toLowerCase().includes('prime')) || null;
+    }
     if (t.includes('hma') || t.includes('vpn')) {
-      return prods.find(p => p.id === 'prod-hma-vpn') || prods.find(p => p.title.toLowerCase().includes('vpn')) || null;
+      return prods.find(p => p.id === 'prod-hma-vpn') || prods.find(p => p.id === 'prod-nordvpn-private') || prods.find(p => p.title.toLowerCase().includes('vpn')) || null;
     }
     if (t.includes('outlook') || t.includes('mail')) {
       return prods.find(p => p.id === 'prod-outlook-mail') || prods.find(p => p.title.toLowerCase().includes('outlook')) || null;

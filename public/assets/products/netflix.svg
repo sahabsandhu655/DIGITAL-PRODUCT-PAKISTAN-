@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="netflixBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E0505" />
+      <stop offset="50%" stop-color="#1F0A0A" />
+      <stop offset="100%" stop-color="#080202" />
+    </linearGradient>
+    <linearGradient id="netflixRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF1E27" />
+      <stop offset="50%" stop-color="#E50914" />
+      <stop offset="100%" stop-color="#B20710" />
+    </linearGradient>
+    <linearGradient id="netflixRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E50914" />
+      <stop offset="100%" stop-color="#800000" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#netflixBg)" />
+  <circle cx="400" cy="180" r="160" fill="#E50914" opacity="0.14" filter="blur(45px)" />
+
+  <!-- Netflix 'N' & Screen -->
+  <g transform="translate(400, 175) scale(1.15)">
+    <!-- Base Rounded TV Screen -->
+    <rect x="-65" y="-55" width="130" height="96" rx="20" fill="#140808" stroke="url(#netflixRed)" stroke-width="3" />
+    
+    <!-- Iconic Netflix N -->
+    <g transform="translate(0, -6)">
+      <!-- Left leg -->
+      <path d="M -22 -32 L -8 -32 L -8 24 L -22 24 Z" fill="url(#netflixRed)" />
+      <!-- Right leg -->
+      <path d="M 8 -32 L 22 -32 L 22 24 L 8 24 Z" fill="url(#netflixRed)" />
+      <!-- Diagonal banner (with depth/shadow) -->
+      <path d="M -22 -32 L -8 -32 L 22 24 L 8 24 Z" fill="url(#netflixRibbon)" />
+    </g>
+
+    <!-- 4K UHD PRIVATE SCREEN Badge -->
+    <rect x="-60" y="52" width="120" height="22" rx="11" fill="url(#netflixRed)" />
+    <text x="0" y="67" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="900" fill="#FFFFFF" text-anchor="middle">4K PRIVATE SCREEN</text>
+  </g>
+
+  <!-- Title & Meta -->
+  <text x="400" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">
+    Netflix <tspan fill="#E50914">1 Month Private Screen</tspan>
+  </text>
+  
+  <text x="400" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#94A3B8" text-anchor="middle">
+    4K Ultra HD • PIN Protected Profile • Smart TV, PC & Mobile
+  </text>
+
+  <!-- Price Badge -->
+  <g transform="translate(400, 430)">
+    <rect x="-180" y="-18" width="360" height="36" rx="18" fill="#140606" stroke="#3D1214" stroke-width="1.5" />
+    <circle cx="-155" cy="0" r="5" fill="#E50914" />
+    <text x="-140" y="5" font-family="sans-serif" font-size="12" font-weight="700" fill="#E2E8F0">Price in Pakistan: Rs. 550 PKR</text>
+    <text x="75" y="5" font-family="sans-serif" font-size="12" font-weight="800" fill="#E50914">1 Month UHD</text>
+  </g>
+</svg>

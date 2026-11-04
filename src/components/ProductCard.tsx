@@ -36,9 +36,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
         className="relative h-48 sm:h-52 w-full overflow-hidden bg-[#0E1714] cursor-pointer"
       >
         <img
-          src={product.images[0] || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80'}
+          src={product.images[0] || '/assets/products/gemini-pro.svg'}
           alt={product.title}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#15231F] via-transparent to-transparent opacity-80" />

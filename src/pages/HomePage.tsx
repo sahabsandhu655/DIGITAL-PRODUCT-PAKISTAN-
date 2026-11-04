@@ -70,7 +70,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const publishedProducts = products.filter(p => p.status === 'published');
   
   // Two Main Sections: Software & Tools
-  const softwareProducts = publishedProducts.filter(p => p.productType === 'software');
+  const softwareProducts = publishedProducts.filter(p => p.productType === 'software' || p.productType === 'course');
   const toolProducts = publishedProducts.filter(p => p.productType === 'tool');
 
   const filteredProducts = publishedProducts.filter(p => {
@@ -80,7 +80,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       (p.tags && p.tags.some(t => t.toLowerCase().includes(heroSearch.toLowerCase())));
 
     if (!matchesSearch) return false;
-    if (activeTab === 'software') return p.productType === 'software';
+    if (activeTab === 'software') return p.productType === 'software' || p.productType === 'course';
     if (activeTab === 'tools') return p.productType === 'tool';
     return true;
   });

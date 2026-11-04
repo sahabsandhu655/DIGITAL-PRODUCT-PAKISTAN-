@@ -53,7 +53,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onCheckout }) => {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">Your cart is empty</h3>
-                  <p className="text-xs text-slate-400 mt-1">Explore our e-books, tools, and courses to add products.</p>
+                  <p className="text-xs text-slate-400 mt-1">Explore our official software subscriptions and marketing tools.</p>
                 </div>
                 <button
                   onClick={() => setIsCartOpen(false)}
@@ -69,9 +69,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onCheckout }) => {
                   className="bg-[#1A2924] border border-[#233730] rounded-xl p-3.5 flex gap-3.5 items-center"
                 >
                   <img
-                    src={product.images[0] || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=100&auto=format&fit=crop&q=80'}
+                    src={product.images[0] || '/assets/products/gemini-pro.svg'}
                     alt={product.title}
-                    className="w-16 h-16 rounded-lg object-cover bg-black shrink-0"
+                    className="w-16 h-16 rounded-lg object-contain p-1.5 bg-[#0E1714] border border-[#233730] shrink-0"
                   />
                   <div className="flex-1 min-w-0">
                     <h4 className="text-sm font-semibold text-white truncate">{product.title}</h4>
