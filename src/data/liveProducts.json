@@ -35,8 +35,8 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu & Multilingual",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z"
   },
   {
     "id": "prod-gemini-pro",
@@ -74,20 +74,20 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu & 40+ Languages",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z"
   },
   {
     "id": "prod-whatsapp-bulk-sender",
     "title": "WhatsApp Bulk SMS Sender Software",
     "slug": "whatsapp-bulk-sms-sender-software",
     "category": "Marketing Tools",
-    "description": "Pakistan's top-rated WhatsApp Marketing Software for Windows PC. Connect directly with thousands of potential customers on WhatsApp with zero per-message cost.\n\nBuilt for online stores, digital agencies, freelancers, educational institutes, and real estate consultants across Pakistan. Features an anti-ban intelligent delay algorithm, Excel/CSV contact list importer, group participant extractor, dynamic personalized tags, automated keyword auto-replies, and rich media message dispatch.\n\n• One-time payment of Rs. 2,499 PKR.\n• Full Windows 10 & 11 compatibility.\n• Video installation guide and WhatsApp activation.\n• Includes customizable 5-picture showcase gallery.",
+    "description": "Pakistan's top-rated WhatsApp Marketing Software for Windows PC. Connect directly with thousands of potential customers on WhatsApp with zero per-message cost.\n\nBuilt for online stores, digital agencies, freelancers, educational institutes, and real estate consultants across Pakistan. Features an anti-ban intelligent delay algorithm, Excel/CSV contact list importer, group participant extractor, dynamic personalized tags, automated keyword auto-replies, and rich media message dispatch.\n\n• One-time payment of Rs. 1,999 PKR.\n• Full Windows 10 & 11 compatibility.\n• Video installation guide and WhatsApp activation.\n• Includes customizable 5-picture showcase gallery.",
     "shortDescription": "Complete Windows bulk WhatsApp marketing software with Excel contact import, anti-ban delay, group extractor, and auto-reply bot.",
     "images": [
       "/assets/products/whatsapp-bulk-sender.svg"
     ],
-    "pricePKR": 2499,
+    "pricePKR": 1999,
     "compareAtPricePKR": 5000,
     "currency": "PKR",
     "tags": [
@@ -115,8 +115,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Urdu Interface Support",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z",
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z",
     "featureSlides": [
       {
         "id": "slide-01",
@@ -186,8 +186,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Urdu Interface",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z"
   },
   {
     "id": "prod-capcut-pro-team",
@@ -226,8 +226,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Urdu",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z"
   },
   {
     "id": "prod-elevenlabs-credits",
@@ -266,8 +266,8 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu, Hindi & 29+ Languages",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z"
   },
   {
     "id": "prod-microsoft-365",
@@ -279,7 +279,7 @@
     "images": [
       "/assets/products/microsoft-365.svg"
     ],
-    "pricePKR": 1174,
+    "pricePKR": 1199,
     "compareAtPricePKR": 2800,
     "currency": "PKR",
     "tags": [
@@ -306,8 +306,8 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu & International",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z"
   },
   {
     "id": "prod-canva-panel-500",
@@ -319,7 +319,7 @@
     "images": [
       "/assets/products/canva-panel.svg"
     ],
-    "pricePKR": 4000,
+    "pricePKR": 3999,
     "compareAtPricePKR": 8000,
     "currency": "PKR",
     "tags": [
@@ -346,8 +346,8 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu & Multilingual",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z"
   },
   {
     "id": "prod-notion-plus-12m",
@@ -359,7 +359,7 @@
     "images": [
       "/assets/products/notion-plus.svg"
     ],
-    "pricePKR": 1443,
+    "pricePKR": 1599,
     "compareAtPricePKR": 3500,
     "currency": "PKR",
     "tags": [
@@ -385,8 +385,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Urdu Support",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.455Z",
+    "updatedAt": "2026-11-06T10:27:09.455Z"
   },
   {
     "id": "prod-hma-vpn",
@@ -398,7 +398,7 @@
     "images": [
       "/assets/products/hma-vpn.svg"
     ],
-    "pricePKR": 402,
+    "pricePKR": 500,
     "compareAtPricePKR": 1000,
     "currency": "PKR",
     "tags": [
@@ -424,8 +424,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Multi-language",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   },
   {
     "id": "prod-outlook-mail-trust",
@@ -463,8 +463,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Global",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   },
   {
     "id": "prod-super-duolingo",
@@ -476,7 +476,7 @@
     "images": [
       "/assets/products/super-duolingo.svg"
     ],
-    "pricePKR": 512,
+    "pricePKR": 562,
     "compareAtPricePKR": 1200,
     "currency": "PKR",
     "tags": [
@@ -502,8 +502,8 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu, German, French & 40+ Languages",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   },
   {
     "id": "prod-course-pro-1year",
@@ -541,8 +541,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Urdu Subtitles",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   },
   {
     "id": "prod-nordvpn-private",
@@ -580,8 +580,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Multi-language",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   },
   {
     "id": "prod-surfshark-vpn-private",
@@ -619,8 +619,8 @@
     "featured": true,
     "status": "published",
     "language": "English & Global",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   },
   {
     "id": "prod-amazon-prime-6m",
@@ -659,8 +659,8 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu, Hindi & Multilingual",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   },
   {
     "id": "prod-amazon-prime-1m",
@@ -699,8 +699,8 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu, Hindi & Global",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   },
   {
     "id": "prod-netflix-1m",
@@ -739,7 +739,416 @@
     "featured": true,
     "status": "published",
     "language": "English, Urdu, Hindi & Multilingual",
-    "createdAt": "2026-11-04T06:07:17.387Z",
-    "updatedAt": "2026-11-04T06:07:17.387Z"
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-adobe-express-12m",
+    "title": "Adobe Express 12 Months",
+    "slug": "adobe-express-12-months",
+    "category": "Design & Creative Tools",
+    "description": "Create standout social media posts, videos, flyers, banners, and logos with Adobe Express Premium for a full 12 Months (1 Year). Powered by Adobe Firefly Generative AI for instant text-to-image and generative fill creation.\n\n• Includes 250 monthly Firefly generative AI credits.\n• Access 20,000+ licensed Adobe Fonts and 200M+ royalty-free Adobe Stock assets.\n• One-click background removal, quick resizing, and brand kits.\n• Works across Web browser, iOS, and Android devices.\n• Instant delivery on WhatsApp (+92 310 7759274).",
+    "shortDescription": "Official 12-Month Adobe Express Premium plan with Adobe Firefly Generative AI, 20K+ fonts, and 200M+ Adobe Stock assets.",
+    "images": [
+      "/assets/products/adobe-express.svg"
+    ],
+    "pricePKR": 676,
+    "compareAtPricePKR": 1950,
+    "currency": "PKR",
+    "tags": [
+      "Adobe",
+      "Adobe Express",
+      "Firefly",
+      "Graphic Design",
+      "Creative Tools",
+      "adobe express price pakistan",
+      "buy adobe express"
+    ],
+    "features": [
+      "Full 12 Months (1 Year) Adobe Express Premium Access",
+      "Adobe Firefly Generative AI Text-to-Image & Text Effects",
+      "Access to 20,000+ Adobe Fonts & 200 Million Stock Photos/Videos",
+      "One-Click Instant Background Removal & Video Trimming",
+      "Brand Kit Setup: Logos, Color Palettes & Fonts",
+      "Direct WhatsApp Credentials & Onboarding Support"
+    ],
+    "productType": "software",
+    "deliveryType": "Adobe Account Activation / Credentials via WhatsApp",
+    "validity": "12 Months (1 Year) Subscription License",
+    "licensingNotes": "Genuine Adobe Express subscription with 12-month full warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English, Urdu & Global",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-canva-pro-mail",
+    "title": "Canva Pro (On Mail)",
+    "slug": "canva-pro-on-mail",
+    "category": "Design & Creative Tools",
+    "description": "Upgrade your own existing personal email address to Canva Pro with zero hassle! No shared passwords or risky credentials — an official invite is sent directly to your email, giving you instant Pro privileges on your existing Canva designs.\n\n• Unlocks 100+ million premium stock photos, videos, audio, and graphics.\n• 1-Click Magic Background Remover, Magic Eraser, and Magic Switch.\n• Download in SVG vector, transparent PNG, and high-bitrate MP4 video.\n• 1TB cloud storage to keep all your creative assets organized.\n• Delivered to your WhatsApp within 10–15 minutes.",
+    "shortDescription": "Instant Canva Pro activation directly linked to your personal email. 100M+ assets, Magic Studio AI, and 1TB cloud storage.",
+    "images": [
+      "/assets/products/canva-pro-mail.svg"
+    ],
+    "pricePKR": 500,
+    "compareAtPricePKR": 1500,
+    "currency": "PKR",
+    "tags": [
+      "Canva",
+      "Canva Pro",
+      "Graphic Design",
+      "Magic Studio",
+      "Creative",
+      "canva pro on mail pakistan",
+      "buy canva pro pakistan"
+    ],
+    "features": [
+      "Direct Pro Activation on Your Personal Email Address",
+      "100M+ Premium Stock Photos, Graphics, Audio & Video Clips",
+      "Magic Studio AI: Magic Resize, Magic Eraser & Background Remover",
+      "SVG Vector Downloads & High-Resolution Transparent PNGs",
+      "1TB Secure Cloud Storage for Your Design Library",
+      "Fast 15-Minute WhatsApp Delivery & Friendly Support"
+    ],
+    "productType": "software",
+    "deliveryType": "Official Canva Invite Sent to Your Personal Email via WhatsApp",
+    "validity": "Canva Pro Active Membership",
+    "licensingNotes": "Activated on personal customer email with replacement warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English, Urdu & Multilingual",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-coursera-private",
+    "title": "Coursera Private Plan (Private Mail)",
+    "slug": "coursera-private-plan-mail",
+    "category": "Learning & Career",
+    "description": "Master high-income career skills with Coursera Private Plan activated on your private email, backed by a 4 Months Replacement Warranty. Earn recognized professional certificates and specializations from world-class universities including Google, IBM, Stanford, Meta, and Yale.\n\n• Full private account with unlimited course access and verified certificates.\n• Complete hands-on guided projects, graded quizzes, and peer assessments.\n• Download course videos for offline viewing on iOS and Android.\n• 4 Months continuous replacement warranty from Digital Product Pakistan.\n• Instant setup via WhatsApp (+92 310 7759274).",
+    "shortDescription": "Genuine Coursera Private Plan on private mail with 4 months warranty. Complete courses and earn verified career certificates.",
+    "images": [
+      "/assets/products/coursera-private.svg"
+    ],
+    "pricePKR": 4500,
+    "compareAtPricePKR": 9000,
+    "currency": "PKR",
+    "tags": [
+      "Coursera",
+      "Learning",
+      "Courses",
+      "Certifications",
+      "Google Career",
+      "Software",
+      "coursera price in pakistan",
+      "coursera private plan"
+    ],
+    "features": [
+      "Private Account Activated on Your Own Private Email",
+      "4 Months Continuous Replacement Warranty",
+      "Unlimited Course Access from Google, IBM, Meta, Stanford & Yale",
+      "Earn Shareable Verified Career Certificates for LinkedIn & CV",
+      "Complete Quizzes, Programming Assignments & Hands-on Projects",
+      "Direct WhatsApp Credentials Delivery & Setup Assistance"
+    ],
+    "productType": "software",
+    "deliveryType": "Private Email Account Credentials / Invitation via WhatsApp",
+    "validity": "4 Months Warranty Plan",
+    "licensingNotes": "Private mail account backed by 4 months complete warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Global",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-linkedin-career-3m",
+    "title": "LinkedIn Career (3 Months)",
+    "slug": "linkedin-career-3-months",
+    "category": "Learning & Career",
+    "description": "Supercharge your job search and professional networking with LinkedIn Career Premium for 3 Months. Stand out to recruiters, see who viewed your profile over the past 365 days, and get deep competitive applicant insights.\n\n• Includes 5 InMail message credits per month to directly message recruiters and hiring managers.\n• Unlimited access to 16,000+ expert-led LinkedIn Learning courses.\n• Competitive applicant insights comparing your skills to other job candidates.\n• Top Applicant recommendations on job postings.\n• Fast activation link / voucher via WhatsApp (+92 310 7759274).",
+    "shortDescription": "3 Months LinkedIn Career Premium with 5 InMail credits/month, who viewed your profile, applicant insights, and LinkedIn Learning.",
+    "images": [
+      "/assets/products/linkedin-career.svg"
+    ],
+    "pricePKR": 752,
+    "compareAtPricePKR": 2500,
+    "currency": "PKR",
+    "tags": [
+      "LinkedIn",
+      "Career",
+      "Job Search",
+      "LinkedIn Learning",
+      "InMail",
+      "Software",
+      "linkedin career premium pakistan",
+      "buy linkedin premium"
+    ],
+    "features": [
+      "Full 3-Month LinkedIn Career Premium Subscription",
+      "5 Direct InMail Message Credits per Month to Message Anyone",
+      "See Full List of Who Viewed Your Profile in Last 365 Days",
+      "Applicant Insights: Compare Your Qualifications with Other Candidates",
+      "Unlimited Access to 16,000+ Video Courses on LinkedIn Learning",
+      "Direct WhatsApp Setup Link & Activation Guide"
+    ],
+    "productType": "software",
+    "deliveryType": "Direct Activation Link / Invite via WhatsApp",
+    "validity": "3 Months Subscription Access",
+    "licensingNotes": "Official LinkedIn Career upgrade with 3-month validity guarantee.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Global",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-linkedin-sales-nav-2m",
+    "title": "LinkedIn Sales Navigator (2 Months)",
+    "slug": "linkedin-sales-navigator-2-months",
+    "category": "Learning & Career",
+    "description": "Accelerate B2B lead generation, client prospecting, and agency sales with LinkedIn Sales Navigator Core for 2 Months. Filter millions of decision-makers worldwide by industry, company headcount, revenue, senior title, and geography.\n\n• 50 InMail credits per month to reach high-value CEOs, founders, and decision-makers.\n• Advanced lead and company search filters (40+ targeting parameters).\n• Lead recommendations and real-time alerts on prospect job changes.\n• Save up to 10,000 leads and accounts in custom lists.\n• Fast delivery and activation on WhatsApp (+92 310 7759274).",
+    "shortDescription": "2 Months LinkedIn Sales Navigator Core with 50 InMails/month, 40+ advanced B2B filters, and 10K lead save capacity.",
+    "images": [
+      "/assets/products/linkedin-sales-nav.svg"
+    ],
+    "pricePKR": 1384,
+    "compareAtPricePKR": 4500,
+    "currency": "PKR",
+    "tags": [
+      "LinkedIn",
+      "Sales Navigator",
+      "B2B Leads",
+      "Marketing",
+      "Lead Generation",
+      "Software",
+      "linkedin sales navigator pakistan",
+      "buy sales navigator"
+    ],
+    "features": [
+      "2 Months LinkedIn Sales Navigator Core Access",
+      "50 Monthly InMail Messages to Reach Decision-Makers Anywhere",
+      "Advanced Search with 40+ Filters (Seniority, Industry, Revenue, Region)",
+      "Save up to 10,000 Leads & Accounts with Real-Time Job Change Alerts",
+      "Unrestricted Profile Browsing & Out-of-Network Searches",
+      "Direct WhatsApp Delivery & Activation Support"
+    ],
+    "productType": "software",
+    "deliveryType": "Direct Upgrade Link / Activation Credentials via WhatsApp",
+    "validity": "2 Months Core Subscription",
+    "licensingNotes": "Genuine Sales Navigator upgrade with 2-month warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Global",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-udemy-personal-1m",
+    "title": "Udemy Personal Plan (1 Month)",
+    "slug": "udemy-personal-plan-1-month",
+    "category": "Learning & Career",
+    "description": "Gain all-inclusive access to over 11,000 of Udemy's top-rated courses with Udemy Personal Plan for 1 Month. Dive into Web Development, AI & Machine Learning, Data Science, Digital Marketing, Cloud Computing (AWS/Azure), UI/UX Design, and more.\n\n• Learn from top global instructors at your own pace.\n• Includes practice tests, coding exercises, quizzes, and certificates of completion.\n• Download lectures on the Udemy mobile app for offline study.\n• Private account setup delivered straight to WhatsApp (+92 310 7759274).",
+    "shortDescription": "1 Month unlimited access to Udemy Personal Plan catalog featuring 11,000+ top-rated technology, business, and design courses.",
+    "images": [
+      "/assets/products/udemy-personal.svg"
+    ],
+    "pricePKR": 1199,
+    "compareAtPricePKR": 3000,
+    "currency": "PKR",
+    "tags": [
+      "Udemy",
+      "Udemy Personal Plan",
+      "Courses",
+      "Programming",
+      "Python",
+      "Web Dev",
+      "Software",
+      "udemy personal plan pakistan",
+      "buy udemy subscription"
+    ],
+    "features": [
+      "1 Month All-Inclusive Access to 11,000+ Top Udemy Courses",
+      "Curated Courses in Web Dev, Python, AI, AWS, Cyber Security & Design",
+      "Hands-on Coding Exercises, Quizzes & Practice Certification Tests",
+      "Earn Official Udemy Certificates of Completion",
+      "Offline Lecture Downloads on iOS and Android App",
+      "Direct Account Delivery on WhatsApp with Full 30-Day Warranty"
+    ],
+    "productType": "software",
+    "deliveryType": "Private Account Credentials via WhatsApp",
+    "validity": "1 Month Subscription Access",
+    "licensingNotes": "Private account access with full 30-day replacement warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Global",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-claude-api-500",
+    "title": "Claude API $500 (30 Days FW)",
+    "slug": "claude-api-500-30-days",
+    "category": "AI & Tech Tools",
+    "description": "Power your AI applications, chatbots, coding tools, and SaaS software with Anthropic Claude API pre-loaded with $500 in usage credits. Compatible with state-of-the-art models including Claude 3.5 Sonnet, Claude 3 Opus, and Claude 3.5 Haiku.\n\n• 30 Days Full Warranty (FW) replacement guarantee.\n• High rate limits for production workloads and development.\n• Compatible with cursor, LibreChat, TypingMind, and custom Python/Node backends.\n• Provided with verified API keys and Anthropic console credentials.\n• Instant setup via WhatsApp (+92 310 7759274).",
+    "shortDescription": "Official Claude API balance of $500 USD with 30 days full warranty. Supports Claude 3.5 Sonnet & Opus for coding and apps.",
+    "images": [
+      "/assets/products/claude-api.svg"
+    ],
+    "pricePKR": 3934,
+    "compareAtPricePKR": 12000,
+    "currency": "PKR",
+    "tags": [
+      "Claude",
+      "Anthropic",
+      "Claude 3.5 Sonnet",
+      "API Key",
+      "AI Coding",
+      "Tools",
+      "claude api price pakistan",
+      "buy claude api credits"
+    ],
+    "features": [
+      "Full $500 USD Usage Credit Pre-loaded in Anthropic Console",
+      "30 Days Full Warranty (FW) Replacement Guarantee",
+      "Access to Claude 3.5 Sonnet, Claude 3 Opus & Claude 3.5 Haiku",
+      "Integrate with Cursor IDE, VS Code, TypingMind, or Custom APIs",
+      "High Rate Limit Tier (Tier 2/3) for Uninterrupted Inference",
+      "Instant Key Delivery & Console Access via WhatsApp"
+    ],
+    "productType": "tool",
+    "deliveryType": "API Key & Anthropic Console Login Credentials via WhatsApp",
+    "validity": "30 Days Full Warranty (FW)",
+    "licensingNotes": "Pre-funded API key with 30-day warranty against console bans.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Developer Multi-language",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-owl-proxy-200mb",
+    "title": "OWL Proxy 200MB",
+    "slug": "owl-proxy-200mb",
+    "category": "AI & Tech Tools",
+    "description": "High-performance residential proxy bandwidth for automation, web scraping, account creation, and geo-targeted browsing. OWL Proxy provides squeaky-clean residential IPs from over 150+ countries with rotating or sticky session options.\n\n• 200MB high-speed residential data pool with zero speed throttling.\n• SOCKS5 & HTTP/HTTPS protocol support.\n• Zero CAPTCHAs and high success rate on social platforms and search engines.\n• Easy credential dashboard: Host, Port, User, and Password provided.\n• Instant delivery on WhatsApp (+92 310 7759274).",
+    "shortDescription": "200MB residential rotating/sticky proxy bandwidth with SOCKS5 & HTTP protocols across 150+ countries for scraping and tools.",
+    "images": [
+      "/assets/products/owl-proxy.svg"
+    ],
+    "pricePKR": 124,
+    "compareAtPricePKR": 350,
+    "currency": "PKR",
+    "tags": [
+      "Proxy",
+      "Residential Proxy",
+      "OWL Proxy",
+      "SOCKS5",
+      "Scraping",
+      "Tools",
+      "owl proxy price pakistan",
+      "buy residential proxy pakistan"
+    ],
+    "features": [
+      "200MB High-Speed Residential Proxy Bandwidth",
+      "Supports SOCKS5, HTTP, and HTTPS Protocols",
+      "Access Clean IPs Across 150+ Countries Worldwide",
+      "Rotating IPs per Request or Sticky Session Support (1–30 mins)",
+      "Compatible with AdsPower, GoLogin, Multilogin & Python/Node Scripts",
+      "Instant Credential Delivery via WhatsApp"
+    ],
+    "productType": "tool",
+    "deliveryType": "Proxy Host, Port, User & Password Configuration via WhatsApp",
+    "validity": "200MB Data Package",
+    "licensingNotes": "Usable until 200MB allocation is consumed.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Global",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-windows-pro-license",
+    "title": "Windows 10/11 Pro License",
+    "slug": "windows-10-11-pro-license",
+    "category": "Office & Productivity Software",
+    "description": "Activate your PC with a 100% genuine retail Microsoft Windows 10 Pro or Windows 11 Pro license key. Unlock advanced enterprise security, BitLocker drive encryption, Remote Desktop, Hyper-V virtualization, and official Windows updates forever.\n\n• 25-Character alphanumeric Microsoft digital product key.\n• Lifetime activation for 1 PC with continuous official Microsoft security updates.\n• Upgrades Windows 10/11 Home to Pro without formatting your computer.\n• Clean digital license with zero risk of malware or activation watermarks.\n• Instant key delivery via WhatsApp with step-by-step activation guide.",
+    "shortDescription": "100% genuine 25-digit retail license key for Windows 10 Pro or Windows 11 Pro. Lifetime activation, BitLocker, and Remote Desktop.",
+    "images": [
+      "/assets/products/windows-pro.svg"
+    ],
+    "pricePKR": 650,
+    "compareAtPricePKR": 2500,
+    "currency": "PKR",
+    "tags": [
+      "Windows",
+      "Windows 10 Pro",
+      "Windows 11 Pro",
+      "Microsoft License",
+      "Product Key",
+      "Software",
+      "windows 10 pro key pakistan",
+      "buy windows 11 pro pakistan"
+    ],
+    "features": [
+      "Genuine 25-Digit Microsoft Retail Activation Product Key",
+      "Lifetime Permanent Activation for 1 PC / Motherboard",
+      "Works for Both Windows 10 Pro and Windows 11 Pro Editions",
+      "Enables BitLocker Drive Encryption, Remote Desktop & Hyper-V",
+      "Receive All Official Microsoft Security & Feature Updates Forever",
+      "Instant Key Delivery on WhatsApp (+92 310 7759274) with Step-by-Step Guide"
+    ],
+    "productType": "software",
+    "deliveryType": "Digital 25-Digit License Key & Activation Steps via WhatsApp",
+    "validity": "Lifetime Permanent Activation",
+    "licensingNotes": "Genuine digital license key with 100% activation guarantee.",
+    "featured": true,
+    "status": "published",
+    "language": "English, Urdu & International",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
+  },
+  {
+    "id": "prod-proton-vpn-1m",
+    "title": "Proton VPN Private Plan (1 Month)",
+    "slug": "proton-vpn-private-plan-1-month",
+    "category": "Security & VPN Software",
+    "description": "Protect your digital privacy with Swiss-engineered Proton VPN Private Plan for 1 Month. Backed by strict Swiss privacy laws, NetShield ad-blocker, 10 Gbps servers, Secure Core architecture, and high-speed WireGuard protocol.\n\n• 100% private account credentials dedicated exclusively to you.\n• Connect up to 10 devices simultaneously (Windows, Mac, iOS, Android, Linux).\n• Unblock Netflix, BBC iPlayer, Amazon Prime, Disney+, and local geo-restricted content.\n• Built-in NetShield blocks malware, ads, and online trackers.\n• Instant delivery on WhatsApp (+92 310 7759274) with 30-day warranty.",
+    "shortDescription": "1-Month Private Proton VPN account with 10 Gbps speeds, NetShield ad-blocker, Swiss privacy laws, and streaming support.",
+    "images": [
+      "/assets/products/proton-vpn.svg"
+    ],
+    "pricePKR": 500,
+    "compareAtPricePKR": 1200,
+    "currency": "PKR",
+    "tags": [
+      "VPN",
+      "Proton VPN",
+      "Swiss Privacy",
+      "Security",
+      "NetShield",
+      "Software",
+      "proton vpn price pakistan",
+      "buy proton vpn"
+    ],
+    "features": [
+      "1 Month 100% Dedicated Private Proton VPN Account",
+      "Protected Under Strict Swiss Privacy Laws (No Logs Ever)",
+      "10 Gbps Ultra-Fast Speeds with WireGuard Protocol",
+      "NetShield Malware, Tracker & Malicious Ad Blocker",
+      "Unblocks Global Streaming: Netflix, Disney+, BBC iPlayer, Prime",
+      "Direct WhatsApp Credentials Delivery with 30-Day Replacement Warranty"
+    ],
+    "productType": "software",
+    "deliveryType": "Private Login Credentials Dispatched via WhatsApp",
+    "validity": "1 Month Private Plan",
+    "licensingNotes": "Dedicated private account with full 30-day replacement warranty.",
+    "featured": true,
+    "status": "published",
+    "language": "English & Global",
+    "createdAt": "2026-11-06T10:27:09.456Z",
+    "updatedAt": "2026-11-06T10:27:09.456Z"
   }
 ]

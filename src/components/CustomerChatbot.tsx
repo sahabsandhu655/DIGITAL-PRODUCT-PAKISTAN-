@@ -121,10 +121,43 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
     if (t.includes('elevenlabs') || t.includes('eleven') || t.includes('voice')) {
       return prods.find(p => p.id === 'prod-elevenlabs') || prods.find(p => p.title.toLowerCase().includes('elevenlabs')) || null;
     }
-    if (t.includes('canva')) {
-      return prods.find(p => p.id === 'prod-canva-panel-500') || prods.find(p => p.title.toLowerCase().includes('canva')) || null;
+    if (t.includes('canva pro') || (t.includes('canva') && t.includes('mail'))) {
+      return prods.find(p => p.id === 'prod-canva-pro-mail') || prods.find(p => p.title.toLowerCase().includes('canva pro')) || null;
     }
-    if (t.includes('course pro') || (t.includes('course') && !t.includes('capcut'))) {
+    if (t.includes('canva')) {
+      return prods.find(p => p.id === 'prod-canva-panel-500') || prods.find(p => p.title.toLowerCase().includes('canva panel')) || prods.find(p => p.title.toLowerCase().includes('canva')) || null;
+    }
+    if (t.includes('coursera')) {
+      return prods.find(p => p.id === 'prod-coursera-private') || prods.find(p => p.title.toLowerCase().includes('coursera')) || null;
+    }
+    if (t.includes('sales navigator') || t.includes('sales nav')) {
+      return prods.find(p => p.id === 'prod-linkedin-sales-nav-2m') || prods.find(p => p.title.toLowerCase().includes('sales navigator')) || null;
+    }
+    if (t.includes('linkedin')) {
+      if (t.includes('sales')) {
+        return prods.find(p => p.id === 'prod-linkedin-sales-nav-2m') || null;
+      }
+      return prods.find(p => p.id === 'prod-linkedin-career-3m') || prods.find(p => p.title.toLowerCase().includes('linkedin')) || null;
+    }
+    if (t.includes('udemy')) {
+      return prods.find(p => p.id === 'prod-udemy-personal-1m') || prods.find(p => p.title.toLowerCase().includes('udemy')) || null;
+    }
+    if (t.includes('claude') || t.includes('anthropic')) {
+      return prods.find(p => p.id === 'prod-claude-api-500') || prods.find(p => p.title.toLowerCase().includes('claude')) || null;
+    }
+    if (t.includes('proxy') || t.includes('owl')) {
+      return prods.find(p => p.id === 'prod-owl-proxy-200mb') || prods.find(p => p.title.toLowerCase().includes('owl')) || null;
+    }
+    if (t.includes('windows') || t.includes('win 10') || t.includes('win 11') || t.includes('win pro')) {
+      return prods.find(p => p.id === 'prod-windows-pro-license') || prods.find(p => p.title.toLowerCase().includes('windows')) || null;
+    }
+    if (t.includes('adobe') || t.includes('express')) {
+      return prods.find(p => p.id === 'prod-adobe-express-12m') || prods.find(p => p.title.toLowerCase().includes('adobe express')) || null;
+    }
+    if (t.includes('proton')) {
+      return prods.find(p => p.id === 'prod-proton-vpn-1m') || prods.find(p => p.title.toLowerCase().includes('proton')) || null;
+    }
+    if (t.includes('course pro') || (t.includes('course') && !t.includes('capcut') && !t.includes('coursera') && !t.includes('udemy'))) {
       return prods.find(p => p.id === 'prod-course-pro-1year') || prods.find(p => p.title.toLowerCase().includes('course pro')) || null;
     }
     if (t.includes('nordvpn') || t.includes('nord')) {
@@ -142,11 +175,14 @@ export const CustomerChatbot: React.FC<CustomerChatbotProps> = ({
       }
       return prods.find(p => p.id === 'prod-amazon-prime-1m') || prods.find(p => p.title.toLowerCase().includes('1 month')) || prods.find(p => p.title.toLowerCase().includes('prime')) || null;
     }
-    if (t.includes('hma') || t.includes('vpn')) {
+    if (t.includes('proton') || t.includes('hma') || t.includes('vpn')) {
+      if (t.includes('proton')) return prods.find(p => p.id === 'prod-proton-vpn-1m') || null;
+      if (t.includes('surf')) return prods.find(p => p.id === 'prod-surfshark-vpn-private') || null;
+      if (t.includes('nord')) return prods.find(p => p.id === 'prod-nordvpn-private') || null;
       return prods.find(p => p.id === 'prod-hma-vpn') || prods.find(p => p.id === 'prod-nordvpn-private') || prods.find(p => p.title.toLowerCase().includes('vpn')) || null;
     }
     if (t.includes('outlook') || t.includes('mail')) {
-      return prods.find(p => p.id === 'prod-outlook-mail') || prods.find(p => p.title.toLowerCase().includes('outlook')) || null;
+      return prods.find(p => p.id === 'prod-outlook-mail-trust') || prods.find(p => p.id === 'prod-outlook-mail') || prods.find(p => p.title.toLowerCase().includes('outlook')) || null;
     }
     if (t.includes('duolingo') || t.includes('super duo')) {
       return prods.find(p => p.id === 'prod-super-duolingo') || prods.find(p => p.title.toLowerCase().includes('duolingo')) || null;

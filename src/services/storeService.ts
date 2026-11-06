@@ -61,9 +61,10 @@ function getInitialProductsWithDraftMigration(): Product[] {
       return {
         ...initP,
         ...existing,
-        // Ensure updated seed prices (e.g. Canva 4000) take effect if not manually changed
-        pricePKR: existing.pricePKR !== undefined ? existing.pricePKR : initP.pricePKR,
-        images: (existing.images && existing.images[0] && !existing.images[0].includes('unsplash.com')) ? existing.images : initP.images,
+        // Ensure authoritative seed prices always take effect for catalog products
+        pricePKR: initP.pricePKR,
+        compareAtPricePKR: initP.compareAtPricePKR,
+        images: (initP.images && initP.images[0]) ? initP.images : existing.images,
       };
     }
     return initP;

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="adobeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF0000"/>
+      <stop offset="50%" stop-color="#FF6B00"/>
+      <stop offset="100%" stop-color="#7B00FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#080F0D"/>
+  <rect x="20" y="20" width="360" height="260" rx="16" fill="#111C18" stroke="#1D2E27" stroke-width="2"/>
+  
+  <!-- Adobe Express emblem -->
+  <g transform="translate(150, 60)">
+    <rect width="100" height="100" rx="20" fill="url(#adobeGrad)"/>
+    <text x="32" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" fill="#FFFFFF">Ex</text>
+  </g>
+  <rect x="245" y="60" width="90" height="24" rx="12" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="290" y="76" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#F87171" text-anchor="middle">12 Months</text>
+
+  <!-- Typography -->
+  <text x="200" y="195" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF" text-anchor="middle">Adobe Express Premium</text>
+  <text x="200" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="500" fill="#9CA3AF" text-anchor="middle">12 Months Access • Firefly Generative AI • Premium Fonts</text>
+  
+  <rect x="140" y="240" width="120" height="28" rx="14" fill="#B7F34A"/>
+  <text x="200" y="259" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#080F0D" text-anchor="middle">Rs. 676 PKR</text>
+</svg>
