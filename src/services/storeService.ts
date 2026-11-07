@@ -12,13 +12,14 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import { Product, BlogPost, StoreSettings, Order } from '../types';
+import { Product, BlogPost, StoreSettings, Order, PriceAlert } from '../types';
 import { INITIAL_PRODUCTS, INITIAL_BLOG_POSTS, INITIAL_STORE_SETTINGS } from '../data/seedData';
 
 const PRODUCTS_COLLECTION = 'products';
 const BLOGS_COLLECTION = 'blogPosts';
 const SETTINGS_COLLECTION = 'storeSettings';
 const ORDERS_COLLECTION = 'orders';
+const PRICE_ALERTS_COLLECTION = 'priceAlerts';
 const GLOBAL_SETTINGS_ID = 'global_settings';
 
 // Safe localStorage helper
@@ -641,3 +642,40 @@ export async function updateOrder(orderId: string, updates: Partial<Order>): Pro
     console.warn('Firestore order update warning (updated locally):', err);
   }
 }
+
+// PRICE ALERTS / NOTIFY ME (Price Drop Notifications)
+export async function savePriceAlert(alertData: Omit<PriceAlert, 'id' | 'createdAt' | 'status'> & { targetPricePKR?: number }): Promise<PriceAlert> {
+  const alertId = `alert-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+  const newAlert: PriceAlert = {
+    id: alertId,
+    productId: alertData.productId,
+    productTitle: alertData.productTitle,
+    currentPricePKR: alertData.currentPricePKR,
+    targetPricePKR: alertData.targetPricePKR,
+    email: alertData.email.trim().toLowerCase(),
+    createdAt: new Date().toISOString(),
+    status: 'active',
+  };
+
+  // 1. Save in local storage
+  const existingAlerts = loadFromStorage<PriceAlert[]>('dpp_price_alerts', []);
+  existingAlerts.unshift(newAlert);
+  saveToStorage('dpp_price_alerts', existingAlerts);
+
+  // 2. Sync to Firestore
+  try {
+    await setDoc(doc(db, PRICE_ALERTS_COLLECTION, alertId), newAlert);
+  } catch (err) {
+    console.warn('Firestore price alert save warning (saved locally):', err);
+  }
+
+  return newAlert;
+}
+
+export function getUserPriceAlerts(email?: string): PriceAlert[] {
+  const alerts = loadFromStorage<PriceAlert[]>('dpp_price_alerts', []);
+  if (!email || !email.trim()) return alerts;
+  const cleanEmail = email.trim().toLowerCase();
+  return alerts.filter(a => a.email.toLowerCase() === cleanEmail);
+}
+

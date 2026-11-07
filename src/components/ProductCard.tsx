@@ -1,7 +1,8 @@
-import React from 'react';
-import { ShoppingBag, ArrowRight, Cpu, Sparkles, CheckCircle2, MessageCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingBag, ArrowRight, Cpu, Sparkles, CheckCircle2, MessageCircle, Bell } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
+import { PriceAlertModal } from './PriceAlertModal';
 
 interface ProductCardProps {
   product: Product;
@@ -10,6 +11,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
   const { addToCart } = useCart();
+  const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
 
   const getProductIcon = () => {
     switch (product.productType) {
@@ -128,6 +130,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
             </div>
 
             <div className="flex items-center gap-1.5">
+              {/* Notify Me on Price Drop Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsAlertModalOpen(true);
+                }}
+                className="p-2 rounded-xl text-slate-400 hover:text-[#B7F34A] hover:bg-[#1A2924] border border-transparent hover:border-[#B7F34A]/30 transition-all cursor-pointer"
+                title="Notify me if price drops"
+                aria-label={`Set price drop alert for ${product.title}`}
+              >
+                <Bell className="w-4 h-4" />
+              </button>
+
               <button
                 onClick={() => onSelect(product)}
                 className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-[#1A2924] transition-colors cursor-pointer"
@@ -150,28 +166,51 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
             </div>
           </div>
 
-          {/* Direct "Order on WhatsApp" Button */}
-          {isAvailable ? (
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-[#25D366]/20 active:scale-95"
-            >
-              <MessageCircle className="w-4 h-4 fill-white/20" />
-              <span>Order on WhatsApp Direct</span>
-            </a>
-          ) : (
+          {/* Quick Notify Me & WhatsApp Row */}
+          <div className="flex items-center gap-2">
             <button
-              onClick={() => onSelect(product)}
-              className="w-full bg-[#233730] text-slate-400 font-medium text-xs py-2 rounded-xl cursor-pointer hover:text-white"
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsAlertModalOpen(true);
+              }}
+              className="py-2.5 px-3 rounded-xl bg-[#1A2924] hover:bg-[#233730] text-slate-300 hover:text-[#B7F34A] border border-[#233730] text-xs font-semibold flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer"
+              title="Get price drop alerts"
             >
-              View Specifications
+              <Bell className="w-3.5 h-3.5 text-[#B7F34A]" />
+              <span className="hidden sm:inline">Notify Me</span>
             </button>
-          )}
+
+            {/* Direct "Order on WhatsApp" Button */}
+            {isAvailable ? (
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex-1 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-[#25D366]/20 active:scale-95"
+              >
+                <MessageCircle className="w-4 h-4 fill-white/20" />
+                <span className="truncate">Order on WhatsApp</span>
+              </a>
+            ) : (
+              <button
+                onClick={() => onSelect(product)}
+                className="flex-1 bg-[#233730] text-slate-400 font-medium text-xs py-2 rounded-xl cursor-pointer hover:text-white"
+              >
+                View Specifications
+              </button>
+            )}
+          </div>
         </div>
       </div>
+
+      {/* Price Alert Modal */}
+      <PriceAlertModal
+        product={product}
+        isOpen={isAlertModalOpen}
+        onClose={() => setIsAlertModalOpen(false)}
+      />
     </div>
   );
 };

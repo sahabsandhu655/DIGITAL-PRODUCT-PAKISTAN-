@@ -15,11 +15,13 @@ import {
   ChevronLeft,
   ChevronRight,
   Layers,
-  ExternalLink
+  ExternalLink,
+  Bell
 } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import { ProductCard } from '../components/ProductCard';
+import { PriceAlertModal } from '../components/PriceAlertModal';
 
 interface ProductDetailPageProps {
   product: Product;
@@ -41,6 +43,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [copiedLink, setCopiedLink] = useState(false);
   const [galleryViewMode, setGalleryViewMode] = useState<'slideshow' | 'grid'>('slideshow');
+  const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
 
   const isAvailable = product.status === 'published' && product.pricePKR > 0;
   const whatsappNumber = '+923107759274';
@@ -256,6 +259,16 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   </button>
                 </div>
               )}
+
+              {/* NOTIFY ME ON PRICE DROP BUTTON */}
+              <button
+                type="button"
+                onClick={() => setIsAlertModalOpen(true)}
+                className="w-full py-3 px-4 rounded-xl bg-[#1A2924] hover:bg-[#233730] text-slate-300 hover:text-[#B7F34A] border border-[#233730] hover:border-[#B7F34A]/40 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+              >
+                <Bell className="w-4 h-4 text-[#B7F34A]" />
+                <span>Notify Me When Price Drops (Instant Email Alert)</span>
+              </button>
             </div>
           </div>
 
@@ -536,6 +549,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           </div>
         </div>
       )}
+
+      {/* Price Alert Modal */}
+      <PriceAlertModal
+        product={product}
+        isOpen={isAlertModalOpen}
+        onClose={() => setIsAlertModalOpen(false)}
+      />
     </div>
   );
 };

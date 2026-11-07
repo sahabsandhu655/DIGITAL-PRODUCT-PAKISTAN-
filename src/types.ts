@@ -173,3 +173,14 @@ export interface AdminUser {
   email: string | null;
   isAdmin: boolean;
 }
+
+export interface PriceAlert {
+  id: string;
+  productId: string;
+  productTitle: string;
+  currentPricePKR: number;
+  targetPricePKR?: number;
+  email: string;
+  createdAt: string;
+  status: 'active' | 'triggered' | 'cancelled';
+}

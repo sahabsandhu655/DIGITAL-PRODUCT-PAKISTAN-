@@ -118,6 +118,21 @@
         "createdAt": { "type": "string" }
       },
       "required": ["email", "role"]
+    },
+    "PriceAlert": {
+      "title": "PriceAlert",
+      "description": "User email subscription for price drop notifications on specific products.",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string", "maxLength": 128 },
+        "productTitle": { "type": "string", "maxLength": 200 },
+        "currentPricePKR": { "type": "number" },
+        "targetPricePKR": { "type": "number" },
+        "email": { "type": "string", "maxLength": 150 },
+        "createdAt": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "triggered", "cancelled"] }
+      },
+      "required": ["productId", "email", "currentPricePKR", "status"]
     }
   },
   "firestore": {
@@ -140,6 +155,10 @@
     "/admins/{adminId}": {
       "schema": "Admin",
       "description": "Admin registry for RBAC authorization."
+    },
+    "/priceAlerts/{alertId}": {
+      "schema": "PriceAlert",
+      "description": "Customer email notifications for product price drops."
     }
   }
 }

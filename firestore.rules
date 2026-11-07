@@ -38,5 +38,11 @@ service cloud.firestore {
     match /admins/{adminId} {
       allow get, list, read, write: if isValidId(adminId);
     }
+
+    // Price alerts collection: customers can create price drop alerts with valid ID
+    match /priceAlerts/{alertId} {
+      allow get, list, read: if true;
+      allow create, update, delete: if isValidId(alertId);
+    }
   }
 }
